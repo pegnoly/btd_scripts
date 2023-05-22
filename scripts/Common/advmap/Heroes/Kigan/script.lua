@@ -1,0 +1,1 @@
+CombatConnection.combat_scripts_paths['Kigan_spec'] = '/scripts/Common/combat/Heroes/Kigan/script.lua'

@@ -1,0 +1,12 @@
+BTD_Duel = 
+{
+    start_gold = 0
+}
+
+---@alias BTDDuelDayType
+BTD_START_DAY = 1
+BTD_HERO_CHOISE_DAY = 2
+BTD_LEVEL_ARMY_DAY = 3
+BTD_SPECIAL_DAY = 4
+BTD_FREE_ROAM_DAY = 5
+BTD_FIGHT_DAY = 6

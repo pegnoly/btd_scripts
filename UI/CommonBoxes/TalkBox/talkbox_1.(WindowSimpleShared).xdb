@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowSimpleShared>
+	<Crap>false</Crap>
+	<Children>
+		<Item href="title.(windowstatictext).xdb#xpointer(/WindowStaticText)"/>
+		<Item href="Face0.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Text.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="Select.(WindowStaticText).xdb#xpointer(/WindowStaticText)"/>
+		<Item href="Option_1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="AddInfo.(WindowStaticText).xdb#xpointer(/WindowStaticText)"/>
+		<Item href="ButtonOk.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="ButtonClose.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+	</Children>
+	<Background href="Back_1.(BackgroundSimpleTexture).xdb#xpointer(/BackgroundSimpleTexture)"/>
+	<Foreground/>
+	<Flags>
+		<Transparent>false</Transparent>
+	</Flags>
+	<Placement>
+		<Position>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</Position>
+		<VerAllign>
+			<First>EPA_LOW_END</First>
+			<Second>true</Second>
+		</VerAllign>
+		<HorAllign>
+			<First>EPA_LOW_END</First>
+			<Second>true</Second>
+		</HorAllign>
+		<Size>
+			<First>
+				<x>690</x>
+				<y>465</y>
+			</First>
+			<Second>true</Second>
+		</Size>
+		<LowerMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</LowerMargin>
+		<UpperMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</UpperMargin>
+	</Placement>
+	<ActiveArea/>
+	<IgnoreDblClick>true</IgnoreDblClick>
+	<ActiveMask/>
+</WindowSimpleShared>

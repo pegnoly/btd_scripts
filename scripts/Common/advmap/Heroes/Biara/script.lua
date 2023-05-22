@@ -1,0 +1,1 @@
+CombatConnection.combat_scripts_paths['Biara_spec'] = '/scripts/Common/combat/Heroes/Biara/script.lua'
