@@ -30,4 +30,4 @@ function(hero)
     end)
 end)
 
-CombatConnection.combat_scripts_paths['defend_us_all'] = '/scripts/common/combat/Skills/DefendUsAll/script.lua'
+CombatConnection.combat_scripts_paths['defend_us_all'] = '/scripts/Common/combat/Skills/DefendUsAll/script.lua'

@@ -69,4 +69,4 @@ function GetPlayerFilter( player )
   return 0;
 end;
 
-doFile('/scripts/init/adv_map_init.lua')
+doFile("/scripts/source/init/adv_map_init.lua")

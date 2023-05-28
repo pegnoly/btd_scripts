@@ -1,37 +1,28 @@
-mentorship =
+--- 26.05.2023. Improved.
+
+mentorship_duel =
 {
-  level_count = 1,
-  heroes_active = {}
+    bonus_lvl = 8,
+    active_for_hero = {}
 }
 
-AddHeroEvent.AddListener("mentorship_add_hero_event",
-function(hero)
-    mentorship.heroes_active[hero] = nil
-    startThread(
-    function()
-        while 1 do
-        if IsHeroAlive(%hero) then
-            if not mentorship.heroes_active[%hero] then
-                if HasHeroSkill(%hero, HERO_SKILL_MENTORING) then
-                    mentorship.heroes_active[%hero] = 1
-                    local xp = GetHeroStat(%hero, STAT_EXPERIENCE)
-                    local level_to_up = -1
-                    for level, xp_to_level in Levels do
-                        if xp < xp_to_level then
-                            level_to_up = level
-                            break
-                        end
-                    end
-                    local xp_to_add = Levels[level_to_up] - xp + 1
-                    startThread(GiveExp, %hero, xp_to_add)
-                end
-            else
-                if not HasHeroSkill(%hero, HERO_SKILL_MENTORING) then
-                    mentorship.heroes_active[%hero] = nil
-                end
+NewDayEvent.AddListener("BTD_duel_mentorship_new_day",
+function(day)
+    if day == BTD_FREE_ROAM_DAY then
+        for hero, alive in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive and HasHeroSkill(hero, HERO_SKILL_MENTORING) and not mentorship_duel.active_for_hero[hero] then
+                mentorship_duel.active_for_hero[hero] = 1
+                LevelUpHero(hero)
             end
         end
-        sleep()
+    end
+    if day == BTD_FIGHT_DAY then
+        for hero, alive in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive and HasHeroSkill(hero, HERO_SKILL_MENTORING) then
+                local heroLevel = GetHeroLevel(hero);
+                local needExp = Levels[heroLevel + mentorship_duel.bonus_lvl] - Levels[heroLevel];
+                WarpHeroExp(hero, GetHeroStat(hero, STAT_EXPERIENCE) + needExp);
+            end
         end
-    end)
+    end
 end)

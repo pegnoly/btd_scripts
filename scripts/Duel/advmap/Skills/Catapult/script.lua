@@ -3,7 +3,7 @@ constructor =
   heroes_active = {}
 }
 
-NewDayEvent.AddListener("constructor_new_day_event",
+NewDayEvent.AddListener("BTD_duel_constructor_new_day_event",
 function(day)
     if day == BTD_FIGHT_DAY then
         for hero, alive in AdvMapHeroesInfo.alive_heroes do

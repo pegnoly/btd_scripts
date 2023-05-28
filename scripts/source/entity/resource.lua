@@ -1,10 +1,3 @@
-Resource = {}
-Resource.is_loaded = nil
-Resource.Exception =
-function(ex)
-  print("Resource.Exception: ", ex)
-end
-
 Resource =
 {
   Exception =

@@ -18,6 +18,7 @@ sleep()
 doFile('/scripts/source/common/adv_map/override.lua')
 doFile('/scripts/source/common/adv_map/load.lua')
 doFile('/scripts/source/event/map_common/events.lua')
+doFile('/scripts/source/event/custom_ability/custom_ability_main.lua')
 sleep()
 doFile('/scripts/source/entity/object.lua')
 doFile('/scripts/source/entity/resource.lua')
@@ -28,6 +29,7 @@ doFile('/scripts/source/dialog/dialog.lua')
 doFile('/scripts/source/dialog/mini_dialog.lua')
 doFile('/scripts/source/event/touch/touch.lua')
 doFile('/scripts/source/event/map_common/events.lua')
+
 while not MapLoadingEvent do 
 	sleep()
 end
@@ -46,12 +48,6 @@ end
 
 Trigger(OBJECTIVE_STATE_CHANGE_TRIGGER, 'HIDDEN', MCCS_FIRST_ACTIVE_PLAYER, 'CommonStart')
 
---for player = PLAYER_1, PLAYER_8 do
---  if (GetPlayerState(player) == PLAYER_ACTIVE) and (IsAIPlayer(player) == 0) then
---    Trigger(OBJECTIVE_STATE_CHANGE_TRIGGER, 'HIDDEN2', player, 'UpArtsAdd')
---  end
---end
-
 --doFile('/scripts/NAF/global_load.lua')
 doFile('/scripts/source/event/map_common/post_combat_fix.lua')
 --doFile('/scripts/NHF_global_load.lua')
@@ -63,15 +59,7 @@ function CommonStart()
 	print("<color=blue>MCCS SCRIPTS SUCCESSFULLY LOADED")
 end
 
-function TestAbility(hero, ability)
-   if ability == CUSTOM_ABILITY_3 then
-      TalkBoxForPlayers(GetPlayerFilter(GetObjectOwner(hero)), "", "", "", "", "", 0, "", "", 1, rtext("Тест"), nil, nil, nil, nil)
-   end
-end
-
 function CommonMapLoadingThread()
-  --
-  Trigger(CUSTOM_ABILITY_TRIGGER, "TestAbility")
   --
  	for player = PLAYER_1, PLAYER_8 do
      startThread(MessageQueue.Run, player)
@@ -87,25 +75,8 @@ function CommonMapLoadingThread()
     end
   end)
   --
---  NewDayEvent.AddListener("ass",
---  function(day)
---      if day == 1 then
---          for i, hero in GetObjectNamesByType("HERO") do
---              ControlHeroCustomAbility(hero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED)
---          end
---      end
---      if day == 2 then
---        sleep(10)
---        if MCCS_QuestionBoxForPlayers(PLAYER_1, rtext("Test")) then
---          for player = PLAYER_1, PLAYER_8 do
---            if (GetPlayerState(player) == PLAYER_ACTIVE) and (IsAIPlayer(player) == 0) then
---              SetObjectiveState('HIDDEN2', OBJECTIVE_ACTIVE, player)
---            end
---          end
---        end
---      end
---  end)
   MapLoadingEvent.Invoke()
+  startThread(CustomAbility.Init)
   --
   sleep(10)
   --
@@ -116,22 +87,8 @@ function CommonMapLoadingThread()
   startThread(PostCombatFixInit)
   --
   sleep()
-  -- startThread(CustomAbility.EnableArtifactAbility)
-  -- startThread(CustomAbility.EnableHeroAbility)
   CombatConnection.CreateCombatFunctionsList(CombatConnection.combat_scripts_paths)
   --
 end
-
---function UpArtsAdd(player)
---  if GetCurrentPlayer() ~= -1 then
---    while not (GetCurrentPlayer() == player) do
---      sleep()
---    end
---  end
---  while length(GetPlayerHeroes(player)) == 0 do
---    sleep()
---  end
---  TalkBoxForPlayers(GetPlayerFilter(player), "", "", "", "", "", 0, "", "", 1, rtext("Тест"), nil, nil, nil, nil)
---end
 
 SetObjectiveState('HIDDEN', OBJECTIVE_ACTIVE, MCCS_FIRST_ACTIVE_PLAYER)

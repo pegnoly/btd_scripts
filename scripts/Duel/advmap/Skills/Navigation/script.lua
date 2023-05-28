@@ -1,29 +1,26 @@
-navigation =
-{
-  know_bonus = 2,
-  heroes_active = {}
-}
-
-NewDayEvent.AddListener("navigation_add_hero_event",
+AddHeroEvent.AddListener("BTD_duel_navigation_add_hero",
 function(hero)
-    navigation.heroes_active[hero] = nil
+    navigation_common.stat_for_hero[hero] = nil
     startThread(
     function()
+        while GetDate(DAY) ~= BTD_FREE_ROAM_DAY do
+            sleep()
+        end
         while 1 do
             if IsHeroAlive(%hero) then
-                if not navigation.heroes_active[%hero] then
+                if not navigation_common.stat_for_hero[%hero] then
                     if HasHeroSkill(%hero, PERK_NAVIGATION) then
-                        navigation.heroes_active[%hero] = 1
-                        ChangeHeroStat(%hero, STAT_KNOWLEDGE, navigation.know_bonus)
+                        ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_NAVIGATION, CUSTOM_ABILITY_ENABLED)
                     end
-                        else
+                else
                     if not HasHeroSkill(%hero, PERK_NAVIGATION) then
-                        navigation.heroes_active[%hero] = nil
-                        ChangeHeroStat(%hero, STAT_KNOWLEDGE, -navigation.know_bonus)
+                        Hero.Stats.Change(%hero, navigation_common.stat_for_hero[%hero], -navigation_common.stat_amount)
+                        navigation_common.stat_for_hero[%hero] = nil
+                        --ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_NAVIGATION, CUSTOM_ABILITY_DISABLED)
                     end
                 end
             end
             sleep()
         end
     end)
-end
+end)
