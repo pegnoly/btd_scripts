@@ -51,7 +51,6 @@ doFile("/scripts/RMG/advmap/Skills/DarkRevelation/script.lua")
 
 -- абилки
 doFile("/scripts/RMG/advmap/Abilities/ArtifactTransfer/script.lua")
-doFile("/scripts/RMG/advmap/Abilities/Test/script.lua")
 
 -- постройки в городах
 doFile("/scripts/RMG/advmap/Towns/Buildings/Academy_TreasureCave/script.lua")
