@@ -1,5 +1,5 @@
 -- @skill
--- сбор войск
+-- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 recruitment =
 {
   active_for_hero = {},
