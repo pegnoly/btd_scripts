@@ -4,6 +4,7 @@ artifact_transfer =
 {
     active_for_hero = {},
     distance = 2,
+    untransferable_artifacts = {ARTIFACT_WAND_OF_X, ARTIFACT_SCROLL_OF_SPELL_X},
     move_points_cost = 100
 }
 
@@ -72,18 +73,45 @@ function ArtifactTransfer_GetClosestHero(hero)
     return closest_hero
 end
 
+function ArtifactTransfer_RemoveArts(hero, art, count)
+    for i = 1, count do
+        RemoveArtefact(hero, art)
+    end    
+end
+
+function ArtifactTransfer_GiveArts(hero, art, count)
+    for i = 1, count do
+        GiveArtefact(hero, art)
+    end
+end
+
 CustomAbility.callbacks[CUSTOM_ABILITY_ARTIFACT_TRANSFER] = 
 function(hero)
     local closest_hero = ArtifactTransfer_GetClosestHero(hero)
     if closest_hero ~= "" then
         ChangeHeroStat(hero, STAT_MOVE_POINTS, -artifact_transfer.move_points_cost)
+        local arts_to_return, a_n = {}, 0
         for art = 1, 149 do
-            if HasArtefact(hero, art) then
-                for i = 1, GetHeroArtifactsCount(hero, art) do
-                    RemoveArtefact(hero, art)
-                    GiveArtefact(closest_hero, art)
+            if not contains(artifact_transfer.untransferable_artifacts, art) then
+                local remove_art_count = GetHeroArtifactsCount(hero, art)
+                local give_art_count = HasArtefact(hero, art, 1) and remove_art_count - 1 or remove_art_count
+                if remove_art_count > give_art_count then
+                    a_n = a_n + 1
+                    arts_to_return[a_n] = art
+                end
+                startThread(ArtifactTransfer_RemoveArts, hero, art, remove_art_count)
+                startThread(ArtifactTransfer_GiveArts, closest_hero, art, give_art_count)
+                while GetHeroArtifactsCount(hero, art) ~= 0 and GetHeroArtifactsCount(closest_hero, art) ~= give_art_count do
+                    sleep()
                 end
             end
         end
+        if a_n > 0 then
+            for i, art in arts_to_return do
+                GiveArtefact(hero, art)
+            end
+        end
+        sleep()
+        MakeHeroInteractWithObject(hero, closest_hero)
     end
 end

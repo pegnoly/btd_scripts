@@ -48,21 +48,24 @@ doFile("/scripts/RMG/advmap/Skills/SpoilsOfWar/script.lua")
 doFile("/scripts/RMG/advmap/Skills/Wisdom/script.lua")
 doFile("/scripts/RMG/advmap/Skills/ForestLeader/script.lua")
 doFile("/scripts/RMG/advmap/Skills/DarkRevelation/script.lua")
-
+doFile("/scripts/RMG/advmap/Skills/DisguiseAndReckon/script.lua")
 doFile("/scripts/RMG/advmap/Skills/ElementalBalance/script.lua")
 
 -- абилки
 doFile("/scripts/RMG/advmap/Abilities/ArtifactTransfer/script.lua")
-doFile("/scripts/RMG/advmap/Abilities/Test/script.lua")
 
 -- постройки в городах
 doFile("/scripts/RMG/advmap/Towns/Buildings/Academy_TreasureCave/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Haven_Farms/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Inferno_SacrificialPit/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Inferno_OrderOfFire/script.lua")
+doFile("/scripts/RMG/advmap/Towns/Buildings/Inferno_HallsOfHorror/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Necropolis_UnearhedGraves/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Preserve_BloomingGrove/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Dungeon_RitualPit/script.lua")
+doFile("/scripts/RMG/advmap/Towns/Buildings/Common_ArmyRegradeFort/script.lua")
+doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_RunicStoneworks/script.lua")
+doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_Treasure/script.lua")
 
 -- спеллы
 doFile("/scripts/RMG/advmap/Spells/init.lua")

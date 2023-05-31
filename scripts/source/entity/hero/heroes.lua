@@ -494,7 +494,7 @@ Hero =
         ---@param tier integer уровень существа
         ---@param amount integer число существ
         function(hero, town, tier, amount)
-        errorHook(
+            errorHook(
             function()
                 Hero.CreatureInfo.Exception(%hero, "Trying to give creatures by "..%town.." and tier "..%tier.." in amount of "..%amount)
             end)
