@@ -22,6 +22,7 @@ TownPortalExtension = {
                 local xp = GetHeroStat(sHeroName, STAT_EXPERIENCE)
     
                 if newMovePoints == 0 and vStored.mana - newMana == 20 and vStored.xp == xp then
+                    print("Checking was tp performed?")
                     local sTownName = GetHeroTown_Gate(sHeroName)
                     if sTownName then
                         print (sHeroName.." teleported into "..sTownName) --todo: remove
@@ -49,7 +50,7 @@ TownPortalExtension = {
         local WALKERS_HUT = TOWN_BUILDING_STRONGHOLD_TRAVELLERS_SHELTER
         
         if sTownName ~= vSelector.currTown and (
-            GetTownBuildingLevel(sTownName, TOWN_BUILDING_MAGIC_GUILD) == 1
+            GetTownBuildingLevel(sTownName, TOWN_BUILDING_MAGIC_GUILD) >= 1
             or (
                 contains(GetObjectNamesByType('TOWN_STRONGHOLD'), sTownName)
                 and
@@ -124,6 +125,7 @@ end)
 function GetHeroTown_Gate(sHeroName)
     for _, sTownName in GetObjectNamesByType('TOWN') do
         if IsHeroInTown(sHeroName, sTownName, 1, 0) then
+            print(sHeroName, " is in town ", sTownName)
             return sTownName
         end
     end

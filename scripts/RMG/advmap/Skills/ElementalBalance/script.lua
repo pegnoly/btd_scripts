@@ -11,8 +11,8 @@ elemental_balance_rmg_func = function(hero)
                 if not KnowHeroSpell(hero, SPELL_SUMMON_ELEMENTALS) and
                     HasHeroSkill(hero, KNIGHT_FEAT_ELEMENTAL_BALANCE)
                 then
-                    TeachHeroSpell(hero, SPELL_SUMMON_ELEMENTALS)
-                    MessageQueue.AddMessage(GetObjectOwner(hero), elemental_balance_text_path, hero, 3)
+                    Hero.SpellInfo.TeachSpell(hero, SPELL_SUMMON_ELEMENTALS)
+                    --MessageQueue.AddMessage(GetObjectOwner(hero), elemental_balance_text_path, hero, 3)
                 end
             end
 
