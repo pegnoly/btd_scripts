@@ -49,6 +49,7 @@ doFile("/scripts/RMG/advmap/Skills/Wisdom/script.lua")
 doFile("/scripts/RMG/advmap/Skills/ForestLeader/script.lua")
 doFile("/scripts/RMG/advmap/Skills/DarkRevelation/script.lua")
 doFile("/scripts/RMG/advmap/Skills/DisguiseAndReckon/script.lua")
+doFile("/scripts/RMG/advmap/Skills/ElementalBalance/script.lua")
 
 -- абилки
 doFile("/scripts/RMG/advmap/Abilities/ArtifactTransfer/script.lua")
@@ -62,10 +63,12 @@ doFile("/scripts/RMG/advmap/Towns/Buildings/Inferno_HallsOfHorror/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Necropolis_UnearhedGraves/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Preserve_BloomingGrove/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Dungeon_RitualPit/script.lua")
-
 doFile("/scripts/RMG/advmap/Towns/Buildings/Common_ArmyRegradeFort/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_RunicStoneworks/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_Treasure/script.lua")
+
+-- спеллы
+doFile("/scripts/RMG/advmap/Spells/init.lua")
 
 -- Áû報갨ﲻ ͠철𳍊doFile("/scripts/RMG/advmap/Creatures/Abilities/Namtaru.lua")
 
