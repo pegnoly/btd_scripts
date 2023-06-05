@@ -48,11 +48,15 @@ end
 
 Trigger(OBJECTIVE_STATE_CHANGE_TRIGGER, 'HIDDEN', MCCS_FIRST_ACTIVE_PLAYER, 'CommonStart')
 
+GAME_RELOADEAD = 1
+
 --doFile('/scripts/NAF/global_load.lua')
 doFile('/scripts/source/event/map_common/post_combat_fix.lua')
+doFile('/scripts/source/event/map_common/map_reload_fix.lua')
 --doFile('/scripts/NHF_global_load.lua')
 
 function CommonStart()
+  consoleCmd("@GAME_RELOADEAD = 0")
 	doFile("/scripts/local_load.lua")
 	sleep()
 	startThread(CommonMapLoadingThread)
@@ -88,7 +92,19 @@ function CommonMapLoadingThread()
   --
   sleep()
   CombatConnection.CreateCombatFunctionsList(CombatConnection.combat_scripts_paths)
-  --
 end
 
-SetObjectiveState('HIDDEN', OBJECTIVE_ACTIVE, MCCS_FIRST_ACTIVE_PLAYER)
+function ReloadGame()
+    consoleCmd("@if GAME_RELOADEAD == 1 then startThread(MapReloadEvent.Invoke) else print('Game was not realoaded') end")
+end
+
+function GameReloaded()
+    print("Game was reloaded?")
+    startThread(MapReloadEvent.Invoke)
+end
+
+consoleCmd(
+  "@if GetObjectiveState('HIDDEN', MCCS_FIRST_ACTIVE_PLAYER) == OBJECTIVE_UNKNOWN then SetObjectiveState('HIDDEN', OBJECTIVE_ACTIVE, MCCS_FIRST_ACTIVE_PLAYER) else sleep(2) ReloadGame() end"
+)
+
+--SetObjectiveState('HIDDEN', OBJECTIVE_ACTIVE, MCCS_FIRST_ACTIVE_PLAYER)
