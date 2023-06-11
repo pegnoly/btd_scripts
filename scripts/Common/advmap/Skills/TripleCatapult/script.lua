@@ -28,5 +28,3 @@ function(hero)
     end
   end)
 end)
-
-CombatConnection.combat_scripts_paths['triple_catapult_common'] = '/scripts/Common/combat/Skills/TripleCatapult/script.lua'

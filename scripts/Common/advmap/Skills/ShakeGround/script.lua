@@ -29,5 +29,3 @@ function(hero)
     end
   end)
 end)
-
-CombatConnection.combat_scripts_paths['shake_ground'] = '/scripts/Common/combat/Skills/ShakeGround/script.lua'

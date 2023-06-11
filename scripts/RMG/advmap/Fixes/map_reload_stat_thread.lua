@@ -1,12 +1,5 @@
-while not MapReloadEvent do
-    sleep()
-end
-
-print("Map reload event added")
-
-MapReloadEvent.AddListener("BTD_RMG_stat_threads_fix",
-function()
-    print("Here?")
+-- [#3 fix] Restores heroes stats global vars after reload.
+function StatThreadReloadFix()
     local stats =
     {
         [STAT_ATTACK] = {name = '_Attack'},
@@ -17,18 +10,11 @@ function()
         [STAT_LUCK] = {name = '_Luck'},
     }
     for i, hero in GetObjectNamesByType("HERO") do
-        print("Hero: ", hero)
         for stat, info in stats do
             local curr_val = GetHeroStat(hero, stat)
             consoleCmd("@SetGameVar('"..hero..""..info.name.."', '"..curr_val.."')")
         end
-    end
-    --
-    for i, hero in GetPlayerHeroes(PLAYER_1) do
-        print("Hero from player: ", hero)
-        for stat, info in stats do
-            local curr_val = GetHeroStat(hero, stat)
-            consoleCmd("@SetGameVar('"..hero..""..info.name.."', '"..curr_val.."')")
-        end
-    end
-end)
+    end     
+end
+
+consoleCmd("@MapReloadEvent.AddListener('BTD_RMG_reload_stat_threads', StatThreadReloadFix)")

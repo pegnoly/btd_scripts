@@ -26,5 +26,3 @@ function(hero)
     end
   end)
 end)
-
-CombatConnection.combat_scripts_paths['sorcery_def'] = '/scripts/Common/combat/Skills/SorceryDefence/script.lua'

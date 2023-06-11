@@ -1,1 +1,1 @@
-CombatConnection.combat_scripts_paths['Krag_spec'] = '/scripts/Common/combat/Heroes/Krag/script.lua'
+consoleCmd("@CombatConnection.combat_scripts_paths['Krag_spec'] = '/scripts/Common/combat/Heroes/Krag/script.lua'")

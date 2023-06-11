@@ -26,5 +26,3 @@ function(hero)
     end
   end)
 end)
-
-CombatConnection.combat_scripts_paths['grail_vision'] = '/scripts/Common/combat/Skills/GrailVision/script.lua'

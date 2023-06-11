@@ -26,5 +26,3 @@ function(hero)
     end
   end)
 end)
-
-CombatConnection.combat_scripts_paths['readiness'] = '/scripts/Common/combat/Skills/Readiness/script.lua'

@@ -29,5 +29,3 @@ function(hero)
         end
     end)
 end)
-
-CombatConnection.combat_scripts_paths['defend_us_all'] = '/scripts/Common/combat/Skills/DefendUsAll/script.lua'
