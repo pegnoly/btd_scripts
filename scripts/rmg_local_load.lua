@@ -28,6 +28,7 @@ doFile("/scripts/RMG/advmap/Objects/Banks/base.lua")
 doFile("/scripts/RMG/advmap/NHF/Common/ArmyGeneration/script.lua")
 -- новые объекты
 doFile("/scripts/RMG/advmap/Objects/NewObjects/base.lua")
+doFile("/scripts/RMG/advmap/Objects/Default/FortuitousSanctuary/script.lua")
 -- чето старое(лучше убрать, но пока работает)
 doFile("/scripts/BTD.lua")
 

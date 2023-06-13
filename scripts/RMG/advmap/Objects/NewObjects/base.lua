@@ -14,7 +14,7 @@ BTD_Objects =
 			function(hero, statue)
 				if not StatueOfRevelation.used_by_hero[hero] then
 					StatueOfRevelation.used_by_hero[hero] = 1
-					GiveHeroBattleBonus(hero, HERO_BATTLE_BONUS_INITIATIVE, 1)
+					GiveHeroBattleBonus(hero, HERO_BATTLE_BONUS_INITIATIVE, 10)
 				else
 					ShowFlyingSign(StatueOfRevelation.path.."already_used.txt", statue, GetObjectOwner(hero), 6.0)
 				end    
@@ -93,4 +93,3 @@ BTD_Objects =
 }
 
 startThread(BTD_Objects.Init)
-CombatConnection.combat_scripts_paths["warmen_house"] = "/scripts/RMG/advmap/Objects/NewObjects/WarmenHouse/combat.lua"

@@ -1,0 +1,1 @@
+consoleCmd("@CombatConnection.combat_scripts_paths['warmen_house'] = '/scripts/RMG/advmap/Objects/NewObjects/WarmenHouse/combat.lua'")

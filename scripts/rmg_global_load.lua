@@ -21,6 +21,7 @@ doFile("/scripts/RMG/advmap/Skills/GuardianAngel/reload.lua")
 -- объекты
 doFile("/scripts/RMG/advmap/Objects/Banks/consts.lua")
 doFile("/scripts/RMG/advmap/Objects/NewObjects/consts.lua")
+doFile("/scripts/RMG/advmap/Objects/NewObjects/WarmenHouse/reload.lua")
 
 -- фиксы
 doFile("/scripts/RMG/advmap/Fixes/combat_connection_fix.lua")
