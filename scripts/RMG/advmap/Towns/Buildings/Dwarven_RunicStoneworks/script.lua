@@ -6,6 +6,10 @@ runic_stoneworks =
 
 AddHeroEvent.AddListener("BTD_RMG_runic_stoneworks_add_hero",
 function(hero)
+    if Hero.Params.Town(hero) ~= TOWN_FORTRESS then
+        return
+    end
+    --
     runic_stoneworks.bonuses_by_town_for_hero[hero] = {}
     startThread(
     function ()
