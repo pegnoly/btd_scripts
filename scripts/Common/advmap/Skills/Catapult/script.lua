@@ -29,4 +29,9 @@ function(hero)
     end)
 end)
 
-CombatConnection.combat_scripts_paths['catapult_common'] = '/scripts/Common/combat/Skills/Catapult/script.lua'
+RespawnHeroEvent.AddListener("BTD_common_catapult_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, PERK_CATAPULT) then
+        consoleCmd("@SetGameVar('"..hero.."_CATAPULT', '1')")
+    end   
+end)

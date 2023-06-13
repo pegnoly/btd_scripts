@@ -27,4 +27,9 @@ function(hero)
   end)
 end)
 
-CombatConnection.combat_scripts_paths['grail_vision'] = '/scripts/Common/combat/Skills/GrailVision/script.lua'
+RespawnHeroEvent.AddListener("BTD_common_grail_vision_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, KNIGHT_FEAT_GRAIL_VISION) then
+        consoleCmd("@SetGameVar('"..hero.."_GRAIL_VISION', '1')")
+    end   
+end)

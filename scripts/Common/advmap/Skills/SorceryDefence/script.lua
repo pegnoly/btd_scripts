@@ -27,4 +27,9 @@ function(hero)
   end)
 end)
 
-CombatConnection.combat_scripts_paths['sorcery_def'] = '/scripts/Common/combat/Skills/SorceryDefence/script.lua'
+RespawnHeroEvent.AddListener("BTD_common_sorcery_defence_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, 221) then
+        consoleCmd("@SetGameVar('"..hero.."MAG_DEF', '1')")
+    end   
+end)

@@ -5,8 +5,6 @@
 -- герои
 doFile("/scripts/Common/advmap/Heroes/Vegeyr/script.lua")
 doFile("/scripts/Common/advmap/Heroes/Kujin/script.lua")
-doFile("/scripts/Common/advmap/Heroes/Kigan/script.lua")
-doFile("/scripts/Common/advmap/Heroes/Biara/script.lua")
 
 -- скиллы
 doFile("/scripts/Common/advmap/Skills/Catapult/script.lua")
@@ -70,6 +68,8 @@ doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_Treasure/script.lua")
 -- спеллы
 doFile("/scripts/RMG/advmap/Spells/init.lua")
 
+-- фиксы
+--doFile("/scripts/RMG/advmap/Fixes/map_reload_stat_thread.lua")
 -- Áû報갨ﲻ ͠철𳍊doFile("/scripts/RMG/advmap/Creatures/Abilities/Namtaru.lua")
 
 print("rmg scripts loaded")

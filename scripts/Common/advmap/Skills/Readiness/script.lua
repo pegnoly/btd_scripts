@@ -27,4 +27,9 @@ function(hero)
   end)
 end)
 
-CombatConnection.combat_scripts_paths['readiness'] = '/scripts/Common/combat/Skills/Readiness/script.lua'
+RespawnHeroEvent.AddListener("BTD_common_readiness_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, HERO_SKILL_PREPARATION) then
+        consoleCmd("@SetGameVar('"..hero.."_MASTERY_READY', '1')")
+    end   
+end)

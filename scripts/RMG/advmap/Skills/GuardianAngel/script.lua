@@ -27,4 +27,9 @@ function(hero)
     end)
 end)
 
-CombatConnection.combat_scripts_paths['guardian_angel_rmg'] = '/scripts/RMG/combat/Skills/GuardianAngel/script.lua'
+RespawnHeroEvent.AddListener("BTD_RMG_guardian_angel_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, KNIGHT_FEAT_GUARDIAN_ANGEL) then
+        consoleCmd("@SetGameVar('"..hero.."_GUARDIAN_ANGEL', '1')")
+    end   
+end)

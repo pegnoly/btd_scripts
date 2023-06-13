@@ -29,4 +29,9 @@ function(hero)
   end)
 end)
 
-CombatConnection.combat_scripts_paths['triple_catapult_common'] = '/scripts/Common/combat/Skills/TripleCatapult/script.lua'
+RespawnHeroEvent.AddListener("BTD_common_triple_catapult_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, DEMON_FEAT_TRIPLE_CATAPULT) then
+        consoleCmd("@SetGameVar('"..hero.."_TRIPLE_CATAPULT', '1')")
+    end   
+end)
