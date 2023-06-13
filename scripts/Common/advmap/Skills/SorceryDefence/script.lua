@@ -26,3 +26,10 @@ function(hero)
     end
   end)
 end)
+
+RespawnHeroEvent.AddListener("BTD_common_sorcery_defence_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, 221) then
+        consoleCmd("@SetGameVar('"..hero.."MAG_DEF', '1')")
+    end   
+end)

@@ -29,3 +29,10 @@ function(hero)
     end
   end)
 end)
+
+RespawnHeroEvent.AddListener("BTD_common_shake_ground_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, WARLOCK_FEAT_SHAKE_GROUND) then
+        consoleCmd("@SetGameVar('"..hero.."_SHAKE_GROUND', '1')")
+    end   
+end)

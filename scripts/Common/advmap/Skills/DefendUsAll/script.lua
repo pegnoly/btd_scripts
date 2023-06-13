@@ -29,3 +29,10 @@ function(hero)
         end
     end)
 end)
+
+RespawnHeroEvent.AddListener("BTD_common_defend_us_all_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, HERO_SKILL_DEFEND_US_ALL) then
+        consoleCmd("@SetGameVar('"..hero.."_DEFEND_US_ALL', '1')")
+    end   
+end)

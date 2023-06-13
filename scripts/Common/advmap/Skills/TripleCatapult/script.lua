@@ -28,3 +28,10 @@ function(hero)
     end
   end)
 end)
+
+RespawnHeroEvent.AddListener("BTD_common_triple_catapult_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, DEMON_FEAT_TRIPLE_CATAPULT) then
+        consoleCmd("@SetGameVar('"..hero.."_TRIPLE_CATAPULT', '1')")
+    end   
+end)

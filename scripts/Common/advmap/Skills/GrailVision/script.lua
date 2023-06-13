@@ -26,3 +26,10 @@ function(hero)
     end
   end)
 end)
+
+RespawnHeroEvent.AddListener("BTD_common_grail_vision_respawn_hero_event",
+function(hero)
+    if HasHeroSkill(hero, KNIGHT_FEAT_GRAIL_VISION) then
+        consoleCmd("@SetGameVar('"..hero.."_GRAIL_VISION', '1')")
+    end   
+end)
