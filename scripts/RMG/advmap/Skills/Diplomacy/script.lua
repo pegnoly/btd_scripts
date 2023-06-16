@@ -35,6 +35,7 @@ function(day)
     if mod(day, 7) == 1 then
         for hero, alive in AdvMapHeroesInfo.alive_heroes do
             diplomacy_rmg.joins_count_for_hero[hero] = ceil(GetHeroLevel(hero) / diplomacy_rmg.level_count_divisor)
+            print("Hero ", hero, " has join count ", diplomacy_rmg.joins_count_for_hero[hero])
         end
     end
 end)
@@ -53,7 +54,17 @@ function(fight_id)
     if winner and HasHeroSkill(winner, PERK_DIPLOMACY) and diplomacy_rmg.joins_count_for_hero[winner] >= 1 then
         print("<color=red>Diplomacy.CombatResult: <color=green> joins count for ", winner, " - ", diplomacy_rmg.joins_count_for_hero[winner])
         local enemy_stacks_count = GetSavedCombatArmyCreaturesCount(fight_id, 0)
-        local hero_creatures_types = table.pack(GetHeroCreaturesTypes(winner))
+        -- [#5 fix]
+        local hero_creatures_types, h_n = {}, 0
+        local types = table.pack(GetHeroCreaturesTypes(winner))
+        for i = 0, 7 do
+            if types[i] == 0 then
+                break
+            end
+            hero_creatures_types[h_n] = types[i]
+            h_n = h_n + 1
+        end
+        --
         print("<color=red>Diplomacy.CombatResult: <color=green> winner's creatures types - ", hero_creatures_types)
         local creatures_to_join = {}
         for stack = 0, enemy_stacks_count - 1 do
