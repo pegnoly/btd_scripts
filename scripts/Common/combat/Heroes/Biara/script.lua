@@ -7,7 +7,7 @@ biara_spec =
 {
     heroes = {"Biara", "Biara1", "Biara2"},
     lvl_divisor = 6,
-    caster_count = 1,
+    caster_count = 2,
     creature_type_by_dark_level = 
     {
         [MASTERY_NONE] = HELPER_DARK_MASTERY_NONE,

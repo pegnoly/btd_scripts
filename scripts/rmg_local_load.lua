@@ -3,6 +3,7 @@
 ----------------------------
 
 -- герои
+doFile("/scripts/Common/advmap/Heroes/Kigan/script.lua")
 doFile("/scripts/Common/advmap/Heroes/Biara/script.lua")
 doFile("/scripts/Common/advmap/Heroes/Vegeyr/script.lua")
 doFile("/scripts/Common/advmap/Heroes/Kujin/script.lua")

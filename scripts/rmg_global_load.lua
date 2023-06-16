@@ -1,6 +1,6 @@
 -- герои --
 -- общие
-doFile("/scripts/Common/advmap/Heroes/Kigan/script.lua")
+doFile("/scripts/Common/advmap/Heroes/Kigan/reload.lua")
 doFile("/scripts/Common/advmap/Heroes/Biara/reload.lua")
 doFile("/scripts/Common/advmap/Heroes/Krag/script.lua")
 
