@@ -74,6 +74,6 @@ doFile("/scripts/RMG/advmap/Spells/init.lua")
 
 -- фиксы
 --doFile("/scripts/RMG/advmap/Fixes/map_reload_stat_thread.lua")
--- Áû報갨ﲻ ͠철𳍊doFile("/scripts/RMG/advmap/Creatures/Abilities/Namtaru.lua")
+doFile("/scripts/RMG/advmap/Creatures/Abilities/Namtaru.lua")
 
 print("rmg scripts loaded")

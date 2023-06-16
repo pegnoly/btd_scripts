@@ -28,3 +28,5 @@ doFile("/scripts/RMG/advmap/Fixes/combat_connection_fix.lua")
 doFile("/scripts/RMG/advmap/Fixes/map_reload_level_fix.lua")
 doFile("/scripts/RMG/advmap/Fixes/map_reload_stat_thread.lua")
 doFile("/scripts/RMG/advmap/Fixes/owner_reload_fix.lua")
+
+doFile("/scripts/RMG/advmap/Creatures/Abilities/reload.lua")
