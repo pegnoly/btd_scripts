@@ -36,3 +36,5 @@ function(hero)
         consoleCmd("@SetGameVar('"..hero.."_DEFEND_US_ALL', '1')")
     end   
 end)
+
+CombatConnection.combat_scripts_paths['defend_us_all'] = '/scripts/Common/combat/Skills/DefendUsAll/script.lua'

@@ -1,7 +1,7 @@
 -- [#3 fix] 
 function ShakeGroundReload()
-    for hero, alive in AdvMapHeroesInfo.alive_heroes do
-        if hero and alive and HasHeroSkill(hero, WARLOCK_FEAT_SHAKE_GROUND) then
+    for i, hero in GetObjectNamesByType("HERO") do
+        if HasHeroSkill(hero, WARLOCK_FEAT_SHAKE_GROUND) then
             consoleCmd("@SetGameVar('"..hero.."_SHAKE_GROUND', '1')")
         end
     end

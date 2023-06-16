@@ -1,7 +1,7 @@
 -- [#3 fix] 
 function GuardianAngelReload()
-    for hero, alive in AdvMapHeroesInfo.alive_heroes do
-        if hero and alive and HasHeroSkill(hero, KNIGHT_FEAT_GUARDIAN_ANGEL) then
+    for i, hero in GetObjectNamesByType("HERO") do
+        if HasHeroSkill(hero, KNIGHT_FEAT_GUARDIAN_ANGEL) then
             consoleCmd("@SetGameVar('"..hero.."_GUARDIAN_ANGEL', '1')")
         end
     end

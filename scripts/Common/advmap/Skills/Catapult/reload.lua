@@ -1,7 +1,7 @@
 -- [#3 fix] 
 function CatapultReload()
-    for hero, alive in AdvMapHeroesInfo.alive_heroes do
-        if hero and alive and HasHeroSkill(hero, PERK_CATAPULT) then
+    for i, hero in GetObjectNamesByType("HERO") do
+        if HasHeroSkill(hero, PERK_CATAPULT) then
             consoleCmd("@SetGameVar('"..hero.."_CATAPULT', '1')")
         end
     end

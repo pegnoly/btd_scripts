@@ -33,3 +33,5 @@ function(hero)
         consoleCmd("@SetGameVar('"..hero.."MAG_DEF', '1')")
     end   
 end)
+
+CombatConnection.combat_scripts_paths['sorcery_defence'] = '/scripts/Common/combat/Skills/SorceryDefence/script.lua'

@@ -1,8 +1,8 @@
 -- [#3 fix] 
 function TripleCatapultReload()
-    for hero, alive in AdvMapHeroesInfo.alive_heroes do
-        if hero and alive and HasHeroSkill(hero, 221) then
-            consoleCmd("@SetGameVar('"..hero.."MAG_DEF', '1')")
+    for i, hero in GetObjectNamesByType("HERO") do
+        if hero and alive and HasHeroSkill(hero, DEMON_FEAT_TRIPLE_CATAPULT) then
+            consoleCmd("@SetGameVar('"..hero.."_TRIPLE_CATAPULT', '1')")
         end
     end
 end

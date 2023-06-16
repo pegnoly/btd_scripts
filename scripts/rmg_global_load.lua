@@ -2,7 +2,7 @@
 -- общие
 doFile("/scripts/Common/advmap/Heroes/Kigan/reload.lua")
 doFile("/scripts/Common/advmap/Heroes/Biara/reload.lua")
-doFile("/scripts/Common/advmap/Heroes/Krag/script.lua")
+doFile("/scripts/Common/advmap/Heroes/Krag/reload.lua")
 
 -- скиллы --
 

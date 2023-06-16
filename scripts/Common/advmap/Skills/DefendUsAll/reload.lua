@@ -1,7 +1,7 @@
 -- [#3 fix] 
 function DefendUsAllReload()
-    for hero, alive in AdvMapHeroesInfo.alive_heroes do
-        if hero and alive and HasHeroSkill(hero, HERO_SKILL_DEFEND_US_ALL) then
+    for i, hero in GetObjectNamesByType("HERO") do
+        if HasHeroSkill(hero, HERO_SKILL_DEFEND_US_ALL) then
             consoleCmd("@SetGameVar('"..hero.."_DEFEND_US_ALL', '1')")
         end
     end

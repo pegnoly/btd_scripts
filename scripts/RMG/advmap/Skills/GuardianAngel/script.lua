@@ -33,3 +33,5 @@ function(hero)
         consoleCmd("@SetGameVar('"..hero.."_GUARDIAN_ANGEL', '1')")
     end   
 end)
+
+CombatConnection.combat_scripts_paths['guardian_angel_rmg'] = '/scripts/RMG/combat/Skills/GuardianAngel/script.lua'

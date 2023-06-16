@@ -33,3 +33,5 @@ function(hero)
         consoleCmd("@SetGameVar('"..hero.."_MASTERY_READY', '1')")
     end   
 end)
+
+CombatConnection.combat_scripts_paths['readiness'] = '/scripts/Common/combat/Skills/Readiness/script.lua'

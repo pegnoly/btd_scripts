@@ -35,3 +35,5 @@ function(hero)
         consoleCmd("@SetGameVar('"..hero.."_TRIPLE_CATAPULT', '1')")
     end   
 end)
+
+CombatConnection.combat_scripts_paths['triple_catapult'] = '/scripts/Common/combat/Skills/TripleCatapult/script.lua'

@@ -1,7 +1,7 @@
 -- [#3 fix] 
 function SorceryDefenceReload()
-    for hero, alive in AdvMapHeroesInfo.alive_heroes do
-        if hero and alive and HasHeroSkill(hero, 221) then
+    for i, hero in GetObjectNamesByType("HERO") do
+        if HasHeroSkill(hero, 221) then
             consoleCmd("@SetGameVar('"..hero.."MAG_DEF', '1')")
         end
     end
