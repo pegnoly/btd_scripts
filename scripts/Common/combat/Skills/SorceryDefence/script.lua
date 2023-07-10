@@ -19,18 +19,23 @@ if GetDefenderHero() and (GetGameVar(GetHeroName(GetDefenderHero()).."MAG_DEF") 
 end
 
 function SorceryDefence_Start(side)
-  if pcall(AddCreature, side, 979, 2, -1, -1, nil, "sorcery_def_"..side.."_helper") then
-    while not exist("sorcery_def_"..side.."_helper") do
-      sleep()
+    local helper = "sorcery_def_"..side.."_helper"
+	errorHook(
+	function()
+		removeUnit(%helper)
+	end)
+    if pcall(AddCreature, side, 979, 2, -1, -1, nil, helper) then
+        while not exist(helper) do
+            sleep()
+        end
+        --
+        pcall(UnitCastGlobalSpell, helper, SPELL_MASS_STONESKIN)
+        pcall(UnitCastGlobalSpell, helper, SPELL_MASS_DEFLECT_ARROWS) 
+		sleep(10)
+		pcall(removeUnit, helper)
+        repeat
+            pcall(removeUnit, helper)
+            sleep()
+        until not exist(helper)
     end
-    --
-    if pcall(UnitCastGlobalSpell, "sorcery_def_"..side.."_helper", SPELL_MASS_STONESKIN) and
-       pcall(UnitCastGlobalSpell, "sorcery_def_"..side.."_helper", SPELL_MASS_DEFLECT_ARROWS) then
-    end
-    --
-    removeUnit("sorcery_def_"..side.."_helper")
-    while exist("sorcery_def_"..side.."_helper") do
-      sleep()
-    end
-  end
 end

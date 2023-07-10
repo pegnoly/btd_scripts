@@ -1,5 +1,5 @@
 MCCS_ARTIFACTS_GENERATED_TABLE =
-{[0] = {name = "", type = ARTF_CLASS_MINOR, slot = PRIMARY, cost = 0, is_sellable = nil, },
+{[0] = {name = "", type = ARTF_CLASS_GRAIL, slot = PRIMARY, cost = 0, is_sellable = nil, },
 [1] = {name = "/Text/Game/Artifacts/SwordOfRuin/Name.txt", icon = "/Textures/HeroScreen/Artifacts/Sword_of_Ruins.xdb", type = ARTF_CLASS_MINOR, slot = PRIMARY, cost = 5000, is_sellable = 1, shared = "/MapObjects/Artifacts/SwordOfRuin.(AdvMapArtifactShared).xdb", },
 [2] = {name = "/Text/Game/Artifacts/Great_Axe_of_giant_slaying/Name.txt", icon = "/Textures/HeroScreen/Artifacts/Great_Axe_of_Giant_Slaying.xdb", type = ARTF_CLASS_MAJOR, slot = PRIMARY, cost = 10000, is_sellable = 1, shared = "/MapObjects/Artifacts/Great_axe_of_giant_slaying.(AdvMapArtifactShared).xdb", },
 [3] = {name = "/Text/Game/Artifacts/Wand_of_x/Name.txt", icon = "/Textures/HeroScreen/Artifacts/Wand_Of_X.xdb", type = ARTF_CLASS_MAJOR, slot = PRIMARY, cost = 6350, is_sellable = 1, shared = "/MapObjects/Artifacts/wand_of_x.(AdvMapArtifactShared).xdb", },

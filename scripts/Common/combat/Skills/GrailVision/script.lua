@@ -21,7 +21,7 @@ end
 
 function GrailVision_Start(side)
   local stacks_to_cast, n = {}, 0
-  local creatures = GetCreatures(side)
+  local creatures = side == ATTACKER and keys(attacker_real_army) or keys(defender_real_army)
   local curr_count = len(creatures) > 2 and grail_vision.stacks_count or len(creatures)
   print("Curr count: ", curr_count)
   --
@@ -40,7 +40,7 @@ function GrailVision_Start(side)
   end
   --
   local enemy_stacks_to_cast, e_n = {}, 0
-  local enemy_creatures = GetCreatures(1 - side)
+  local enemy_creatures = ATTACKER and keys(defender_real_army) or keys(attacker_real_army)
   local enemy_curr_count = len(enemy_creatures) > 2 and grail_vision.stacks_count or len(enemy_creatures)
   print("Enemy curr count: ", enemy_curr_count)
   --
@@ -59,20 +59,25 @@ function GrailVision_Start(side)
   end
   --
   local helper = "grail_vision_"..side.."_helper"
+	errorHook(
+	function()
+		pcall(removeUnit, %helper)
+	end)
   if pcall(AddCreature, side, 979, 10, -1, -1, nil, helper) then
-    while not exist(helper) do
-      sleep()
-    end
-    for i, stack in stacks_to_cast do
-      pcall(UnitCastAimedSpell, helper, SPELL_ABILITY_LUCK_GAMBLER, stack)
-    end
-    for i, stack in enemy_stacks_to_cast do
-      pcall(UnitCastAimedSpell, helper, SPELL_ABILITY_LUCK_GAMBLER, stack)
-    end
-    sleep(10)
-    removeUnit(helper)
-    while exist(helper) do
-      sleep()
-    end
+	while not exist(helper) do
+		sleep()
+	end
+	for i, stack in stacks_to_cast do
+		pcall(UnitCastAimedSpell, helper, SPELL_ABILITY_LUCK_GAMBLER, stack)
+	end
+	for i, stack in enemy_stacks_to_cast do
+		pcall(UnitCastAimedSpell, helper, SPELL_ABILITY_LUCK_GAMBLER, stack)
+	end
+	sleep(10)
+	pcall(removeUnit, helper)
+	repeat
+		pcall(removeUnit, helper)
+		sleep()
+	until not exist(helper)
   end
 end

@@ -30,3 +30,5 @@ function(fight_id)
         consoleCmd("@SetGameVar('"..loser.."_warmen_house_bonus', '')")
     end
 end)
+
+CombatConnection.combat_scripts_paths['warmen_house'] = '/scripts/RMG/advmap/Objects/NewObjects/WarmenHouse/combat.lua'

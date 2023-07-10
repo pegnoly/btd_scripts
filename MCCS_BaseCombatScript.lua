@@ -31,6 +31,7 @@ ATB_FILTER = 64679235
 GetCreatureAtb = function(unit) return GetCreatureCount(unit, ATB_FILTER)
 end
 
+casters_checked = -1
 --
 --------------------------------------------------------------------------------
 -- ����������� ������ ����(���� ��������� ��� ����)
@@ -153,15 +154,15 @@ function GetCombatFunctions()
     while not random do
       sleep()
     end
-   	for i, unit in GetCreatures(ATTACKER) do
-      attacker_army[unit] = GetCreatureNumber(unit)
-    end
-    table.copy(attacker_army, attacker_real_army)
-    for i, unit in GetCreatures(DEFENDER) do
-      defender_army[unit] = GetCreatureNumber(unit)
-    end
-    table.copy(defender_army, defender_real_army)
-    startThread(NewCreaturesAddToTablesThread)
+   	-- for i, unit in GetCreatures(ATTACKER) do
+      -- attacker_army[unit] = GetCreatureNumber(unit)
+    -- end
+    -- table.copy(attacker_army, attacker_real_army)
+    -- for i, unit in GetCreatures(DEFENDER) do
+      -- defender_army[unit] = GetCreatureNumber(unit)
+    -- end
+    -- table.copy(defender_army, defender_real_army)
+    -- startThread(NewCreaturesAddToTablesThread)
     --
     -- for side = ATTACKER, DEFENDER do
     --   for i, creature in GetCreatures(side) do
@@ -177,6 +178,23 @@ function GetCombatFunctions()
       print(creature, " has position ", GetCreatureNumber(creature, 64679235))
     end
     --
+  end)
+  AddCombatFunction(CombatFunctions.UNIT_MOVE, "check_units",
+  function()
+	if casters_checked == -1 then
+		casters_checked = 0
+		CombatFunctions.UNIT_MOVE["check_units"] = nil
+		for i, creature in GetAttackerCreatures() do
+			if not attacker_real_army[creature] and not defender_real_army[creature] then
+				pcall(removeUnit, creature)
+			end
+		end
+		for i, creature in GetDefenderCreatures() do
+			if not attacker_real_army[creature] and not defender_real_army[creature] then
+				pcall(removeUnit, creature)
+			end
+		end
+	end
   end)
   --
   if paths then
@@ -197,13 +215,15 @@ function CallCombatFunctions(event_table, param, temp)
   local already_called_functions = {}
   local x
   for desc, func in event_table do
-    if not already_called_functions[desc] then
-       already_called_functions[desc] = 1
-    end
-    print("Calling ", desc)
-    x = func(param) or temp
+    if func then
+		if not already_called_functions[desc] then
+		   already_called_functions[desc] = 1
+		end
+		print("Calling ", desc)
+		x = func(param) or temp
 	end
-	return x
+  end
+  return x
 end
 
 -- ������� ��� ������� �������
@@ -246,7 +266,22 @@ function Prepare()
 end
 
 function Start()
+    combatSetPause(1)
+   	for i, unit in GetCreatures(ATTACKER) do
+      attacker_army[unit] = GetCreatureNumber(unit)
+    end
+    table.copy(attacker_army, attacker_real_army)
+    for i, unit in GetCreatures(DEFENDER) do
+      defender_army[unit] = GetCreatureNumber(unit)
+    end
+    table.copy(defender_army, defender_real_army)
+    startThread(NewCreaturesAddToTablesThread)
+	while len(defender_real_army) == 0 do
+		sleep()
+	end
 	startThread(CallCombatFunctions, CombatFunctions.START)
+	sleep(44)
+	combatSetPause(nil)
 end
 
 function UnitMove(unit)

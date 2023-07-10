@@ -59,7 +59,8 @@ end
 
 function BiaraSpec_SorrowCast(side)
     print('Biara casts sorrow! : ', side, ', ', biara_spec[side].stacks_count)
-    local creatures = GetCreatures(1 - side)
+    local creatures = side == ATTACKER and keys(defender_real_army) or keys(attacker_real_army)
+	print("creatures to cast: ", creatures)
     local creatures_to_cast, n = {}, 0
     local cr_count = len(creatures) >= biara_spec[side].stacks_count and biara_spec[side].stacks_count or len(creatures)
     --
@@ -78,6 +79,10 @@ function BiaraSpec_SorrowCast(side)
     end
     --
     local helper = "biara_spec_helper_"..side
+	errorHook(
+	function()
+		removeUnit(%helper)
+	end)
     if pcall(AddCreature, side, biara_spec[side].caster_type, biara_spec.caster_count, -1, -1, nil, helper) then
         while not exist(helper) do
             sleep()
@@ -85,10 +90,10 @@ function BiaraSpec_SorrowCast(side)
         for i, creature in creatures_to_cast do
             pcall(UnitCastAimedSpell, helper, SPELL_SORROW, creature)
         end
-        sleep()
-        removeUnit(helper)
-        while exist(helper) do
-            sleep()
-        end
+		pcall(removeUnit, helper)
+		repeat
+			pcall(removeUnit, helper)
+			sleep()
+		until not exist(helper)
     end
 end

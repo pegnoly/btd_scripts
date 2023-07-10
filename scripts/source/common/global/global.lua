@@ -32,6 +32,17 @@ function len(t)
   return answer
 end
 
+function keys(t)
+  local answer, n = {}, 0
+  for k, v in t do
+	if v then
+	  n = n + 1
+	  answer[n] = k
+	end
+  end
+  return answer
+end
+
 -- ���������� ����� ������� func
 function pcall(func, ...)
   local ans = {[1] = -1}

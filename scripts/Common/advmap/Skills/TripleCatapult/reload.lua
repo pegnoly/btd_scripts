@@ -1,7 +1,7 @@
 -- [#3 fix] 
 function TripleCatapultReload()
     for i, hero in GetObjectNamesByType("HERO") do
-        if hero and alive and HasHeroSkill(hero, DEMON_FEAT_TRIPLE_CATAPULT) then
+        if HasHeroSkill(hero, DEMON_FEAT_TRIPLE_CATAPULT) then
             consoleCmd("@SetGameVar('"..hero.."_TRIPLE_CATAPULT', '1')")
         end
     end
