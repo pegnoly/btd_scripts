@@ -68,6 +68,7 @@ doFile("/scripts/RMG/advmap/Towns/Buildings/Dungeon_RitualPit/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Common_ArmyRegradeFort/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_RunicStoneworks/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_Treasure/script.lua")
+doFile("/scripts/RMG/advmap/Towns/Buildings/Preserve_TreantSamplings/script.lua")
 
 -- спеллы
 doFile("/scripts/RMG/advmap/Spells/init.lua")
