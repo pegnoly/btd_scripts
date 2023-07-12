@@ -1,16 +1,22 @@
 catapult_common = 
 {
-    [ATTACKER] = {},
-    [DEFENDER] = {},
+    [ATTACKER] = {
+        active = 0,
+        hp_to_restore = 100
+    },
+    [DEFENDER] = {
+        active = 0,
+        hp_to_restore = 100
+    },
     
-    hp_per_gremlin = 5,
-    hp_to_restore = 100
+    hp_per_gremlin = 5,    
 }
 
 if GetGameVar(GetHeroName(GetAttackerHero()).."_CATAPULT") == '1' then
     catapult_common[ATTACKER] =
     {
         active = 0,
+        hp_to_restore = 100 * (GetGameVar(GetHeroName(GetAttackerHero()).."_TRIPLE_CATAPULT") == "1" and 2 or 1)
     }
     AddCombatFunction(CombatFunctions.ATTACKER_HERO_MOVE, "catapult_common_attacker_hero_move",
     function(hero)
@@ -19,9 +25,10 @@ if GetGameVar(GetHeroName(GetAttackerHero()).."_CATAPULT") == '1' then
 end
   
 if GetDefenderHero() and (GetGameVar(GetHeroName(GetDefenderHero()).."_CATAPULT") == '1') then
-    catapult_rmg[DEFENDER] =
+    catapult_common[DEFENDER] =
     {
-      active = 0,
+        active = 0,
+        hp_to_restore = 100 * (GetGameVar(GetHeroName(GetDefenderHero()).."_TRIPLE_CATAPULT") == "1" and 2 or 1)
     }
     AddCombatFunction(CombatFunctions.DEFENDER_HERO_MOVE, "catapult_common_defender_hero_move",
     function(hero)
@@ -38,7 +45,7 @@ function CatapultCommon_HeroMove(hero, side)
     if ammo_cart then
         for i, machine in GetWarMachines(side) do
             local helper = "catapult_common_helper_"..side.."_"..machine
-            pcall(AddCreature, side, CREATURE_MASTER_GREMLIN, ceil(catapult_common.hp_to_restore / catapult_common.hp_per_gremlin), -1, -1, nil, helper)
+            pcall(AddCreature, side, CREATURE_MASTER_GREMLIN, ceil(catapult_common[side].hp_to_restore / catapult_common.hp_per_gremlin), -1, -1, nil, helper)
             while not exist(helper) do
                 sleep()
             end
@@ -54,6 +61,6 @@ function CatapultCommon_HeroMove(hero, side)
         sleep()
     end
     if not combatReadyPerson() then
-        catapult_rmg[side].active = 0
+        catapult_common[side].active = 0
     end
 end

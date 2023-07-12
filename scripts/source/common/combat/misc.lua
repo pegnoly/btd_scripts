@@ -172,7 +172,7 @@ end
 function GetArmyPower(side)
   local answer = 0
   for i, unit in GetCreatures(side) do
-    answer = answer + GetCreaturePower(unit) * GetCreatureNumber(unit)
+    answer = answer + Creature.Params.Power(unit) * Creature.Params.Power(unit)
   end
   return answer
 end
@@ -181,11 +181,11 @@ end
 function CheckDist(unit1, unit2)
   --print('<color=red>CheckDist: <color=green>', unit1, ', ', unit2)
   x1, y1 = pos(unit1)
-  if IsWarMachine(unit1) or GetCreatureSize(unit1) == 2 then
+  if IsWarMachine(unit1) or Creature.Params.Size(unit1) == 2 then
     x1, y1 = x1 - 0.5, y1 - 0.5
   end
   x2, y2 = pos(unit2)
-  if IsWarMachine(unit2) or GetCreatureSize(unit2) == 2 then
+  if IsWarMachine(unit2) or Creature.Params.Size(unit2) == 2 then
     x2, y2 = x2 - 0.5, y2 - 0.5
   end
   local dist1 = x2 - x1

@@ -20,10 +20,14 @@ end
 
 function SorceryDefence_Start(side)
     local helper = "sorcery_def_"..side.."_helper"
-	errorHook(
-	function()
-		removeUnit(%helper)
-	end)
+    --local count = GetHeroName(GetHero(side)) == "Dalom" and 4 or 2
+    errorHook(
+    function()
+      removeUnit(%helper)
+    end)
+    -- while not combatReadyPerson() do
+    --   sleep()
+    -- end
     if pcall(AddCreature, side, 979, 2, -1, -1, nil, helper) then
         while not exist(helper) do
             sleep()
