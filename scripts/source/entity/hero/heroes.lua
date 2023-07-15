@@ -18,8 +18,10 @@ Hero =
         ---@param hero string скриптовое имя героя
         ---@return string path путь к файлу
         function(hero)
-            local ex = function(h) Hero.Params.Exception(h, "name") end
-            errorHook(ex(hero))
+            errorHook(
+            function()
+                Hero.Params.Exception(%hero, "name")
+            end)
             local answer = MCCS_GENERATED_HEROES_TABLE[hero].name
             return answer
         end,

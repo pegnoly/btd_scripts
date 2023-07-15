@@ -30,3 +30,6 @@ doFile("/scripts/RMG/advmap/Fixes/map_reload_stat_thread.lua")
 doFile("/scripts/RMG/advmap/Fixes/owner_reload_fix.lua")
 
 doFile("/scripts/RMG/advmap/Creatures/Abilities/reload.lua")
+
+-- города
+doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/consts.lua")
