@@ -606,9 +606,9 @@ Hero =
                 Hero.SpellInfo.Exception(%hero, "Teaching "..%spell)
             end)
             MakeHeroInteractWithObject(hero, "SHRINE_"..spell)
---            if IsHeroAlive(hero) then
---                MessageQueue.AddMessage(GetObjectOwner(hero), {'/Text/Default/spell_learned.txt'; name = Spell.Params.Name(spell)}, hero, 6.0)
---            end
+            if IsHeroAlive(hero) then
+                MessageQueue.AddMessage(GetObjectOwner(hero), {'/Text/Default/spell_learned.txt'; name = Spell.Params.Name(spell)}, hero, 6.0)
+            end
         end,
 
         Learnable = 
@@ -704,13 +704,20 @@ Hero =
         end,
         
         GetLearnableSpellsByLevel =
-        function(hero, level)
+        function(hero, level, with_wisdom)
+            with_wisdom = with_wisdom or nil
             local spells, n = {}, 0
+            local has_wisdom = HasHeroSkill(hero, PERK_WISDOM)
             for i, school in {MAGIC_SCHOOL_DESTRUCTIVE, MAGIC_SCHOOL_DARK, MAGIC_SCHOOL_LIGHT, MAGIC_SCHOOL_SUMMONING} do
                 for j, spell in spellsBySchools[school] do
                     if (Spell.Params.Level(spell) == level) and (not KnowHeroSpell(hero, spell)) then
                         local spell_mastery = Spell.Params.Mastery(spell)
                         local hero_mastery = GetHeroSkillMastery(hero, skillsBySchools[school])
+                        --
+                        if with_wisdom and level == 3 and has_wisdom == 1 then
+                            hero_mastery = hero_mastery + 1
+                        end
+                        --
                         if hero_mastery >= spell_mastery then
                             n = n + 1
                             spells[n] = spell

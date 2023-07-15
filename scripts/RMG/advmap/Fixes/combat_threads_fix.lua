@@ -1,9 +1,4 @@
-function OwnerReloadFix()
-    for i, hero in GetObjectNamesByType("HERO") do
-        local owner = GetObjectOwner(hero)..""
-        consoleCmd("@SetGameVar('"..hero.."_owner', "..owner..")")
-    end
-    sleep(20)
+function CombatThreadsReload()
     for player = PLAYER_1, PLAYER_8 do
         if GetPlayerState(player) == PLAYER_ACTIVE then
             if IsAIPlayer(player) == 0 then
@@ -16,4 +11,4 @@ function OwnerReloadFix()
     end
 end
 
-consoleCmd("@MapReloadEvent.AddListener('BTD_RMG_reload_hero_owners', OwnerReloadFix)")
+consoleCmd("@MapReloadEvent.AddListener('BTD_RMG_reload_combat_threads', CombatThreadsReload)")

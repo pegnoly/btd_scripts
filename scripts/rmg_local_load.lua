@@ -52,6 +52,8 @@ doFile("/scripts/RMG/advmap/Skills/ForestLeader/script.lua")
 doFile("/scripts/RMG/advmap/Skills/DarkRevelation/script.lua")
 doFile("/scripts/RMG/advmap/Skills/DisguiseAndReckon/script.lua")
 doFile("/scripts/RMG/advmap/Skills/ElementalBalance/script.lua")
+doFile("/scripts/RMG/advmap/Skills/MasterOfSecrets/script.lua")
+doFile("/scripts/RMG/advmap/Skills/Insights/script.lua")
 
 -- абилки
 doFile("/scripts/RMG/advmap/Abilities/ArtifactTransfer/script.lua")
