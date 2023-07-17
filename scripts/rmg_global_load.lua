@@ -30,3 +30,7 @@ doFile("/scripts/RMG/advmap/Fixes/map_reload_stat_thread.lua")
 doFile("/scripts/RMG/advmap/Fixes/owner_reload_fix.lua")
 
 doFile("/scripts/RMG/advmap/Creatures/Abilities/reload.lua")
+
+
+----- ТЕСТЫ ------
+doFile("/scripts/RMG/advmap/Heroes/Ferigl/test.lua")

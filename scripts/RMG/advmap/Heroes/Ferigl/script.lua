@@ -18,12 +18,12 @@ function(fight_id)
             ferigl_spec_rmg.rider_resurrect_base + 
             (floor(GetHeroLevel(winner) / ferigl_spec_rmg.rider_resurrect_lvl_divisor) * ferigl_spec_rmg.rider_resurrect_by_lvl_divisor)
         )
-        print("Ferigl spec: resurrect count - ", resurrect_total_count)
+        --print("Ferigl spec: resurrect count - ", resurrect_total_count)
         local stack_count = GetSavedCombatArmyCreaturesCount(fight_id, 1)
         local riders_died = {}
         for i = 0, stack_count - 1 do
             local creature, count, died = GetSavedCombatArmyCreatureInfo(fight_id, 1, i)
-            if contains(ferigl_spec_rmg.rider_types, creature) then
+            if contains(ferigl_spec_rmg.rider_types, creature) and died > 0 then
                 if not riders_died[creature] then
                     riders_died[creature] = died
                 else
@@ -37,7 +37,7 @@ function(fight_id)
         --
         local dead_count = 0
         for creature, died in riders_died do
-            dead_count = dead_count + 0
+            dead_count = dead_count + died
         end
         if dead_count < resurrect_total_count then
             resurrect_total_count = dead_count
@@ -47,24 +47,40 @@ function(fight_id)
         local remaining_count = resurrect_total_count
         local resurrect_queue, n = {}, 0
         repeat
+            --print("remainging count: ", remaining_count)
+            --print("current_max_count: ", current_max_count)
             local temp = -1
             local cr = -1
             for creature, died in riders_died do
-                if died > temp then
-                    temp = died 
-                    cr = creature
+                if creature and died then
+                    if died > temp then
+                        temp = died 
+                        cr = creature
+                    end
                 end
             end
+            --print("temp: ", temp, " creature: ", cr)
             if temp >= remaining_count then
                 current_max_count = resurrect_total_count
             else
                 current_max_count = current_max_count + temp
                 remaining_count = remaining_count - temp
-                riders_died[creature] = nil
+                riders_died[cr] = nil
             end
             n = n + 1
             resurrect_queue[n] = {creature = cr, count = temp}
+            sleep()
         until current_max_count == resurrect_total_count
-        print("Ferigl spec: resurrect resurrect_queue - ", resurrect_queue)
+        --print("Ferigl spec: resurrect resurrect_queue - ", resurrect_queue)
+        for _, queue_item in resurrect_queue do
+            Hero.CreatureInfo.Add(winner, queue_item.creature, queue_item.count)
+        end
+    end
+end)
+
+LevelUpEvent.AddListener("BTD_RMG_ferigl_spec_lvl_up",
+function(hero)
+    if contains(ferigl_spec_rmg.heroes, hero) and (mod(GetHeroLevel(hero) / ferigl_spec_rmg.rider_grow_divisor) == 0) then
+        startThread(Hero.CreatureInfo.DefaultGrow, hero, TOWN_DUNGEON, 4, ferigl_spec_rmg.rider_grow_per_divisor)
     end
 end)

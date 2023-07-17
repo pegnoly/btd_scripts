@@ -16,7 +16,7 @@ function(fight_id)
         if mana_diff < mana_to_restore then
             mana_to_restore = mana_diff
         end
-        ChangeHeroStat(winner, STAT_MANA_POINTS, current_mana + mana_to_restore)
+        ChangeHeroStat(winner, STAT_MANA_POINTS, mana_to_restore)
         ShowFlyingSign({
             astral_spec_rmg.path.."mana_restored.txt"; amount = mana_to_restore
         }, winner, GetObjectOwner(winner), 6.0)
