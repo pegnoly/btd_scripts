@@ -59,6 +59,14 @@ SCHOOLS_BY_SCROLLS = {
     [SCROLL_DESTRUCTIVE_L4] = MAGIC_SCHOOL_DESTRUCTIVE,
     [SCROLL_DESTRUCTIVE_L5] = MAGIC_SCHOOL_DESTRUCTIVE
 }
+
+SKILLS_BY_SCHOOLS = {
+    [MAGIC_SCHOOL_LIGHT] = SKILL_LIGHT_MAGIC,
+    [MAGIC_SCHOOL_DARK] = SKILL_DARK_MAGIC,
+    [MAGIC_SCHOOL_SUMMONING] = SKILL_SUMMONING_MAGIC,
+    [MAGIC_SCHOOL_DESTRUCTIVE] = SKILL_DESTRUCTIVE_MAGIC
+}
+
 -- cost in gold by spell level(from duel)
 COST_BY_LEVEL = {
     [4] = 4250,
@@ -95,4 +103,16 @@ SCROLL_ACTIVATION_CONDITONS = {
     [SCROLL_SUMMON_L5] = function(hero) return GetHeroSkillMastery(hero, SKILL_SUMMONING_MAGIC) == 3 end,
     [SCROLL_DESTRUCTIVE_L4] = function(hero) return GetHeroSkillMastery(hero, SKILL_DESTRUCTIVE_MAGIC) >= 2 end,
     [SCROLL_DESTRUCTIVE_L5] = function(hero) return GetHeroSkillMastery(hero, SKILL_DESTRUCTIVE_MAGIC) == 3 end
+}
+
+SHORT_NAMES_BY_SCHOOLS = {
+    [MAGIC_SCHOOL_DESTRUCTIVE] = "/scripts/RMG/advmap/Towns/Common/MagicGuild/ScrollsShortNames/destructive.txt",
+    [MAGIC_SCHOOL_SUMMONING] = "/scripts/RMG/advmap/Towns/Common/MagicGuild/ScrollsShortNames/summon.txt",
+    [MAGIC_SCHOOL_DARK] = "/scripts/RMG/advmap/Towns/Common/MagicGuild/ScrollsShortNames/dark.txt",
+    [MAGIC_SCHOOL_LIGHT] = "/scripts/RMG/advmap/Towns/Common/MagicGuild/ScrollsShortNames/light.txt",
+}
+
+QBOX_MESSAGES_BY_LEVELS = {
+    [4] = "/scripts/RMG/advmap/Towns/Common/MagicGuild/SpellDialog/scroll_choise_l4.txt",
+    [5] = "/scripts/RMG/advmap/Towns/Common/MagicGuild/SpellDialog/scroll_choise_l5.txt"
 }

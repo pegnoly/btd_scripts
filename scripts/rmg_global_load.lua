@@ -33,3 +33,6 @@ doFile("/scripts/RMG/advmap/Creatures/Abilities/reload.lua")
 
 -- города
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/consts.lua")
+
+-- тесты
+doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/test.lua")
