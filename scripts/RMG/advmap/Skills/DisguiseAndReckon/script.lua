@@ -15,7 +15,7 @@ function(day)
             if disguise_and_reckon_rmg.cooldown_for_hero[hero] == 0 then
                 disguise_and_reckon_rmg.cooldown_for_hero[hero] = nil
                 if disguise_and_reckon_rmg.active_for_hero[hero] then
-                    ControlHeroCustomAbility(hero, CUSTOM_ABILITY_DISGUISE_AND_RECKON_ACTIVATE, CUSTOM_ABILITY_ENABLED)
+                    startThread(DisguiseAndReckon_Activate, hero)
                 end
             end
         end
@@ -31,12 +31,15 @@ function(hero)
             if IsHeroAlive(%hero) then
                 if not disguise_and_reckon_rmg.active_for_hero[%hero] then
                     if HasHeroSkill(%hero, RANGER_FEAT_DISGUISE_AND_RECKON) then
-                        ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_DISGUISE_AND_RECKON_ACTIVATE, CUSTOM_ABILITY_ENABLED)
+                        --ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_DISGUISE_AND_RECKON_ACTIVATE, CUSTOM_ABILITY_ENABLED)
                         disguise_and_reckon_rmg.active_for_hero[%hero] = 1
+                        if not disguise_and_reckon_rmg.cooldown_for_hero[%hero] then
+                            startThread(DisguiseAndReckon_Activate, %hero)
+                        end
                     end
                 else
                     if not HasHeroSkill(%hero, RANGER_FEAT_DISGUISE_AND_RECKON) then
-                        ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_DISGUISE_AND_RECKON_ACTIVATE, CUSTOM_ABILITY_NOT_PRESENT)
+                        --ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_DISGUISE_AND_RECKON_ACTIVATE, CUSTOM_ABILITY_NOT_PRESENT)
                         disguise_and_reckon_rmg.active_for_hero[%hero] = nil
                     end
                 end
@@ -46,10 +49,9 @@ function(hero)
     end)
 end)
 
-CustomAbility.callbacks[CUSTOM_ABILITY_DISGUISE_AND_RECKON_ACTIVATE] = 
-function(hero)
+function DisguiseAndReckon_Activate(hero)
     disguise_and_reckon_rmg.cooldown_for_hero[hero] = disguise_and_reckon_rmg.cooldown_in_days
-    ControlHeroCustomAbility(hero, CUSTOM_ABILITY_DISGUISE_AND_RECKON_ACTIVATE, CUSTOM_ABILITY_DISABLED)
+    --ControlHeroCustomAbility(hero, CUSTOM_ABILITY_DISGUISE_AND_RECKON_ACTIVATE, CUSTOM_ABILITY_DISABLED)
     local owner = GetObjectOwner(hero)
     local heroes_to_show, h_n = {}, 0
     for player = PLAYER_1, PLAYER_8 do

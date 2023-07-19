@@ -1,5 +1,5 @@
 ferigl_spec_rmg = {
-    rider_resurrect_base = 1, -- base count of riders to ressurect
+    rider_resurrect_base = 2, -- base count of riders to ressurect
     rider_resurrect_by_lvl_divisor = 2, -- riders to ressurect by every lvl divisor
     rider_resurrect_lvl_divisor = 5, -- levels to increase ressurect count 
 
