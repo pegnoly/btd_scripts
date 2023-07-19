@@ -31,6 +31,9 @@ doFile("/scripts/RMG/advmap/Fixes/owner_reload_fix.lua")
 
 doFile("/scripts/RMG/advmap/Creatures/Abilities/reload.lua")
 
+-- города
+doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/consts.lua")
 
------ ТЕСТЫ ------
+-- тесты
+doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/test.lua")
 doFile("/scripts/RMG/advmap/Heroes/Ferigl/test.lua")

@@ -63,6 +63,8 @@ doFile("/scripts/RMG/advmap/Skills/Insights/script.lua")
 doFile("/scripts/RMG/advmap/Abilities/ArtifactTransfer/script.lua")
 
 -- постройки в городах
+doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/script.lua")
+
 doFile("/scripts/RMG/advmap/Towns/Buildings/Academy_TreasureCave/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Haven_Farms/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Inferno_SacrificialPit/script.lua")
