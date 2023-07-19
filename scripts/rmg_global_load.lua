@@ -36,3 +36,4 @@ doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/consts.lua")
 
 -- тесты
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/test.lua")
+doFile("/scripts/RMG/advmap/Heroes/Ferigl/test.lua")

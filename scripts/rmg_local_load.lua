@@ -25,6 +25,10 @@ doFile("/scripts/Common/advmap/Skills/TripleCatapult/script.lua")
 -- рмг-скрипты
 --------------
 
+-- герои
+doFile("/scripts/RMG/advmap/Heroes/Ferigl/script.lua")
+doFile("/scripts/RMG/advmap/Heroes/Astral/script.lua")
+
 -- банки
 doFile("/scripts/RMG/advmap/Objects/Banks/base.lua")
 -- генерация армий героев
