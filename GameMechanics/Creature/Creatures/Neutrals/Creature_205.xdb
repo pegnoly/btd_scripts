@@ -8,7 +8,7 @@
 	<Speed>1</Speed>
 	<Initiative>1</Initiative>
 	<Flying>false</Flying>
-	<Health>1000000</Health>
+	<Health>10000</Health>
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_LAND_MINE</Spell>

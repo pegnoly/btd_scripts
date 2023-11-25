@@ -33,6 +33,7 @@ function SorceryDefence_Start(side)
             sleep()
         end
         --
+        startThread(playAnimation, GetHero(side), "buff", ONESHOT)
         pcall(UnitCastGlobalSpell, helper, SPELL_MASS_STONESKIN)
         pcall(UnitCastGlobalSpell, helper, SPELL_MASS_DEFLECT_ARROWS) 
 		sleep(10)

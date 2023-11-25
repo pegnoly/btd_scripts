@@ -22,6 +22,19 @@ if GetGameVar(GetHeroName(GetAttackerHero()).."_BLOODY_SACRIFICE") == '1' then
     end)
 end
 
+if GetDefenderHero() and GetGameVar(GetHeroName(GetDefenderHero()).."_BLOODY_SACRIFICE") == '1' then
+    bloody_sacrifice[DEFENDER] = {
+        voice_of_rage = GetGameVar(GetHeroName(GetDefenderHero()).."_VOICE_OF_RAGE") == '1' and 1 or nil,
+        power_of_blood = GetGameVar(GetHeroName(GetDefenderHero()).."_POWER_OF_BLOOD") == '1' and 1 or nil,
+        charges = ceil(GetGameVar(GetHeroName(GetDefenderHero()).."_Luck") + 0),
+        last_target = ""
+    }
+    AddCombatFunction(CombatFunctions.DEFENDER_CREATURE_MOVE, "bloody_sacrifice_defender_creature_move",
+    function(creature)
+        BloodySacrifice_CheckSacrifice(creature, DEFENDER)
+    end)
+end
+
 function BloodySacrifice_CheckSacrifice(creature, side)
     if not contains(bloody_sacrifice.shamans, GetCreatureType(creature)) or 
         bloody_sacrifice[side].charges < 1 then

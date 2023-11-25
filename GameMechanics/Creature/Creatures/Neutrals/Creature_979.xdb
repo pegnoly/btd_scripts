@@ -37,7 +37,7 @@
 	</KnownSpells>
 	<SpellPoints>1000</SpellPoints>
 	<SpellPoints1>1000</SpellPoints1>
-	<SpellPoints2>1000</SpellPoints2>
+	<SpellPoints2>0</SpellPoints2>
 	<Exp>1</Exp>
 	<Power>1</Power>
 	<TimeToCommand>10</TimeToCommand>

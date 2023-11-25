@@ -11,23 +11,23 @@ jazaz_spec = {
     [DEFENDER] = {}
 }
 
-test = 0
 if contains(jazaz_spec.heroes, GetHeroName(GetAttackerHero())) and (not GetDefenderHero()) then
     jazaz_spec[ATTACKER] = {
-        mana_drain_used_by_stack = {}
+        mana_drain_used_by_stack = {},
+        state = COMBAT_CAST_STATE_INACTIVE
     }
     AddCombatFunction(CombatFunctions.ATTACKER_CREATURE_MOVE, "jazaz_attacker_creature_move",
     function(creature)
-        if test == 2 then
-            test = 0
+        if jazaz_spec[ATTACKER].state == COMBAT_CAST_STATE_POST_CAST then
+            jazaz_spec[ATTACKER].state = COMBAT_CAST_STATE_INACTIVE
             return
         end
         JazazCreatureMove(creature, ATTACKER)
         while combatReadyPerson() ~= nil do
             sleep()
         end
-        if test == 1 then
-            test = 2
+        if jazaz_spec[ATTACKER].state == COMBAT_CAST_STATE_ACTIVE then
+            jazaz_spec[ATTACKER].state = COMBAT_CAST_STATE_POST_CAST
         end
     end)
     AddCombatFunction(CombatFunctions.START, "jazaz_spec_start",

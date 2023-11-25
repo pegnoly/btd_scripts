@@ -1,6 +1,10 @@
 STANDALONE = 0
 LAN        = 1
 
+COMBAT_CAST_STATE_INACTIVE = 0
+COMBAT_CAST_STATE_ACTIVE = 1
+COMBAT_CAST_STATE_POST_CAST = 2
+
 function GetMode()
   return (GetGameVar('IsHotseat') == 'true') and STANDALONE or LAN
 end
