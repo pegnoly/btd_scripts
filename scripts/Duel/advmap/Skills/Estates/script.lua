@@ -1,30 +1,36 @@
-estates =
+-- 4.0 reworked. Now gives #gold_amount# gold for every upgraded stack.
+estates_duel =
 {
-  bonus_gold = 3750,
-  heroes_active = {}
+    types_received_gold_for_hero = {},
+    gold_amount = 850,
+    total_gold_for_hero = {}
 }
 
-AddHeroEvent.AddListener("estates_fight_event",
+AddHeroEvent.AddListener("BTD_duel_estates_add_hero",
 function(hero)
-  estates.heroes_active[hero] = nil;
-
-  startThread(
+    estates_duel.types_received_gold_for_hero[hero] = {}
+    estates_duel.total_gold_for_hero[hero] = 0
+    local town = Hero.Params.Town(hero)
+    startThread(
     function()
-      while 1 do
-        if IsHeroAlive(%hero) and GetDate(DAY) == BTD_FREE_ROAM_DAY then
-          if not estates.heroes_active[%hero] then
-            if HasHeroSkill(%hero, PERK_ESTATES) then
-              estates.heroes_active[%hero] = 1
-              Resource.Change(%hero, GOLD, estates.bonus_gold);
+        while 1 do
+            if IsHeroAlive(%hero) then
+                if HasHeroSkill(%hero, PERK_ESTATES) then
+                    for slot = 0, 6 do
+                        local creature, count = GetObjectArmySlotCreature(%hero, slot)
+                        if not (creature == 0 or count == 0) then
+                            if not contains(TOWN_DWELLS[%town], creature) and 
+                              not estates_duel.types_received_gold_for_hero[creature] and
+                              Creature.Params.Town(creature) == %town then
+                                estates_duel.types_received_gold_for_hero[%hero][creature] = 1
+                                Resource.Change(%hero, GOLD, estates_duel.gold_amount)
+                                estates_duel.total_gold_for_hero[%hero] = estates_duel.total_gold_for_hero[%hero] + estates_duel.gold_amount
+                            end
+                        end
+                    end
+                end
             end
-          else
-            if not HasHeroSkill(%hero, PERK_ESTATES) then
-              estates.heroes_active[%hero] = nil
-            end;
-          end;
-        end;
-        sleep();
-      end;
-    end
-  );
+            sleep()
+        end
+    end)
 end)

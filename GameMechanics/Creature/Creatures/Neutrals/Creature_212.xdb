@@ -8,15 +8,20 @@
 	<Speed>1</Speed>
 	<Initiative>1</Initiative>
 	<Flying>false</Flying>
-	<Health>1</Health>
-	<KnownSpells/>
+	<Health>1000000</Health>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_ABILITY_RANDOM_CAST_DARK_LIGHT</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+	</KnownSpells>
 	<SpellPoints>0</SpellPoints>
-	<SpellPoints1>0</SpellPoints1>
+	<SpellPoints1>7</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
 	<Exp>1</Exp>
 	<Power>1</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>1</CreatureTier>
+	<CreatureTier>24</CreatureTier>
 	<Upgrade>false</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
 	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
@@ -39,9 +44,11 @@
 	<CombatSize>1</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/MCCS/Helper.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>
-	<Abilities/>
+	<Abilities>
+		<Item>ABILITY_RANDOM_CASTER_BLESS</Item>
+	</Abilities>
 </Creature>

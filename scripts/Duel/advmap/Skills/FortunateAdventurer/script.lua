@@ -1,6 +1,6 @@
 path_luck =
 {
-  res_bonus = 3, 
+  res_bonus = 1, 
   heroes_active = {},
   art_for_hero = {}
 }

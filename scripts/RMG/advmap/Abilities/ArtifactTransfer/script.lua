@@ -4,7 +4,9 @@ artifact_transfer =
 {
     active_for_hero = {},
     distance = 2,
-    untransferable_artifacts = {ARTIFACT_WAND_OF_X, ARTIFACT_SCROLL_OF_SPELL_X},
+    untransferable_artifacts = {
+        ARTIFACT_WAND_OF_X, ARTIFACT_SCROLL_OF_SPELL_X, 
+        100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116},
     move_points_cost = 100
 }
 
@@ -87,8 +89,14 @@ end
 
 CustomAbility.callbacks[CUSTOM_ABILITY_ARTIFACT_TRANSFER] = 
 function(hero)
+    consoleCmd("setvar ui_announcement_duration = 0")
+    sleep()
     local closest_hero = ArtifactTransfer_GetClosestHero(hero)
     if closest_hero ~= "" then
+        for i = 100, 108 do
+            GiveArtefact(closest_hero, i)
+        end
+        sleep()
         ChangeHeroStat(hero, STAT_MOVE_POINTS, -artifact_transfer.move_points_cost)
         local arts_to_return, a_n = {}, 0
         for art = 1, 149 do
@@ -106,12 +114,21 @@ function(hero)
                 end
             end
         end
+        sleep()
         if a_n > 0 then
             for i, art in arts_to_return do
                 GiveArtefact(hero, art)
             end
         end
         sleep()
+        for i = 100, 108 do
+            --print("ok, ", i)
+            if HasArtefact(closest_hero, i) then
+                RemoveArtefact(closest_hero, i)
+            end
+        end
+        sleep()
+        consoleCmd("setvar ui_announcement_duration = 3500")
         MakeHeroInteractWithObject(hero, closest_hero)
     end
 end

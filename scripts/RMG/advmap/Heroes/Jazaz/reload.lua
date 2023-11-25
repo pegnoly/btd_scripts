@@ -1,0 +1,1 @@
+consoleCmd("@CombatConnection.combat_scripts_paths['Jazaz_spec'] = '/scripts/RMG/combat/Heroes/Jazaz/script.lua'")

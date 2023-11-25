@@ -1,11 +1,14 @@
 grail_vision =
 {
-  stacks_count = 3,
   [ATTACKER] = {},
   [DEFENDER] = {}
 }
 
 if GetGameVar(GetHeroName(GetAttackerHero()).."_GRAIL_VISION") == '1' then
+  local luck = ceil(GetGameVar(GetHeroName(GetAttackerHero()).."_Luck") + 0)
+  grail_vision[ATTACKER] = {
+    stacks_count = luck > 7 and 7 or luck
+  }
   AddCombatFunction(CombatFunctions.START, "BTD_grail_vision_start_attacker",
   function()
     startThread(GrailVision_Start, ATTACKER)
@@ -13,6 +16,10 @@ if GetGameVar(GetHeroName(GetAttackerHero()).."_GRAIL_VISION") == '1' then
 end
 
 if GetDefenderHero() and (GetGameVar(GetHeroName(GetDefenderHero()).."_GRAIL_VISION") == '1') then
+  local luck = ceil(GetGameVar(GetHeroName(GetDefenderHero()).."_Luck") + 0)
+  grail_vision[DEFENDER] = {
+    stacks_count = luck > 7 and 7 or luck
+  }
   AddCombatFunction(CombatFunctions.START, "BTD_grail_vision_start_defender",
   function()
     startThread(GrailVision_Start, DEFENDER)

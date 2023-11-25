@@ -46,7 +46,11 @@ function BTD_FortuitousSanctuaryTouch(hero, object)
     end
     --
     fortuitous_sanctuary_rmg.used_by_hero[hero] = 1
-    for bonus, amount in fortuitous_sanctuary_rmg.bonuses[GetDate(DAY_OF_WEEK)] do
+    local date = GetDate(DAY_OF_WEEK)
+    for bonus, amount in fortuitous_sanctuary_rmg.bonuses[date] do
         GiveHeroBattleBonus(hero, bonus, amount)
+        if date == 2 or date == 4 then
+            startThread(SparklingFountain_TryGiveMP, hero)
+        end
     end
 end

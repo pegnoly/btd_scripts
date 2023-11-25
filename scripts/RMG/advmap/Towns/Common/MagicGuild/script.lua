@@ -98,7 +98,7 @@ function CanActivateScroll(hero, scroll)
 end
 
 function HasAnyScroll(hero)
-    for scroll = 100, 107 do
+    for scroll = SCROLL_LIGHT_L4, SCROLL_DESTRUCTIVE_L5 do
         if HasArtefact(hero, scroll, 1) then
             return scroll
         end

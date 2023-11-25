@@ -1,12 +1,12 @@
 -- scrolls ids.
-SCROLL_LIGHT_L4 = 100
-SCROLL_LIGHT_L5 = 101
-SCROLL_DARK_L4 = 102
-SCROLL_DARK_L5 = 103
-SCROLL_SUMMON_L4 = 104
-SCROLL_SUMMON_L5 = 105
-SCROLL_DESTRUCTIVE_L4 = 106
-SCROLL_DESTRUCTIVE_L5 = 107
+SCROLL_LIGHT_L4 = 109
+SCROLL_LIGHT_L5 = 110
+SCROLL_DARK_L4 = 111
+SCROLL_DARK_L5 = 112
+SCROLL_SUMMON_L4 = 113
+SCROLL_SUMMON_L5 = 114
+SCROLL_DESTRUCTIVE_L4 = 115
+SCROLL_DESTRUCTIVE_L5 = 116
 
 LVL_STATUS_NOT_UPGRADED = 0 -- guild not upgraded to lvl
 LVL_STATUS_PENDING = 1 -- guild upgraded but scroll not given yet
@@ -69,8 +69,8 @@ SKILLS_BY_SCHOOLS = {
 
 -- cost in gold by spell level(from duel)
 COST_BY_LEVEL = {
-    [4] = 4250,
-    [5] = 7000
+    [4] = 6000,
+    [5] = 8000
 }
 
 -- will use this before regeneration of files

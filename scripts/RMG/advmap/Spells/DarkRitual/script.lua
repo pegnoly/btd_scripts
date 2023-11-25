@@ -19,8 +19,12 @@ DarkRitualExtension = {
                     local level = GetHeroLevel(sHeroName)
 
                     -- formula for returning mana: 20% + additional 10% after every 10 levels
-                    local mpBonus = floor(maxMP * (0.2 + 0.1 * floor(level / 10)))
-                    
+                    local mpBonus = 0
+                    if Hero.Params.Spec(sHeroName) == HERO_SPEC_DARK_ACOLYTE then
+                        mpBonus = floor(maxMP * 0.5)
+                    else 
+                        mpBonus = floor(maxMP * (0.2 + 0.1 * floor(level / 10)))
+                    end
                     ChangeHeroStat(sHeroName, STAT_MOVE_POINTS, mpBonus)
                 end
             end

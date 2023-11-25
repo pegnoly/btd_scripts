@@ -1,9 +1,9 @@
 --
 --------------------------------------------------------------------------------
--- ћентор
+-- пїЅпїЅпїЅпїЅпїЅпїЅ
 mentor =
 {
-  cost = 10000, -- цена использовани¤ ментора
+  cost = 6500, -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   path = GetMapDataPath().."Mentor/",
 
   used_by_hero = {},
@@ -30,7 +30,7 @@ mentor =
     for res = WOOD, GOLD do
       res_to_remove[res] = 0
     end
-    -- удача в пути
+    -- пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
     if HasHeroSkill(hero, PERK_FORTUNATE_ADVENTURER) then
       for res = WOOD, GEM do
         res_to_remove[res] = res_to_remove[res] + 3
@@ -43,11 +43,11 @@ mentor =
         res_to_remove[GOLD] = res_to_remove[GOLD] + ceil(GetArtCost(art) / 2)
       end
     end
-    -- мародерство
+    -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if HasHeroSkill(hero, HERO_SKILL_SNATCH) then
       res_to_remove[GOLD] = res_to_remove[GOLD] + 10000
     end
-    -- трофеи
+    -- пїЅпїЅпїЅпїЅпїЅпїЅ
     if HasHeroSkill(hero, WIZARD_FEAT_SPOILS_OF_WAR) then
       local art = spoils_of_war.art_for_hero[hero]
       if HasArtefact(hero, art) then
@@ -56,11 +56,11 @@ mentor =
         res_to_remove[GOLD] = res_to_remove[GOLD] + ceil(GetArtCost(art) / 2)
       end
     end
-    -- управление казной
+    -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     if HasHeroSkill(hero, PERK_ESTATES) then
       res_to_remove[GOLD] = res_to_remove[GOLD] + 3750
     end
-    -- логистика
+    -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     print('Hero economed ', economy.gold_economed_by_hero[hero], ' with logistics')
     res_to_remove[GOLD] = res_to_remove[GOLD] + economy.gold_economed_by_hero[hero]
     --

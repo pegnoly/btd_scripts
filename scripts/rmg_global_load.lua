@@ -1,3 +1,4 @@
+doFile(GetMapDataPath().."win_conditions.lua")
 -- герои --
 -- общие
 doFile("/scripts/Common/advmap/Heroes/Kigan/reload.lua")
@@ -14,6 +15,8 @@ doFile("/scripts/Common/advmap/Skills/Readiness/reload.lua")
 doFile("/scripts/Common/advmap/Skills/ShakeGround/reload.lua")
 doFile("/scripts/Common/advmap/Skills/SorceryDefence/reload.lua")
 doFile("/scripts/Common/advmap/Skills/TripleCatapult/reload.lua")
+doFile("/scripts/Common/advmap/Skills/BloodySacrifice/reload.lua")
+doFile("/scripts/Common/advmap/Skills/BloodyMana/reload.lua")
 
 -- рмг
 doFile("/scripts/RMG/advmap/Skills/GuardianAngel/reload.lua")
@@ -22,6 +25,9 @@ doFile("/scripts/RMG/advmap/Skills/GuardianAngel/reload.lua")
 doFile("/scripts/RMG/advmap/Objects/Banks/consts.lua")
 doFile("/scripts/RMG/advmap/Objects/NewObjects/consts.lua")
 doFile("/scripts/RMG/advmap/Objects/NewObjects/WarmenHouse/reload.lua")
+
+-- герои 
+doFile("/scripts/RMG/advmap/Heroes/Jazaz/reload.lua")
 
 -- фиксы
 doFile("/scripts/RMG/advmap/Fixes/combat_connection_fix.lua")
@@ -34,6 +40,14 @@ doFile("/scripts/RMG/advmap/Creatures/Abilities/reload.lua")
 -- города
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/consts.lua")
 
+-- режимы
+doFile("/scripts/RMG/advmap/Modes/consts.lua")
+
 -- тесты
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/test.lua")
 doFile("/scripts/RMG/advmap/Heroes/Ferigl/test.lua")
+doFile("/scripts/RMG/advmap/Heroes/Jazaz/test.lua")
+doFile("/scripts/Common/advmap/Skills/Readiness/test.lua")
+doFile("/scripts/Common/advmap/Skills/BloodySacrifice/test.lua")
+doFile("/scripts/Common/advmap/Skills/BloodyMana/test.lua")
+doFile("/scripts/RMG/advmap/Skills/HauntMines/test.lua")

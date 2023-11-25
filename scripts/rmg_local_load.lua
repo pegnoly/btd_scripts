@@ -20,7 +20,8 @@ doFile("/scripts/Common/advmap/Skills/SealOfProtection/script.lua")
 doFile("/scripts/Common/advmap/Skills/ShakeGround/script.lua")
 doFile("/scripts/Common/advmap/Skills/SorceryDefence/script.lua")
 doFile("/scripts/Common/advmap/Skills/TripleCatapult/script.lua")
-
+doFile("/scripts/Common/advmap/Skills/BloodySacrifice/script.lua")
+doFile("/scripts/Common/advmap/Skills/BloodyMana/script.lua")
 --------------
 -- рмг-скрипты
 --------------
@@ -28,6 +29,10 @@ doFile("/scripts/Common/advmap/Skills/TripleCatapult/script.lua")
 -- герои
 doFile("/scripts/RMG/advmap/Heroes/Ferigl/script.lua")
 doFile("/scripts/RMG/advmap/Heroes/Astral/script.lua")
+doFile("/scripts/RMG/advmap/Heroes/Jazaz/script.lua")
+doFile("/scripts/RMG/advmap/Heroes/Valeria/script.lua")
+doFile("/scripts/RMG/advmap/Heroes/Nathaniel/script.lua")
+doFile("/scripts/RMG/advmap/Heroes/Rolf/script.lua")
 
 -- банки
 doFile("/scripts/RMG/advmap/Objects/Banks/base.lua")
@@ -58,12 +63,20 @@ doFile("/scripts/RMG/advmap/Skills/DisguiseAndReckon/script.lua")
 doFile("/scripts/RMG/advmap/Skills/ElementalBalance/script.lua")
 doFile("/scripts/RMG/advmap/Skills/MasterOfSecrets/script.lua")
 doFile("/scripts/RMG/advmap/Skills/Insights/script.lua")
+doFile("/scripts/RMG/advmap/Skills/Scholar/script.lua")
+doFile("/scripts/RMG/advmap/Skills/HauntMines/script.lua")
 
 -- абилки
 doFile("/scripts/RMG/advmap/Abilities/ArtifactTransfer/script.lua")
 
+-- фичи
+doFile("/scripts/RMG/advmap/Features/WinConditions/FinalBattle/script.lua")
+doFile("/scripts/RMG/advmap/Features/WinConditions/Economic/script.lua")
+doFile("/scripts/RMG/advmap/Features/WinConditions/CaptureObject/script.lua")
+
 -- постройки в городах
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/script.lua")
+doFile("/scripts/RMG/advmap/Towns/Common/ResourceSilo/script.lua")
 
 doFile("/scripts/RMG/advmap/Towns/Buildings/Academy_TreasureCave/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Haven_Farms/script.lua")
@@ -77,6 +90,10 @@ doFile("/scripts/RMG/advmap/Towns/Buildings/Common_ArmyRegradeFort/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_RunicStoneworks/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Dwarven_Treasure/script.lua")
 doFile("/scripts/RMG/advmap/Towns/Buildings/Preserve_TreantSamplings/script.lua")
+doFile("/scripts/RMG/advmap/Towns/Buildings/Preserve_SparklingFountain/script.lua")
+
+-- режимы
+doFile("/scripts/RMG/advmap/Modes/Blitz/CreatureGrow/script.lua")
 
 -- спеллы
 doFile("/scripts/RMG/advmap/Spells/init.lua")

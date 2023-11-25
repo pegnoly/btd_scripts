@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Music ObjectRecordID="138">
-	<FileName>..\Music\MainMenu\MainMenu-Theme.ogg</FileName>
-	<FadeIn>2000</FadeIn>
-	<FadeOut>2000</FadeOut>
-	<MinPausedTime>1000</MinPausedTime>
-	<MaxPausedTime>10000</MaxPausedTime>
-</Music>

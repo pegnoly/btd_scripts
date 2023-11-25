@@ -179,23 +179,23 @@ function GetCombatFunctions()
     end
     --
   end)
-  AddCombatFunction(CombatFunctions.UNIT_MOVE, "check_units",
-  function()
-	if casters_checked == -1 then
-		casters_checked = 0
-		CombatFunctions.UNIT_MOVE["check_units"] = nil
-		for i, creature in GetAttackerCreatures() do
-			if not attacker_real_army[creature] and not defender_real_army[creature] then
-				pcall(removeUnit, creature)
-			end
-		end
-		for i, creature in GetDefenderCreatures() do
-			if not attacker_real_army[creature] and not defender_real_army[creature] then
-				pcall(removeUnit, creature)
-			end
-		end
-	end
-  end)
+  -- AddCombatFunction(CombatFunctions.UNIT_MOVE, "check_units",
+  -- function()
+	-- if casters_checked == -1 then
+	-- 	casters_checked = 0
+	-- 	CombatFunctions.UNIT_MOVE["check_units"] = nil
+	-- 	for i, creature in GetAttackerCreatures() do
+	-- 		if not attacker_real_army[creature] and not defender_real_army[creature] then
+	-- 			pcall(removeUnit, creature)
+	-- 		end
+	-- 	end
+	-- 	for i, creature in GetDefenderCreatures() do
+	-- 		if not attacker_real_army[creature] and not defender_real_army[creature] then
+	-- 			pcall(removeUnit, creature)
+	-- 		end
+	-- 	end
+	-- end
+  -- end)
   --
   if paths then
     for i, path in paths.to_cmb do

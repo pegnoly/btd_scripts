@@ -4,7 +4,7 @@ haunted_mines =
   
   up =
   function(hero)
-    startThread(Hero.CreatureInfo.DefaultGrow(hero, TOWN_NECROMANCY, 3, haunted_mines.manes_count)
+    startThread(Hero.CreatureInfo.DefaultGrow(hero, TOWN_NECROMANCY, 3, haunted_mines.manes_count))
   end,
 }
 

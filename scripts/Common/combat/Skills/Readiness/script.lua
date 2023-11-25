@@ -20,6 +20,8 @@ end
 
 function Readiness_Start(side)
   for i, creature in GetCreatures(side) do
-    pcall(commandDefend, creature)
+    if (not Creature.Type.IsCaster(creature)) and (not Creature.Type.IsShooter(creature)) then
+      pcall(commandDefend, creature)
+    end
   end
 end

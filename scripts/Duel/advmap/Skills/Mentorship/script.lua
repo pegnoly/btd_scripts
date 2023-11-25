@@ -8,14 +8,6 @@ mentorship_duel =
 
 NewDayEvent.AddListener("BTD_duel_mentorship_new_day",
 function(day)
-    if day == BTD_FREE_ROAM_DAY then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and HasHeroSkill(hero, HERO_SKILL_MENTORING) and not mentorship_duel.active_for_hero[hero] then
-                mentorship_duel.active_for_hero[hero] = 1
-                LevelUpHero(hero)
-            end
-        end
-    end
     if day == BTD_FIGHT_DAY then
         for hero, alive in AdvMapHeroesInfo.alive_heroes do
             if hero and alive and HasHeroSkill(hero, HERO_SKILL_MENTORING) then

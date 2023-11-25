@@ -1,5 +1,31 @@
-SKILL_SHOP_PATH = "Text/CustomAbility/SkillShop/"
--- магазин базовых навыков
+SKILL_SHOP_PATH = "MapObjects/SkillShop/FX/"
+
+while not FX and FX.Effects do
+  sleep()
+end
+
+SKILL_DARK_MAGIC_INACTIVE = SKILL_DARK_MAGIC + 1000
+
+FX.Effects[SKILL_LEADERSHIP] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"
+FX.Effects[SKILL_DEFENCE] = SKILL_SHOP_PATH.."Defence/Active/active.(Effect)"  
+FX.Effects[SKILL_WAR_MACHINES] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_OFFENCE] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_LOGISTICS] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_LIGHT_MAGIC] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_LUCK] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_DARK_MAGIC] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_SORCERY] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_DESTRUCTIVE_MAGIC] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_SUMMONING_MAGIC] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[SKILL_LEARNING] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[HERO_SKILL_BARBARIAN_LEARNING] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"  
+FX.Effects[HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"
+FX.Effects[HERO_SKILL_SHATTER_LIGHT_MAGIC] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"    
+FX.Effects[HERO_SKILL_SHATTER_SUMMONING_MAGIC] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"    
+FX.Effects[HERO_SKILL_SHATTER_DARK_MAGIC] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"    
+FX.Effects[HERO_SKILL_VOICE] = SKILL_SHOP_PATH.."DarkMagic/Active/active.(Effect)"    
+
+
 skill_shop =
 {
   skill_names =
@@ -26,7 +52,7 @@ skill_shop =
 
   skill_probs_by_class =
   {
-    -- рыцарь
+    -- пїЅпїЅпїЅпїЅпїЅпїЅ
     [HERO_CLASS_KNIGHT] =
     {
       [SKILL_LEADERSHIP] = 15,
@@ -39,7 +65,7 @@ skill_shop =
       [SKILL_LUCK] = 8,
       [SKILL_DARK_MAGIC] = 8,
     },
-    -- рейнджер
+    -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [HERO_CLASS_RANGER] =
     {
       [SKILL_LEADERSHIP] = 8,
@@ -53,7 +79,7 @@ skill_shop =
       [SKILL_DESTRUCTIVE_MAGIC] = 8,
       [SKILL_LEARNING] = 10
     },
-    -- маг
+    -- пїЅпїЅпїЅ
     [HERO_CLASS_WIZARD] =
     {
       [SKILL_ARTIFICIER] = 10,
@@ -66,7 +92,7 @@ skill_shop =
       [SKILL_SUMMONING_MAGIC] = 15,
       [SKILL_LEARNING] = 15
     },
-    -- демон
+    -- пїЅпїЅпїЅпїЅпїЅ
     [HERO_CLASS_DEMON_LORD] =
     {
       [SKILL_DEFENCE] = 8,
@@ -79,7 +105,7 @@ skill_shop =
       [SKILL_SORCERY] = 8,
       [SKILL_DESTRUCTIVE_MAGIC] = 10,
     },
-    -- некромант
+    -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [HERO_CLASS_NECROMANCER] =
     {
       [SKILL_DEFENCE] = 10,
@@ -92,7 +118,7 @@ skill_shop =
       [SKILL_SUMMONING_MAGIC] = 10,
       [SKILL_LEARNING] = 8
     },
-    -- чернокнижник
+    -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [HERO_CLASS_WARLOCK] =
     {
       [SKILL_INVOCATION] = 10,
@@ -105,7 +131,7 @@ skill_shop =
       [SKILL_SUMMONING_MAGIC] = 10,
       [SKILL_LEARNING] = 8
     },
-    -- гном
+    -- пїЅпїЅпїЅпїЅ
     [HERO_CLASS_RUNEMAGE] =
     {
       [SKILL_LEADERSHIP] = 8,
@@ -119,7 +145,7 @@ skill_shop =
       [SKILL_SUMMONING_MAGIC] = 4,
       [SKILL_LEARNING] = 8
     },
-    -- орк
+    -- пїЅпїЅпїЅ
     [HERO_CLASS_BARBARIAN] =
     {
       [SKILL_LEADERSHIP] = 10,
@@ -136,7 +162,7 @@ skill_shop =
     }
   },
 
-  -- здесь меняются цены за % навыка [%] = цена
+  -- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ % пїЅпїЅпїЅпїЅпїЅпїЅ [%] = пїЅпїЅпїЅпїЅ
   skill_costs_by_rarity =
   {
     [15] = 3000,
@@ -167,7 +193,7 @@ skill_shop_dialog =
       local hero = Dialog.GetActiveHeroForPlayer(player)
       local skill = next_state - 100
       local class = GetHeroClass(hero)
-      -- 22.08. Конфигурация цен после реворка логистики
+      -- 22.08. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
       local cost = economy.GetCostWithEconomy(hero, skill_shop.skill_costs_by_rarity[skill_shop.skill_probs_by_class[class][skill]])
       local economed_gold = skill_shop.skill_costs_by_rarity[skill_shop.skill_probs_by_class[class][skill]] - cost
       --
@@ -175,7 +201,7 @@ skill_shop_dialog =
       if gold >= cost then
         GiveHeroSkill(hero, skill)
         SetPlayerResource(player, GOLD, gold - cost)
-        -- 22.08. Экономия золота после реворка логистики
+        -- 22.08. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         economy.EconomGold(hero, economed_gold)
         --
         skill_shop.used_by_player[player] = 1
@@ -227,7 +253,7 @@ skill_shop_dialog =
         print("Can learn skill")
         local skill_name = skill_shop.skill_names[skill]
         print("Name: ", skill_name)
-        -- 22.08. Конфигурация цен после реворка логистики.
+        -- 22.08. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         local skill_cost = economy.GetCostWithEconomy(hero, skill_shop.skill_costs_by_rarity[skill_shop.skill_probs_by_class[class][skill]])
         print("Cost: ", skill_cost)
         --

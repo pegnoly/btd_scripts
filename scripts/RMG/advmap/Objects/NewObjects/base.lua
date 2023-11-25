@@ -66,12 +66,16 @@ BTD_Objects =
 
 		[BTD_KNOWLEDGE_MEGALITH] = 
 		function(object)
-      KnowledgeMegalith.used_by_hero[object] = {}
+      		KnowledgeMegalith.used_by_hero[object] = {}
 			Touch.DisableObject(object)
 			Touch.SetFunction(object, "_BTD_knowledge_megalith_touch",
 			function(hero, megalith)
 				if not KnowledgeMegalith.used_by_hero[megalith][hero] then
 					GiveExp(hero, KnowledgeMegalith.exp_amount)
+					-- scholar bonus
+					if scholar_rmg.active_for_hero[hero] then
+						GiveExp(hero, scholar_rmg.additional_exp)
+					end
 					KnowledgeMegalith.used_by_hero[megalith][hero] = 1
 					MarkObjectAsVisited(hero, megalith)
 				else
