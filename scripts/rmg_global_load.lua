@@ -17,6 +17,7 @@ doFile("/scripts/Common/advmap/Skills/SorceryDefence/reload.lua")
 doFile("/scripts/Common/advmap/Skills/TripleCatapult/reload.lua")
 doFile("/scripts/Common/advmap/Skills/BloodySacrifice/reload.lua")
 doFile("/scripts/Common/advmap/Skills/BloodyMana/reload.lua")
+doFile("/scripts/Common/advmap/Skills/LordOfUndead/reload.lua")
 
 -- рмг
 doFile("/scripts/RMG/advmap/Skills/GuardianAngel/reload.lua")
@@ -50,4 +51,5 @@ doFile("/scripts/RMG/advmap/Heroes/Jazaz/test.lua")
 doFile("/scripts/Common/advmap/Skills/Readiness/test.lua")
 doFile("/scripts/Common/advmap/Skills/BloodySacrifice/test.lua")
 doFile("/scripts/Common/advmap/Skills/BloodyMana/test.lua")
+doFile("/scripts/Common/advmap/Skills/LordOfUndead/test.lua")
 doFile("/scripts/RMG/advmap/Skills/HauntMines/test.lua")

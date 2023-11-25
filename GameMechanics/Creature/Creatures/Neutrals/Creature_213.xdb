@@ -8,9 +8,14 @@
 	<Speed>1</Speed>
 	<Initiative>1</Initiative>
 	<Flying>false</Flying>
-	<Health>1</Health>
-	<KnownSpells/>
-	<SpellPoints>0</SpellPoints>
+	<Health>1000000</Health>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_ANIMATE_DEAD</Spell>
+			<Mastery>MASTERY_EXTRA_EXPERT</Mastery>
+		</Item>
+	</KnownSpells>
+	<SpellPoints>1000</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
 	<Exp>1</Exp>
@@ -39,7 +44,7 @@
 	<CombatSize>1</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/MCCS/Helper.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>

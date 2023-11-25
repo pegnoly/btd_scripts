@@ -11,11 +11,11 @@ bloody_mana = {
 if GetGameVar(GetHeroName(GetAttackerHero()).."_BLOODY_MANA") == '1' then
     bloody_mana[ATTACKER] = {
         possible_stacks = {},
-        used_stacks = {}
+        used_stacks = {},
+        used_tiers = {}
     }
     AddCombatFunction(CombatFunctions.START, "bloody_mana_attacker_start",
     function()
-        --consoleCmd("@SetGameVar()")
         BloodyMana_Start(ATTACKER)
     end)
     AddCombatFunction(CombatFunctions.DEFENDER_CREATURE_DEATH, "bloody_mana_defender_creature_death",
@@ -26,7 +26,9 @@ end
 
 if GetDefenderHero() and GetGameVar(GetHeroName(GetDefenderHero()).."_BLOODY_MANA") == '1' then
     bloody_mana[DEFENDER] = {
-        possible_stacks = {}
+        possible_stacks = {},
+        used_stacks = {},
+        used_tiers = {}
     }
     AddCombatFunction(CombatFunctions.START, "bloody_mana_defender_start",
     function()
@@ -43,13 +45,15 @@ function BloodyMana_Start(side)
 end
 
 function BloodyMana_CreatureDeath(creature, side) 
-    if bloody_mana[side].used_stacks[creature] or not bloody_mana[side].possible_stacks[creature] then
+    local tier = Creature.Params.Tier(creature)
+    if bloody_mana[side].used_stacks[creature] or (not bloody_mana[side].possible_stacks[creature]) or 
+        bloody_mana[side].used_tiers[tier] then
         return
     end
-    local tier = Creature.Params.Tier(creature)
     local hero = GetHero(side)
     local current_mana = GetUnitManaPoints(hero)
     bloody_mana[side].used_stacks[creature] = 1
+    bloody_mana[side].used_tiers[tier] = 1
     SetUnitManaPoints(hero, current_mana + tier * bloody_mana.lvl_multiplier)
     CombatFlyingSign({
         "/scripts/Common/combat/Skills/BloodyMana/mana_added.txt"; amount = tier * bloody_mana.lvl_multiplier

@@ -22,6 +22,7 @@ doFile("/scripts/Common/advmap/Skills/SorceryDefence/script.lua")
 doFile("/scripts/Common/advmap/Skills/TripleCatapult/script.lua")
 doFile("/scripts/Common/advmap/Skills/BloodySacrifice/script.lua")
 doFile("/scripts/Common/advmap/Skills/BloodyMana/script.lua")
+doFile("/scripts/Common/advmap/Skills/LordOfUndead/script.lua")
 --------------
 -- рмг-скрипты
 --------------
@@ -51,7 +52,6 @@ doFile("/scripts/RMG/advmap/Skills/NecromancerFeatDeathTread/script.lua")
 doFile("/scripts/RMG/advmap/Skills/FortunateAdventurer/script.lua")
 doFile("/scripts/RMG/advmap/Skills/GuardianAngel/script.lua")
 doFile("/scripts/RMG/advmap/Skills/HeraldOfDeath/script.lua")
-doFile("/scripts/RMG/advmap/Skills/LordOfUndead/script.lua")
 doFile("/scripts/RMG/advmap/Skills/Navigation/script.lua")
 doFile("/scripts/RMG/advmap/Skills/NoRestForTheWicked/script.lua")
 doFile("/scripts/RMG/advmap/Skills/Recruitment/script.lua")

@@ -34,7 +34,7 @@
 		</Item>
 		<Item>
 			<Base>200</Base>
-			<PerPower>50</PerPower>
+			<PerPower>0</PerPower>
 		</Item>
 	</damage>
 	<duration>
