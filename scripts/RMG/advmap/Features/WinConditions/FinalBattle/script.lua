@@ -57,7 +57,7 @@ function WC_FinalBattle_InitFight()
 end
 
 function WC_FinalBattle_GetStrongestPlayerHero(player) 
-    local curr_hero, curr_max_exp = "", 0
+    local curr_hero, curr_max_exp = "", -1
     for i, hero in GetPlayerHeroes(player) do
         local exp = GetHeroStat(hero, STAT_EXPERIENCE)
         if exp > curr_max_exp then
@@ -88,7 +88,7 @@ function WC_FinalBattle_TransferHero(hero, player)
     if town then
         hero = GetTownHero(town)
     end
-    local pos = wc_capture_object.spawn_positions[player]
+    local pos = wc_final_battle.spawn_positions[player]
     SetObjectPosition(hero, pos.x, pos.y, UNDERGROUND)
     while not IsInDungeon(hero) do
         sleep()
