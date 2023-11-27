@@ -23,6 +23,9 @@ doFile("/scripts/Common/advmap/Skills/TripleCatapult/script.lua")
 doFile("/scripts/Common/advmap/Skills/BloodySacrifice/script.lua")
 doFile("/scripts/Common/advmap/Skills/BloodyMana/script.lua")
 doFile("/scripts/Common/advmap/Skills/LordOfUndead/script.lua")
+
+-- артефакты
+doFile("/scripts/Common/advmap/Artifacts/TwistingNeither/script.lua")
 --------------
 -- рмг-скрипты
 --------------

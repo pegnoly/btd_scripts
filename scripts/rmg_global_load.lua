@@ -19,6 +19,9 @@ doFile("/scripts/Common/advmap/Skills/BloodySacrifice/reload.lua")
 doFile("/scripts/Common/advmap/Skills/BloodyMana/reload.lua")
 doFile("/scripts/Common/advmap/Skills/LordOfUndead/reload.lua")
 
+-- артефакты
+doFile("/scripts/Common/advmap/Artifacts/TwistingNeither/reload.lua")
+
 -- рмг
 doFile("/scripts/RMG/advmap/Skills/GuardianAngel/reload.lua")
 
