@@ -53,7 +53,14 @@ function WC_FinalBattle_InitFight()
                 startThread(WC_FinalBattle_TransferHero, hero, player)
             end
         end
-    end 
+    end
+    CombatResultsEvent.AddListener("BTD_RMG_win_condition_final_battle_combat_results",
+    function(fight_id)
+        local loser = GetSavedCombatArmyPlayer(fight_id, 0)
+        if loser then
+            Loose(loser)
+        end
+    end) 
 end
 
 function WC_FinalBattle_GetStrongestPlayerHero(player) 

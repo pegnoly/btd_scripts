@@ -11,4 +11,4 @@ function CombatThreadsReload()
     end
 end
 
-consoleCmd("@MapReloadEvent.AddListener('BTD_RMG_reload_combat_threads', CombatThreadsReload)")
+-- consoleCmd("@MapReloadEvent.AddListener('BTD_RMG_reload_combat_threads', CombatThreadsReload)")

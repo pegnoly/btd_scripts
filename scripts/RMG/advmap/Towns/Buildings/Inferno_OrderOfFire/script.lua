@@ -2,7 +2,7 @@
 -- Дополнительный прирост демонов у Инферно
 inferno_order_of_fire =
 {
-    additional_grow = 10
+    additional_grow = 8
 }
 
 NewDayEvent.AddListener("BTD_RMG_inferno_order_of_fire_new_day",

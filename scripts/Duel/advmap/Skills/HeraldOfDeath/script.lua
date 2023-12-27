@@ -2,11 +2,14 @@ death_herald =
 {
     morale_bonus = -1,
     affected_heroes_for_hero = {},
-    base_distance = 5,
+    base_distance = 20,
 }
 
 AddHeroEvent.AddListener('death_herald_add_hero_event',
 function(hero)
+  errorHook(function ()
+      print("<color=red>Error: <color=green> HeraldOfDeath duel add hero.")
+  end)
   startThread(
   function()
     death_herald.affected_heroes_for_hero[%hero] = {}
@@ -51,7 +54,7 @@ death_herald_creatures =
 
 NewDayEvent.AddListener("death_herald_new_day",
 function(day)
-    if day == BTD_FIGHT_DAY then
+    if day == BTD_duel_day_sequence.prefight_day then
         for hero, alive in AdvMapHeroesInfo.alive_heroes do
             if hero and alive and HasHeroSkill(hero, NECROMANCER_FEAT_HERALD_OF_DEATH) then
                 startThread(Hero.CreatureInfo.Add, hero, CREATURE_DEATH_KNIGHT, death_herald_creatures.death_knight_count)

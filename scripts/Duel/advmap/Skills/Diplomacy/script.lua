@@ -17,7 +17,10 @@ diplomacy_duel =
 
 NewDayEvent.AddListener("BTD_duel_diplomacy_new_day",
 function(day)
-    if day == BTD_FIGHT_DAY then
+    errorHook(function ()
+        print("<color=red>Error: <color=green> Diplomacy duel new day.")
+    end)
+    if day == BTD_duel_day_sequence.prefight_day then
         for hero, alive in AdvMapHeroesInfo.alive_heroes do
             if hero and alive and HasHeroSkill(hero, PERK_DIPLOMACY) then
                 local race = Hero.Params.Town(hero)

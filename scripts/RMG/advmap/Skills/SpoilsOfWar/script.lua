@@ -9,25 +9,25 @@ spoils_of_war =
     }
 }
 
-AddHeroEvent.AddListener("BTD_RMG_spoils_of_war_add_hero",
-function(hero)
-    spoils_of_war.active_for_hero[hero] = nil
-    startThread(
-    function()
-        while 1 do
-            if IsHeroAlive(%hero) then
-                if not spoils_of_war.active_for_hero[%hero] and HasHeroSkill(%hero, WIZARD_FEAT_SPOILS_OF_WAR) then
-                    spoils_of_war.active_for_hero[%hero] = 1
-                    for res, amount in spoils_of_war.res_to_give do
-                        Resource.Change(%hero, res, amount)
-                    end
-                    return
-                end
-            end
-            sleep()
-        end
-    end)
-end)
+-- AddHeroEvent.AddListener("BTD_RMG_spoils_of_war_add_hero",
+-- function(hero)
+--     spoils_of_war.active_for_hero[hero] = nil
+--     startThread(
+--     function()
+--         while 1 do
+--             if IsHeroAlive(%hero) then
+--                 if not spoils_of_war.active_for_hero[%hero] and HasHeroSkill(%hero, WIZARD_FEAT_SPOILS_OF_WAR) then
+--                     spoils_of_war.active_for_hero[%hero] = 1
+--                     for res, amount in spoils_of_war.res_to_give do
+--                         Resource.Change(%hero, res, amount)
+--                     end
+--                     return
+--                 end
+--             end
+--             sleep()
+--         end
+--     end)
+-- end)
 
 CombatResultsEvent.AddListener("BTD_RMG_spoils_of_war_combat_result",
 function(fight_id)

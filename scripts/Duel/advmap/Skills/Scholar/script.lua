@@ -1,4 +1,4 @@
-scholar =
+scholar_duel =
 {
     GiveSpell =
     function(hero)
@@ -20,12 +20,15 @@ scholar =
     end
 }
 
-AddEvent(new_day_events, "scholar_new_day_event",
+NewDayEvent.AddListener("btd_duel_scholar_new_day_listener",
 function(day)
-    if day == BTD_FIGHT_DAY then
+    errorHook(function ()
+        print("<color=red>Error: <color=green> Scholar duel new day.")
+    end)
+    if day == BTD_duel_day_sequence.prefight_day then
         for hero, alive in AdvMapHeroesInfo.alive_heroes do
             if hero and alive and HasHeroSkill(hero, PERK_SCHOLAR) then
-                startThread(scholar.GiveSpell, hero)
+                startThread(scholar_duel.GiveSpell, hero)
             end
         end
     end

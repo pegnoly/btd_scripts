@@ -1,18 +1,15 @@
 ----------------------------
 -- Скрипты загрузки дуэли --
 
--- инициализация очередей сообщений
-MapLoadingEvent.AddListener("BTD_duel_message_queue_init_listener",
-function()
-    startThread(MessageQueue.Run, PLAYER_1)
-    startThread(MessageQueue.Run, PLAYER_2)
-end)
+btd_duel_loading = {
+    start_gold = 4000
+}
 
 -- выдача стартовых ресурсов
 MapLoadingEvent.AddListener("BTD_duel_start_res_listener",
 function()
     for player = PLAYER_1, PLAYER_8 do
-        SetPlayerStartResources(player, 0, 0, 0, 0, 0, 0, BTD_Duel.start_gold)
+        SetPlayerStartResources(player, 0, 0, 0, 0, 0, 0, btd_duel_loading.start_gold)
     end
 end)
 
@@ -23,17 +20,14 @@ function()
     OpenRegionFog(PLAYER_2, "Player2GameZone")
 end)
 
--- удаление стартовых армий героев(неактуально с черком?)
-MapLoadingEvent.AddListener("BTD_duel_start_army_remove_listener",
-function()
-    for i, hero in GetObjectNamesByType("HERO") do
-        startThread(
-        function()
-            for creature = 1, CREATURES_COUNT - 1 do
-                RemoveHeroCreatures(%hero, creature, 9999)
-            end
-        end)
-    end
+AddHeroEvent.AddListener("BTD_duel_start_army_remove_listener",
+function(hero)
+    startThread(
+    function()
+        for creature = 1, 179 do
+            RemoveHeroCreatures(%hero, creature, 9999)
+        end
+    end)
 end)
 
 -- настройка городов
@@ -54,7 +48,6 @@ function()
             sleep()
             local race = GetTownRace(%town)
             if race == TOWN_ACADEMY then
-                UpgradeTownBuilding(%town, TOWN_BUILDING_ACADEMY_ARCANE_FORGE)
                 UpgradeTownBuilding(%town, TOWN_BUILDING_ACADEMY_ARTIFACT_MERCHANT)
                 UpgradeTownBuilding(%town, TOWN_BUILDING_ACADEMY_LIBRARY)
             elseif race == TOWN_DUNGEON then
@@ -64,7 +57,7 @@ function()
                 end
                 UpgradeTownBuilding(%town, TOWN_BUILDING_DUNGEON_TRADE_GUILD)
             elseif race == TOWN_PRESERVE then
-                UpgradeTownBuilding(%town, TOWN_BUILDING_PRESERVE_AVENGERS_BROTHERHOOD)
+                --UpgradeTownBuilding(%town, TOWN_BUILDING_PRESERVE_AVENGERS_BROTHERHOOD)
             elseif race == TOWN_FORTRESS then
                 pcall(SetTownBuildingLimitLevel, %town, TOWN_BUILDING_FORTRESS_RUNIC_SHRINE, 3)
                 for i = 1, 3 do
@@ -78,6 +71,17 @@ function()
                 end
             elseif race == TOWN_INFERNO then
                 UpgradeTownBuilding(%town, TOWN_BUILDING_INFERNO_INFERNAL_LOOM)
+                UpgradeTownBuilding(%town, TOWN_BUILDING_INFERNO_ORDER_OF_FIRE)
+            elseif race == TOWN_HEAVEN then
+                UpgradeTownBuilding(%town, TOWN_BUILDING_HAVEN_TRAINING_GROUNDS)
+                for i, dwell in {TOWN_BUILDING_DWELLING_2, TOWN_BUILDING_DWELLING_3, TOWN_BUILDING_DWELLING_5, TOWN_BUILDING_DWELLING_6} do
+                    UpgradeTownBuilding(%town, dwell)
+                    UpgradeTownBuilding(%town, dwell)
+                end
+                sleep()
+                for i, creature in {CREATURE_ARCHER, CREATURE_FOOTMAN, CREATURE_PRIEST, CREATURE_CAVALIER} do
+                    SetObjectDwellingCreatures(%town, creature, 0)
+                end
             end
             --
             pcall(SetTownBuildingLimitLevel, %town, TOWN_BUILDING_MAGIC_GUILD, 5)
@@ -88,11 +92,30 @@ function()
     end
 end)
 
--- стартовое сообщение
-MapLoadingEvent.AddListener('BTD_duel_start_message_listener',
+MapLoadingEvent.AddListener("btd_duel_loading_shrines_auto_visit",
 function()
-    for player = PLAYER_1, PLAYER_2 do
-        startThread(MCCS_MessageBoxForPlayers, player, GetMapDataPath().."Messages/start.txt")
-        startThread(SkipTurnMessage, player)
-    end
+    consoleCmd("setvar ui_announcement_duration = 0")
+    sleep()
+    startThread(
+    function ()
+        for i, shrine in {'Shrine1_1','Shrine1_2','Shrine1_3','Shrine1_4','Shrine1_5','Shrine1_6'} do
+            MakeHeroInteractWithObject("GhostFSLord1", shrine)
+        end
+    end)
+    startThread(
+    function ()
+        for i, shrine in {'Shrine2_1','Shrine2_2','Shrine2_3','Shrine2_4','Shrine2_5','Shrine2_6'} do
+            MakeHeroInteractWithObject("GhostFSLord2", shrine)
+        end
+    end)
+    sleep(20)
+    consoleCmd("setvar ui_announcement_duration = 3500")
 end)
+-- стартовое сообщение
+-- MapLoadingEvent.AddListener('BTD_duel_start_message_listener',
+-- function()
+--     for player = PLAYER_1, PLAYER_2 do
+--         startThread(MCCS_MessageBoxForPlayers, player, GetMapDataPath().."Messages/start.txt")
+--         startThread(SkipTurnMessage, player)
+--     end
+-- end)

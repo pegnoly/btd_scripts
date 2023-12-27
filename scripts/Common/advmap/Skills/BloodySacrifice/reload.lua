@@ -1,6 +1,6 @@
 function BloodySacrificeReload()
     for i, hero in GetObjectNamesByType("HERO") do
-        if HasHeroSkill(hero, HERO_SKILL_BLOODY_SACRIFICE) then
+        if HasHeroSkill(hero, 222) then
             consoleCmd("@SetGameVar('"..hero.."_BLOODY_SACRIFICE', '1')")
         end
     end

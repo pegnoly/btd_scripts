@@ -2,7 +2,7 @@
 -- Дополнительный прирост крестьян в фермах Ордена Порядка
 haven_farms =
 {
-    additional_grow = 20
+    additional_grow = 15
 }
 
 NewDayEvent.AddListener("BTD_RMG_haven_farms_new_day",

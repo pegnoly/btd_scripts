@@ -61,9 +61,9 @@ Object =
     sleep()
     if use_cam then
       if move_cam then
-        MoveCamera(x, y, z, 0, 0, 0, 1, 1)
+        MoveCameraForPlayers(player, x, y, z, 0, 0, 0, 1, 1)
       else
-        MoveCamera(x, y, z, 0, 0, 0, 1, 1, 1)
+        MoveCameraForPlayers(player, x, y, z, 0, 0, 0, 1, 1, 1)
       end
     end
   end,

@@ -87,6 +87,7 @@ function BiaraSpec_SorrowCast(side)
         while not exist(helper) do
             sleep()
         end
+        startThread(playAnimation, GetHero(side), "cast", ONESHOT)
         for i, creature in creatures_to_cast do
             pcall(UnitCastAimedSpell, helper, SPELL_SORROW, creature)
         end

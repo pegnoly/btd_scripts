@@ -81,6 +81,20 @@ function CommonMapLoadingThread()
       end
     end
   end)
+  CombatResultsEvent.AddListener('MCCS_post_combat_fix_event',
+  function(fight_id)
+      local winner = GetSavedCombatArmyHero(fight_id, 1)
+      local loser = GetSavedCombatArmyHero(fight_id, 0)
+      -- после боев вручную в хотсите необходимо запускать сигнал на срабатывание PostCombatFix-ивентов, т.к. существует проблема, 
+      -- что при завершении боя в этом случае игра пытается запустить функции глобальной карты еще находясь в боевом режиме, не обнаруживает их и выдает ошибку
+      if winner then
+        local winner_owner = GetObjectOwner(winner)
+        consoleCmd("@if GetGameVar('"..winner_owner.."_combat_mode') == 'real' then SetGameVar('"..winner_owner.."_combat_mode', 'auto') SetGameVar('"..winner_owner.."_post_combat_fix_active', '"..winner.."') end")
+      end
+      if loser then
+        consoleCmd("@ local loser_owner = GetGameVar('"..loser.."_owner') if GetGameVar(loser_owner..'_combat_mode') == 'real' then SetGameVar(loser_owner..'_combat_mode', 'auto') SetGameVar(loser_owner..'_post_combat_fix_active', '"..loser.."')end")
+      end
+  end)
   --
   MapLoadingEvent.Invoke()
   startThread(CustomAbility.Init)

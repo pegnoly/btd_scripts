@@ -107,7 +107,7 @@ Art =
             end)
             local minor_count, major_count, relic_count = 0, 0, 0
             for art, info in MCCS_ARTIFACTS_GENERATED_TABLE do
-                if info.slot ~= INVENTORY then
+                if info.slot ~= INVENTORY and info.is_sellable then
                     if info.type == ARTF_CLASS_MINOR then
                         minor_count = minor_count + 1
                         artsByClass[ARTF_CLASS_MINOR][minor_count] = art

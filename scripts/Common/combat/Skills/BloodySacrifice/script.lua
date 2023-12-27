@@ -1,6 +1,6 @@
 CREATURE_BLOODY_SACRIFICE_BASE = 209
-CREATURE_BLOODY_SACRIFICE_50_BUFF = 210
-CREATURE_BLOODY_SACRIFICE_100_BUFF = 211
+CREATURE_BLOODY_SACRIFICE_25_BUFF = 210
+CREATURE_BLOODY_SACRIFICE_90_BUFF = 211
 
 bloody_sacrifice = {
     shamans = {CREATURE_SHAMAN, CREATURE_SHAMAN_HAG, CREATURE_SHAMAN_WITCH},
@@ -71,9 +71,7 @@ function BloodySacrifice_CheckSacrifice(creature, side)
         if flag then
             local helper = side.."_bloody_sacrifice_helper"
             local helper_type = 209
-            if (bloody_sacrifice[side].power_of_blood and bloody_sacrifice[side].voice_of_rage) then
-                helper_type = 211
-            elseif (bloody_sacrifice[side].power_of_blood or bloody_sacrifice[side].voice_of_rage) then
+            if bloody_sacrifice[side].voice_of_rage then
                 helper_type = 210
             end
             local possible_targets, p_n = {}, 0

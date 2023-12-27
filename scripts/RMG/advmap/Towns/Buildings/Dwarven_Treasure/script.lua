@@ -3,7 +3,7 @@ TOWN_BUILDING_DWARVEN_TREASURE = 23
 dwarven_treasure =
 {
     path = "/scripts/RMG/advmap/Towns/Buildings/Dwarven_Treasure/",
-    additional_gold_percent = 0.2
+    additional_gold_percent = 0.25
 }
 
 NewDayEvent.AddListener("BTD_RMG_dwarven_treasure_new_day",

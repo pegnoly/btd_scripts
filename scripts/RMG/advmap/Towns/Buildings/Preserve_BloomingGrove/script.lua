@@ -1,6 +1,6 @@
 preserve_blooming_grove =
 {
-    additional_grow = 8
+    additional_grow = 4
 }
 
 NewDayEvent.AddListener("BTD_RMG_preserve_blooming_grove_new_day",

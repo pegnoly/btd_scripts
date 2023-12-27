@@ -14,12 +14,9 @@ BTD_Duel_ArmyDistribution =
     
     --
     default_func =
-    function(hero)
-        local race = Hero.Params.Town(hero)
-        for tier = 1, 7 do
-            local creature = TIER_TABLES[race][tier][1] 
-            startThread(Hero.CreatureInfo.Add, hero, creature, BTD_Duel_ArmyDistribution[race][tier])
-        end
+    function(hero, race, tier)
+        local creature = TIER_TABLES[race][tier][1] 
+        startThread(Hero.CreatureInfo.Add, hero, creature, BTD_Duel_ArmyDistribution[race][tier])
     end,
 
     --
@@ -27,34 +24,99 @@ BTD_Duel_ArmyDistribution =
     {}
 }
 
-NewDayEvent.AddListener('BTD_duel_add_army_listener',
+AddHeroEvent.AddListener("btd_duel_custom_add_func_add_hero",
+function(hero)
+    BTD_Duel_ArmyDistribution.custom_add_func[hero] = {}
+end)
+
+NewDayEvent.AddListener('btd_duel_add_army_listener',
 function(day)
-    if day == BTD_LEVEL_ARMY_DAY then
+    if day == BTD_duel_day_sequence.level_army_day then
         for player = PLAYER_1, PLAYER_2 do
             startThread(
             function()
                 local hero = GetPlayerHeroes(%player)[0]
-                if not BTD_Duel_ArmyDistribution.custom_add_func[hero] then
-                    startThread(BTD_Duel_ArmyDistribution.default_func, hero)
-                else
-                    startThread(BTD_Duel_ArmyDistribution.custom_add_func[hero], hero)
+                local race = Hero.Params.Town(hero)
+                for tier = 1, 7 do 
+                    if not BTD_Duel_ArmyDistribution.custom_add_func[hero][tier] then
+                        startThread(BTD_Duel_ArmyDistribution.default_func, hero, race, tier)
+                    else
+                        startThread(BTD_Duel_ArmyDistribution.custom_add_func[hero][tier], hero)
+                    end
                 end
             end)
         end
     end
 end)
 
---#region
+btd_duel_level_up = {
+    base_level = 9,
+    max_level = 18,
+    lvl_up_stones = {"obelisklvlup1", "obelisklvlup2"}
+}
 
-NewDayEvent.AddListener('BTD_duel_level_up_listener',
+-- в начале дня повысить лвл до 9.
+NewDayEvent.AddListener("BTD_duel_lvl_base_new_day",
 function(day)
-    if day == BTD_LEVEL_ARMY_DAY then
+    if day == BTD_duel_day_sequence.level_army_day then
         for player = PLAYER_1, PLAYER_2 do
             local hero = GetPlayerHeroes(player)[0]
-            local level = Random.FromSelection(19, 19) -- :)
-            startThread(MCCS_MessageBoxForPlayers, player, {GetMapDataPath().."Messages/got_lvl.txt"; lvl = level})
-            startThread(GiveExp, hero, Levels[level])
-            --startThread(SkipTurnMessage, player)
+            GiveExp(hero, Levels[btd_duel_level_up.base_level])
+            startThread(MCCS_MessageBoxForPlayers, player, "/scripts/Duel/advmap/DaySequence/skip_day_when_ready.txt")
+        end
+    end
+end)
+
+-- камень повышает до 18.
+NewDayEvent.AddListener("BTD_duel_learing_stones_init",
+function()
+    for _, object in btd_duel_level_up.lvl_up_stones do
+        Touch.DisableObject(
+            object, 
+            DISABLED_INTERACT,
+            "/scripts/Duel/advmap/DaySequence/Level&Army/learning_stone_name.txt",
+            "/scripts/Duel/advmap/DaySequence/Level&Army/learning_stone_desc.txt"
+        )
+        Touch.SetFunction(object, "_touch_lvlupstone",
+        function(hero, object)
+            local curr_level = GetHeroLevel(hero)
+            Touch.RemoveFunctions(object)
+            startThread(GiveExp, hero, Levels[btd_duel_level_up.max_level] - Levels[curr_level])
+            Touch.DisableObject(object, DISABLED_BLOCKED)
+        end) 
+    end
+end)
+
+-- Настройка порталов с артами.
+
+btd_art_portals = {
+    _entrance_suffix = "_entrance",
+    _player_prefixes = { "p1_", "p2_"},
+    _portal_pairs = { ["left"] = "right", ["right"] = "left" }
+}
+
+MapLoadingEvent.AddListener("BTD_duel_art_portals_init",
+function ()
+    for _, p in btd_art_portals._player_prefixes do
+        for touch, block in btd_art_portals._portal_pairs do
+            local touched_portal = p..touch..btd_art_portals._entrance_suffix
+            local blocked_portal = p..block..btd_art_portals._entrance_suffix
+            Touch.SetFunction(touched_portal, "_touch_"..touched_portal,
+            function(hero, object)
+                local bp = %blocked_portal
+                Touch.DisableObject(bp, DISABLED_BLOCKED)
+                Touch.RemoveFunctions(bp)
+                Touch.RemoveFunctions(object)
+            end)
+        end
+    end
+end)
+
+NewDayEvent.AddListener("BTD_duel_unlim_move_setup_listener",
+function(day)
+    if day == BTD_duel_day_sequence.level_army_day then
+        for i, hero in GetObjectNamesByType("HERO") do
+            startThread(Hero.Threads.UnlimMove, hero, function() return btd_duel_free_roam.free_roam_active_for_hero[%hero] end)
         end
     end
 end)

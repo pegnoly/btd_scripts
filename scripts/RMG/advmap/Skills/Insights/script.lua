@@ -1,5 +1,6 @@
 insights = {
-    active_for_hero = {}
+    active_for_hero = {},
+    spells_count = 2
 }
 
 AddHeroEvent.AddListener("BTD_RMG_insights_add_hero",
@@ -15,9 +16,21 @@ function(hero)
                         local spells = Hero.SpellInfo.GetLearnableSpellsByLevel(%hero, 3, 1)
                         print("INSIGHTS: spells ", spells)
                         if spells then
-                            local spell_to_learn = Random.FromTable(spells)
-                            print("INSIGHTS: learning ", spell_to_learn)
-                            Hero.SpellInfo.TeachSpell(%hero, spell_to_learn)
+                            local spells_count = len(spells) > 1 and insights.spells_count or 1
+                            print("INSIGHTS: spells count", spells_count)
+                            local learned = 0
+                            local already_learned = {}
+                            while learned ~= spells_count do
+                                local spell_to_learn = Random.FromTable(spells)
+                                if not already_learned[spell_to_learn] then
+                                    learned = learned + 1
+                                    already_learned[spell_to_learn] = 1
+                                    print("INSIGHTS: learning ", spell_to_learn)
+                                    Hero.SpellInfo.TeachSpell(%hero, spell_to_learn)
+                                else
+                                    sleep()
+                                end    
+                            end
                         end
                     end
                 end

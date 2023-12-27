@@ -1,1 +1,0 @@
-CombatConnection.combat_scripts_paths['Rolf_spec'] = '/scripts/RMG/combat/Heroes/Rolf/script.lua'

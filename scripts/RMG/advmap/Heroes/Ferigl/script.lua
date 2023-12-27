@@ -80,7 +80,7 @@ end)
 
 LevelUpEvent.AddListener("BTD_RMG_ferigl_spec_lvl_up",
 function(hero)
-    if contains(ferigl_spec_rmg.heroes, hero) and (mod(GetHeroLevel(hero) / ferigl_spec_rmg.rider_grow_divisor) == 0) then
+    if contains(ferigl_spec_rmg.heroes, hero) and (mod(GetHeroLevel(hero), ferigl_spec_rmg.rider_grow_divisor) == 0) then
         startThread(Hero.CreatureInfo.DefaultGrow, hero, TOWN_DUNGEON, 4, ferigl_spec_rmg.rider_grow_per_divisor)
     end
 end)

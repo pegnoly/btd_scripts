@@ -34,7 +34,7 @@ function()
         function(hero, object)
             if not scholar_rmg.dolmens_touched[object] then
                 scholar_rmg.dolmens_touched[object] = 1
-                if HasHeroSkill(hero, PERK_SCHOLAR) then
+                if HasHeroSkill(hero, PERK_SCHOLAR) or HasHeroSkill(hero, HERO_SKILL_WARCRY_LEARNING) then
                     GiveExp(hero, scholar_rmg.additional_exp)
                 end
             end

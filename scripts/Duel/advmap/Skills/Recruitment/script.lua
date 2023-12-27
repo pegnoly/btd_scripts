@@ -1,11 +1,14 @@
-recruitment =
+recruitment_duel =
 {
 }
 
-NewDayEvent.AddListener("recruitment_new_day",
+NewDayEvent.AddListener("btd_duel_recruitment_new_day_listener",
 function(day)
-    if day == BTD_FIGHT_DAY then
-        for hero, alive in AdvMapHeroesInfo.a do
+    errorHook(function ()
+        print("<color=red>Error: <color=green> Recruitment duel new day.")
+    end)
+    if day == BTD_duel_day_sequence.prefight_day then
+        for hero, alive in AdvMapHeroesInfo.alive_heroes do
             if hero and alive and HasHeroSkill(hero, PERK_RECRUITMENT) then
                 local race = Hero.Params.Town(hero)
                 for tier = 1, 3 do

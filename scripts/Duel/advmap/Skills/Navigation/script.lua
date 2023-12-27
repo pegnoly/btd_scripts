@@ -1,9 +1,12 @@
 AddHeroEvent.AddListener("BTD_duel_navigation_add_hero",
 function(hero)
+    errorHook(function ()
+        print("<color=red>Error: <color=green> Navigation duel add hero.")
+    end)
     navigation_common.stat_for_hero[hero] = nil
     startThread(
     function()
-        while GetDate(DAY) ~= BTD_FREE_ROAM_DAY do
+        while GetDate(DAY) ~= BTD_duel_day_sequence.freeroam_day do
             sleep()
         end
         while 1 do

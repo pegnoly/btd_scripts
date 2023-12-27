@@ -113,11 +113,17 @@ pick_ban_stage = {
     heroes_for_player = {[PLAYER_1] = {}, [PLAYER_2] = {}},
     gold_price_for_additional_hero = 4000,
     portrait_objects = {}, 
-    portrait_fxs = {}
+    portrait_fxs = {},
+
+    player_picked_hero = {
+        [PLAYER_1] = nil, [PLAYER_2] = nil
+    }
 }
 
 MapLoadingEvent.AddListener("BTD_duel_pick_ban_stage",
 function()
+    ChangeHeroStat("GhostFSLord1", STAT_MOVE_POINTS, -10000)
+    ChangeHeroStat("GhostFSLord2", STAT_MOVE_POINTS, -10000)
     Touch.DisableObject("start_game_portal_p1")
     Touch.DisableObject("start_game_portal_p2")
     SetRegionBlocked("start_game_block_p1", 1, -1)
@@ -126,6 +132,11 @@ function()
     SetRegionBlocked("ban_block_p2", 1, -1)
     SetupPlayer(PLAYER_1, GetPlayerRace(PLAYER_2))
     SetupPlayer(PLAYER_2, GetPlayerRace(PLAYER_1))
+    sleep()
+    for player = PLAYER_1, PLAYER_2 do
+        local x, y, f = RegionToPoint("selected_hero_spawn_point_"..player.."2")
+        SetObjectPosition("GhostFSLord"..player, x, y, f)
+    end
     sleep()
     StartBanQueue()
 end)
@@ -194,9 +205,8 @@ function SetupPlayer(player, other_player_race)
 end
 
 function StartBanQueue()
-    ChangeHeroStat("GhostFSLord2", STAT_MOVE_POINTS, -10000)
     startThread(Hero.Threads.UnlimMove, "GhostFSLord1", function() return pick_ban_stage.active_banning_player == PLAYER_1 end)
-    MCCS_MessageBoxForPlayers(PLAYER_1, pick_ban_stage.path.."your_turn_to_ban.txt")
+    startThread(MCCS_MessageBoxForPlayers, PLAYER_1, pick_ban_stage.path.."your_turn_to_ban.txt")
 end
 
 function GiveTurnToNextPlayer()
@@ -204,9 +214,9 @@ function GiveTurnToNextPlayer()
     local other_player = 3 - player
     ChangeHeroStat("GhostFSLord"..other_player, STAT_MOVE_POINTS, -10000)
     if pick_ban_stage.ban_round_for_hero_player[player] < 3 then
-        MCCS_MessageBoxForPlayers(player, pick_ban_stage.path.."your_turn_to_ban.txt")
+        startThread(MCCS_MessageBoxForPlayers, player, pick_ban_stage.path.."your_turn_to_ban.txt")
     else
-        MCCS_MessageBoxForPlayers(player, pick_ban_stage.path.."your_turn_to_make_priceable.txt")
+        startThread(MCCS_MessageBoxForPlayers, player, pick_ban_stage.path.."your_turn_to_make_priceable.txt")
     end
     startThread(Hero.Threads.UnlimMove, "GhostFSLord"..player, function() return pick_ban_stage.active_banning_player == %player end)
 end
@@ -269,5 +279,23 @@ function SelectHero(hero, player)
     end
     Touch.RemoveFunctions("start_game_portal_p"..player)
     SetObjectEnabled("start_game_portal_p"..player, 1)
+    ChangeHeroStat(hero, STAT_MOVE_POINTS, -10000)
+    sleep()
     MakeHeroInteractWithObject(hero, "start_game_portal_p"..player)
+    pick_ban_stage.player_picked_hero[player] = 1
+    btd_duel_free_roam.free_roam_active_for_hero[hero] = 1
+    sleep(10)
+    Calibrate(hero)
+    startThread(MCCS_MessageBoxForPlayers, player, "/scripts/Duel/advmap/DaySequence/skip_day.txt")
 end
+
+MapLoadingEvent.AddListener("BTD_duel_pick_ban_stage_waiting",
+function()
+    while 1 do
+        if pick_ban_stage.player_picked_hero[PLAYER_1] and pick_ban_stage.player_picked_hero[PLAYER_2] then
+            startThread(BTD_Duel_DaySequenceInit)
+            return
+        end
+        sleep()
+    end
+end)

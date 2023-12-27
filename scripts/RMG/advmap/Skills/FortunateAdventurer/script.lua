@@ -47,6 +47,8 @@ function(hero)
                 if HasHeroSkill(%hero, PERK_FORTUNATE_ADVENTURER) and (not fortunate_adventurer_rmg.mp_restored_for_hero[%hero]) then
                     fortunate_adventurer_rmg.mp_restored_for_hero[%hero] = 1
                     ChangeHeroStat(%hero, STAT_MOVE_POINTS, 10000)
+                    -- dark ritual fix
+                    MapSpellsCheckers.tHeroStorage[%hero].maxMovePoints = GetHeroStat(%hero, STAT_MOVE_POINTS)
                 end
             end
             sleep()

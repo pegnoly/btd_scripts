@@ -2,16 +2,27 @@ triple_catapult =
 {
   double_shot_turn_divisor = 2,
   [ATTACKER] = {
-    shooters_turn_count = {}
+    shooters_state = {}
   },
   [DEFENDER] = {
-    shooters_turn_count = {}
+    shooters_state = {}
   }
 }
+
+DOUBLE_SHOT_STATE_NOT_READY = 1
+DOUBLE_SHOT_STATE_READY = 2
+DOUBLE_SHOT_STATE_IN_PROCESS = 3
+DOUBLE_SHOT_STATE_DONE = 4
 
 if GetGameVar(GetHeroName(GetAttackerHero()).."_TRIPLE_CATAPULT") == '1' then
   AddCombatFunction(CombatFunctions.ATTACKER_CREATURE_MOVE, "triple_catapult_attacker_creature_move",
   function (creature)
+      if not triple_catapult[ATTACKER].shooters_state[creature] then
+          triple_catapult[ATTACKER].shooters_state[creature] = DOUBLE_SHOT_STATE_NOT_READY
+          return
+      end
+      --
+      local state = triple_catapult[ATTACKER].shooters_state[creature]
     startThread(TripleCatapult_DoubleShot, creature, ATTACKER)
   end)
   -- triple_catapult[ATTACKER] =

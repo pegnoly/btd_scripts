@@ -2,11 +2,14 @@ death_thread =
 {
   speed_bonus = 1, -- 
   affected_heroes_for_hero = {},
-  base_distance = 5,
+  base_distance = 20,
 }
 
 AddHeroEvent.AddListener('death_thread_add_hero_event',
 function(hero)
+    errorHook(function ()
+        print("<color=red>Error: <color=green> DeathThread duel add hero.")
+    end)
     startThread(
     function()
         death_thread.affected_heroes_for_hero[%hero] = {}

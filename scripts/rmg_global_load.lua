@@ -1,9 +1,20 @@
+doFile("/scripts/RMG/advmap/Features/WinConditions/Economic/consts.lua")
+
+while not RareResource do
+    sleep()
+end
+
 doFile(GetMapDataPath().."win_conditions.lua")
+doFile(GetMapDataPath().."stacks.lua")
+doFile(GetMapDataPath().."towns_info.lua")
+
+doFile("/scripts/RMG/test.lua")
 -- герои --
 -- общие
 doFile("/scripts/Common/advmap/Heroes/Kigan/reload.lua")
 doFile("/scripts/Common/advmap/Heroes/Biara/reload.lua")
 doFile("/scripts/Common/advmap/Heroes/Krag/reload.lua")
+doFile("/scripts/Common/advmap/Heroes/Rolf/reload.lua")
 
 -- скиллы --
 
@@ -29,6 +40,7 @@ doFile("/scripts/RMG/advmap/Skills/GuardianAngel/reload.lua")
 doFile("/scripts/RMG/advmap/Objects/Banks/consts.lua")
 doFile("/scripts/RMG/advmap/Objects/NewObjects/consts.lua")
 doFile("/scripts/RMG/advmap/Objects/NewObjects/WarmenHouse/reload.lua")
+doFile("/scripts/RMG/advmap/Objects/NewObjects/DwarvenMine/test.lua")
 
 -- герои 
 doFile("/scripts/RMG/advmap/Heroes/Jazaz/reload.lua")
@@ -47,6 +59,9 @@ doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/consts.lua")
 -- режимы
 doFile("/scripts/RMG/advmap/Modes/consts.lua")
 
+--
+doFile("/scripts/RMG/advmap/Features/WinConditions/Economic/consts.lua")
+
 -- тесты
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/test.lua")
 doFile("/scripts/RMG/advmap/Heroes/Ferigl/test.lua")
@@ -56,3 +71,4 @@ doFile("/scripts/Common/advmap/Skills/BloodySacrifice/test.lua")
 doFile("/scripts/Common/advmap/Skills/BloodyMana/test.lua")
 doFile("/scripts/Common/advmap/Skills/LordOfUndead/test.lua")
 doFile("/scripts/RMG/advmap/Skills/HauntMines/test.lua")
+doFile("/scripts/RMG/advmap/Spells/TownPortal/test.lua")

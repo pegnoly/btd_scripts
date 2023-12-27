@@ -29,4 +29,4 @@ function(hero)
     end)
 end)
 
-CombatConnection.combat_scripts_paths['dark_ritual'] = '/scripts/Duel/combat/Skills/DarkRitual/script.lua'
+CombatConnection.combat_scripts_paths['dark_ritual'] = '/scripts/Duel/combat/DarkRitual/script.lua'

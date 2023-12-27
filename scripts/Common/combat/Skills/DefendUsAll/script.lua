@@ -8,7 +8,9 @@ if GetGameVar(GetHeroName(GetAttackerHero()).."_DEFEND_US_ALL") == '1' then
     defend_us_all[ATTACKER] =
     {
         trapper_cast_used = nil,
-        defiler_cast_used = nil
+        defiler_cast_used = nil,
+        mana_steal_iteration = 1,
+        enemy_casters_info = {}
     }
     AddCombatFunction(CombatFunctions.START, "BTD_defend_us_all_start_attacker",
     function()
@@ -129,25 +131,71 @@ function DefendUsAll_Start(side)
             end
             --
             if side == ATTACKER and (not GetDefenderHero()) then
-               local defilers_count = 0
-               for _, cr in GetCreatures(side) do
-                   if GetCreatureType(cr) == CREATURE_GOBLIN_DEFILER then
-                       defilers_count = defilers_count + GetCreatureNumber(cr)
-                   end
-               end
-               if defilers_count > 0 then
-                  for _, enemy_creature in (side == ATTACKER and keys(defender_real_army) or keys(attacker_real_army)) do
-                      if Creature.Type.IsCaster(enemy_creature) then
-                          local curr_mp = GetUnitManaPoints(enemy_creature)
-                          local result_mp = curr_mp <= defilers_count and 0 or (curr_mp - defilers_count)
-
-                          SetUnitManaPoints(enemy_creature, result_mp)
-                      end
-                  end
-               end
+                for _, enemy_creature in (side == ATTACKER and keys(defender_real_army) or keys(attacker_real_army)) do
+                    if Creature.Type.IsCaster(enemy_creature) then
+                        defend_us_all[side].enemy_casters_info[enemy_creature] = {
+                            iteration = 0,
+                            current_mana = GetUnitManaPoints(enemy_creature)
+                        }
+                    end
+                end
+                --
+                for _, cr in GetCreatures(side) do
+                    if GetCreatureType(cr) == CREATURE_GOBLIN_DEFILER then
+                        DefendUsAll_StealMana(cr, side)
+                        --sleep(20)
+                    end
+                end
             end
             --
             defend_us_all[side].defiler_cast_used = 1
         end
+    end
+end
+
+function DefendUsAll_StealMana(defiler, side) 
+    local count = GetCreatureNumber(defiler)
+    for creature, info in defend_us_all[side].enemy_casters_info do
+        if creature and info then
+            if info.current_mana > 0 and info.iteration < defend_us_all[side].mana_steal_iteration then
+                local new_mana = info.current_mana - count
+                new_mana = new_mana < 0 and 0 or new_mana
+                SetUnitManaPoints(creature, new_mana)
+                startThread(playAnimation, defiler, "specability", ONESHOT)
+                startThread(CombatFlyingSign, {
+                    "/scripts/Common/combat/Skills/DefendUsAll/mana_stolen.txt"; amount = info.current_mana - new_mana
+                }, creature, 6.0)
+                sleep()
+                if new_mana <= 0 then
+                    defend_us_all[side].enemy_casters_info[creature] = nil
+                    sleep()
+                    -- while defend_us_all[side].enemy_casters_info[creature] do
+                    --     sleep()
+                    -- end
+                else 
+                    defend_us_all[side].enemy_casters_info[creature].current_mana = new_mana
+                    local new_iteration = defend_us_all[side].enemy_casters_info[creature].iteration + 1
+                    defend_us_all[side].enemy_casters_info[creature].iteration = new_iteration
+                    -- while defend_us_all[side].enemy_casters_info[creature].iteration ~= new_iteration do
+                    --     sleep()
+                    -- end
+                    sleep()
+                end
+                break
+            end
+        end
+    end
+    --
+    local next_iteration_flag = 1
+    for _, info in defend_us_all[side].enemy_casters_info do
+        if info then
+            if info.iteration < defend_us_all[side].mana_steal_iteration then
+                next_iteration_flag = nil
+                break
+            end
+        end
+    end
+    if next_iteration_flag then
+        defend_us_all[side].mana_steal_iteration = defend_us_all[side].mana_steal_iteration + 1
     end
 end

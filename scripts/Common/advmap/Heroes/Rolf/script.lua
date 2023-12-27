@@ -1,0 +1,1 @@
+CombatConnection.combat_scripts_paths['Rolf_spec'] = '/scripts/Common/combat/Heroes/Rolf/script.lua'

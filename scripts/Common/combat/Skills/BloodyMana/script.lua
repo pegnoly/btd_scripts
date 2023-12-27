@@ -9,6 +9,7 @@ bloody_mana = {
 }
 
 if GetGameVar(GetHeroName(GetAttackerHero()).."_BLOODY_MANA") == '1' then
+    consoleCmd("@SetGameVar('"..GetHeroName(GetAttackerHero()).."_BLOODY_MANA_START_MANA', "..GetUnitManaPoints(GetAttackerHero())..")")
     bloody_mana[ATTACKER] = {
         possible_stacks = {},
         used_stacks = {},
@@ -25,6 +26,7 @@ if GetGameVar(GetHeroName(GetAttackerHero()).."_BLOODY_MANA") == '1' then
 end
 
 if GetDefenderHero() and GetGameVar(GetHeroName(GetDefenderHero()).."_BLOODY_MANA") == '1' then
+    consoleCmd("@SetGameVar('"..GetHeroName(GetDefenderHero()).."_BLOODY_MANA_START_MANA', "..GetUnitManaPoints(GetDefenderHero())..")")
     bloody_mana[DEFENDER] = {
         possible_stacks = {},
         used_stacks = {},

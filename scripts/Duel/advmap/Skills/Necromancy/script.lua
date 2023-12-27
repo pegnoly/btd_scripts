@@ -1,5 +1,5 @@
 necromancy = {
-    path = "/scripts/Duel/Skills/Necromancy/",
+    path = "/scripts/Duel/advmap/Skills/Necromancy/",
     stack_info = {
         ["necromancy_t1_p1"] = {tier = 1, count = 84},
         ["necromancy_t2_p1"] = {tier = 2, count = 36},

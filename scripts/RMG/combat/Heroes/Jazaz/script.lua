@@ -44,12 +44,12 @@ function JazazCreatureMove(creature, side)
     end
     local type = GetCreatureType(creature)
     if type == CREATURE_QUASIT then
-        test = 1
+        jazaz_spec[side].state = COMBAT_CAST_STATE_ACTIVE 
     else
         jazaz_spec[side].mana_drain_used_by_stack[creature] = 1
     end
     if contains(jazaz_spec.creatures, type) then
-        local possible_mana_to_steal = round(GetCreatureNumber(creature) * jazaz_spec.mana_steal_per_creature[type])
+        local possible_mana_to_steal = ceil(GetCreatureNumber(creature) * jazaz_spec.mana_steal_per_creature[type])
         if possible_mana_to_steal > 0 then
             local current_max_target_mana = 0
             local current_target = ""
@@ -85,9 +85,9 @@ function JazazCreatureManaDrain(creature, type, side, target, amount)
     if type == CREATURE_IMP then
         local hero = GetHero(side)
         local current_hero_mana = GetUnitManaPoints(hero)
-        local hero_missing_mana = GetUnitMaxManaPoints(hero) - current_hero_mana
-        local mana_to_add = hero_missing_mana >= amount and amount or hero_missing_mana
-        SetUnitManaPoints(hero, current_hero_mana + mana_to_add)
+        -- local hero_missing_mana = GetUnitMaxManaPoints(hero) - current_hero_mana
+        -- local mana_to_add = hero_missing_mana >= amount and amount or hero_missing_mana
+        SetUnitManaPoints(hero, current_hero_mana + amount)
         startThread(CombatFlyingSign, {
             jazaz_spec.path.."mana_transfered.txt"; mana = mana_to_add
         }, hero, 6.0)
@@ -100,7 +100,7 @@ function JazazCreatureManaDrain(creature, type, side, target, amount)
             end
         end
         if n > 0 then
-            local mana_to_syphon_on_single = floor(amount / n)
+            local mana_to_syphon_on_single = ceil(amount / n)
             if mana_to_syphon_on_single > 0 then
                 for i, caster in ally_casters do
                     SetUnitManaPoints(caster, GetUnitManaPoints(caster) + mana_to_syphon_on_single)

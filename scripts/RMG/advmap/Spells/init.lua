@@ -32,7 +32,7 @@ function()
 
     startThread(function()
         while 1 do 
-            if TownPortalExtension then TownPortalExtension.CheckTpCast(MapSpellsCheckers.tHeroStorage) end
+            --if TownPortalExtension then TownPortalExtension.CheckTpCast(MapSpellsCheckers.tHeroStorage) end
             if DarkRitualExtension then DarkRitualExtension.CheckDarkRitualCast(MapSpellsCheckers.tHeroStorage) end
 
             MapSpellsCheckers.UpdateHeroStats()

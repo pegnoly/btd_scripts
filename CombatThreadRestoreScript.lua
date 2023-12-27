@@ -54,3 +54,5 @@ if GetGameVar(GetHeroName(GetAttackerHero())..'_owner') == '8' and
  --consoleCmd("@SetGameVar('combat_active_thread', '8')")
  print('<color=yellow>LAN: <color=green>player 8 calibrated')
 end
+
+Break()

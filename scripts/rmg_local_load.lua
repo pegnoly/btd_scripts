@@ -8,6 +8,8 @@ doFile("/scripts/Common/advmap/Heroes/Biara/script.lua")
 doFile("/scripts/Common/advmap/Heroes/Krag/script.lua")
 doFile("/scripts/Common/advmap/Heroes/Vegeyr/script.lua")
 doFile("/scripts/Common/advmap/Heroes/Kujin/script.lua")
+doFile("/scripts/Common/advmap/Heroes/Rolf/script.lua")
+doFile("/scripts/Common/advmap/Heroes/Valeria/script.lua")
 
 -- скиллы
 doFile("/scripts/Common/advmap/Skills/Catapult/script.lua")
@@ -34,9 +36,8 @@ doFile("/scripts/Common/advmap/Artifacts/TwistingNeither/script.lua")
 doFile("/scripts/RMG/advmap/Heroes/Ferigl/script.lua")
 doFile("/scripts/RMG/advmap/Heroes/Astral/script.lua")
 doFile("/scripts/RMG/advmap/Heroes/Jazaz/script.lua")
-doFile("/scripts/RMG/advmap/Heroes/Valeria/script.lua")
 doFile("/scripts/RMG/advmap/Heroes/Nathaniel/script.lua")
-doFile("/scripts/RMG/advmap/Heroes/Rolf/script.lua")
+doFile("/scripts/RMG/advmap/Heroes/Una/script.lua")
 
 -- банки
 doFile("/scripts/RMG/advmap/Objects/Banks/base.lua")
@@ -45,8 +46,6 @@ doFile("/scripts/RMG/advmap/NHF/Common/ArmyGeneration/script.lua")
 -- новые объекты
 doFile("/scripts/RMG/advmap/Objects/NewObjects/base.lua")
 doFile("/scripts/RMG/advmap/Objects/Default/FortuitousSanctuary/script.lua")
--- чето старое(лучше убрать, но пока работает)
-doFile("/scripts/BTD.lua")
 
 -- скиллы
 doFile("/scripts/RMG/advmap/Skills/Diplomacy/script.lua")
@@ -76,6 +75,8 @@ doFile("/scripts/RMG/advmap/Abilities/ArtifactTransfer/script.lua")
 doFile("/scripts/RMG/advmap/Features/WinConditions/FinalBattle/script.lua")
 doFile("/scripts/RMG/advmap/Features/WinConditions/Economic/script.lua")
 doFile("/scripts/RMG/advmap/Features/WinConditions/CaptureObject/script.lua")
+doFile("/scripts/RMG/advmap/Features/Portals/script.lua")
+doFile("/scripts/RMG/advmap/Features/StartResources/script.lua")
 
 -- постройки в городах
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/script.lua")

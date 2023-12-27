@@ -1,5 +1,4 @@
-spell_give_decorators =
-{
+spell_give_decorators = {
     [BANK_MAGI_VAULT] =
     function(hero, spell_count, spell_level)
         local schools_colors =
@@ -47,7 +46,32 @@ spell_give_decorators =
                 sleep()
             end
         end
-    end
+    end,
+
+	-- [BANK_PYRAMID] = 
+	-- function(hero, bank_variant)
+	-- 	if bank_variant == 2 or bank_variant == 3 then
+			
+	-- 	end
+	-- end
+}
+
+art_give_decorators = {
+	[BANK_PYRAMID] = 
+	function(hero, bank_variant)
+		if bank_variant == 2 then
+			Art.Distribution.Give(hero, ARTIFACT_WAND_OF_X)
+		elseif bank_variant == 3 then
+			Art.Distribution.Give(hero, ARTIFACT_SCROLL_OF_SPELL_X)
+		end
+	end,
+
+	[BANK_NAMTARU_TEMPLE] = 
+	function(hero, bank_variant)
+		if bank_variant == 1 then
+			Art.Distribution.Give(hero, 129)
+		end
+	end
 }
 
 BTD_Banks =
@@ -83,23 +107,49 @@ BTD_Banks =
 		local current_creatures_set = {}
 		local index = 1
 		for i, creatures_set in creatures_info do
-      local creature_prob = random(100) + 1
-      local creature_chance = 0
-      local current_creature = CREATURE_UNKNOWN
+			local creature_prob = random(100) + 1
+			print("Current prob", creature_prob)
+			local creature_chance = 0
+			local current_creature = CREATURE_UNKNOWN
 			for creature, params in creatures_set do 
 				creature_chance = creature_chance + params.chance
-				--print("Current chance: ", creature_chance)
+				print("Current chance: ", creature_chance)
 				if creature_chance >= creature_prob then
-          current_creature = creature
-          --print("Creature generated: ", current_creature)
+					current_creature = creature
+					print("Creature generated: ", current_creature)
 					current_creatures_set[index] = current_creature
-		      current_creatures_set[index + 1] = creatures_set[current_creature].count_min + random(1 + creatures_set[current_creature].count_max - creatures_set[current_creature].count_min)
-          index = index + 2
-          break
+					local gen_mode
+					if params.mode then
+						gen_mode = GENERATION_MODE_SPLIT	
+					else
+						gen_mode = GENERATION_MODE_RANGE
+					end
+					print("Generation mode: ", gen_mode)
+					current_creatures_set[index + 1] = BTD_Banks.GenerateCreaturesCount(
+						creatures_set[current_creature].count_min,
+						creatures_set[current_creature].count_max,
+						gen_mode
+					)
+					index = index + 2
+					break
 				end
 			end
 		end
 		return current_creatures_set
+	end,
+
+	GenerateCreaturesCount =
+	function(count_min, count_max, mode)
+		if mode == GENERATION_MODE_RANGE then
+			local answer = count_min + random(1 + count_max - count_min)
+			return answer
+		else
+			if random(2) == 1 then
+				return count_min
+			else
+				return count_max
+			end
+		end
 	end,
 
 	TouchBank = 
@@ -123,7 +173,7 @@ BTD_Banks =
 				else
 					reward_info = variant.RewardMax
 				end
-				startThread(BTD_Banks.GiveRewardDelayed, hero, type, reward_info)
+				startThread(BTD_Banks.GiveRewardDelayed, hero, type, BTD_Banks.current_variants[object], reward_info)
 				startThread(BTD_Banks.SetupCooldown, object, type, {count = info.RechargeCount, days = info.DaysForRecharge})
 			end
 		else
@@ -133,8 +183,8 @@ BTD_Banks =
 	end,
     
 	GiveRewardDelayed =
-	function(hero, bank_type, reward_info)
-		BTD_Banks.delayed_rewards[GetObjectOwner(hero)] = {hero=hero, type=bank_type, info=reward_info}
+	function(hero, bank_type, variant, reward_info)
+		BTD_Banks.delayed_rewards[GetObjectOwner(hero)] = {hero=hero, type=bank_type, info=reward_info, variant=variant}
 		MessageBoxForPlayers(GetPlayerFilter(GetObjectOwner(hero)), "/scripts/RMG/advmap/Objects/Banks/Texts/reward.txt", "BTD_Banks.OnGiveRewardDelayedAccepted")
 	end,
 	
@@ -145,17 +195,18 @@ BTD_Banks =
 			if GetObjectOwner(data.hero) == player then
 				local hero = data.hero
 				local type = data.type
+				local variant = data.variant
 				local info = data.info
 				BTD_Banks.delayed_rewards[player] = nil
 				print("Trying to give reward to hero ", hero)
-				startThread(BTD_Banks.GiveReward, hero, type, info)
+				startThread(BTD_Banks.GiveReward, hero, type, variant, info)
 				break
 			end
 		end
 	end,
 	
 	GiveReward =
-	function(hero, bank_type, reward_info)
+	function(hero, bank_type, variant, reward_info)
 		local res_table = reward_info.Resources
 		local minor_count = reward_info.MinorCount
 		local major_count = reward_info.MajorCount
@@ -165,44 +216,51 @@ BTD_Banks =
 		--
 		for res, count in res_table do
 			if count ~= 0 then
+				if res == GOLD and HasHeroSkill(hero, WIZARD_FEAT_SPOILS_OF_WAR) then
+					count = count + ceil(count * 0.3)
+				end
 				Resource.Change(hero, res, count)
 			end
 		end
 		--
-		if minor_count ~= 0 then
-      print("Reward: minor count ", minor_count)
-			for i = 1, minor_count do
-				local art = Art.Distribution.RandomMinor()
-				print("Reward: minor to give ", art)
-				startThread(Art.Distribution.Give, hero, art)
+		if art_give_decorators[bank_type] then
+			startThread(art_give_decorators[bank_type], hero, variant)
+		else
+			if minor_count ~= 0 then
+				print("Reward: minor count ", minor_count)
+				for i = 1, minor_count do
+					local art = Art.Distribution.RandomMinor()
+					print("Reward: minor to give ", art)
+					startThread(Art.Distribution.Give, hero, art)
+				end
 			end
-		end
-		--
-		if major_count ~= 0 then
-      print("Reward: major count ", major_count)
-			for i = 1, major_count do
-				local art = Art.Distribution.RandomMajor()
-				print("Reward: major to give ", art)
-        startThread(Art.Distribution.Give, hero, art)
+				--
+			if major_count ~= 0 then
+				print("Reward: major count ", major_count)
+				for i = 1, major_count do
+					local art = Art.Distribution.RandomMajor()
+					print("Reward: major to give ", art)
+					startThread(Art.Distribution.Give, hero, art)
+				end
 			end
-		end
-		--
-		if relic_count ~= 0 then
-      print("Reward: relic count ", relic_count)
-			for i = 1, relic_count do
-				local art = Art.Distribution.RandomRelic()
-				print("Reward: relic to give ", art)
-        startThread(Art.Distribution.Give, hero, art)
+				--
+			if relic_count ~= 0 then
+				print("Reward: relic count ", relic_count)
+				for i = 1, relic_count do
+					local art = Art.Distribution.RandomRelic()
+					print("Reward: relic to give ", art)
+					startThread(Art.Distribution.Give, hero, art)
+				end
 			end
 		end
 		--
 		if spell_count ~= 0 then
-        if bank_type == BANK_MAGI_VAULT then
-            print("Bank of type ", bank_type, " has custom decorator for spell giving")
-            startThread(spell_give_decorators[BANK_MAGI_VAULT], hero, spell_count, spell_level)
-        else
-            startThread(BTD_Banks.CommonGiveSpells, hero, spell_count, spell_level)
-        end
+			if bank_type == BANK_MAGI_VAULT then
+				print("Bank of type ", bank_type, " has custom decorator for spell giving")
+				startThread(spell_give_decorators[BANK_MAGI_VAULT], hero, spell_count, spell_level)
+			else
+				startThread(BTD_Banks.CommonGiveSpells, hero, spell_count, spell_level)
+			end
 		end
 	end,
 	

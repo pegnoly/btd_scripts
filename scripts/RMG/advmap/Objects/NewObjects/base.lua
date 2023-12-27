@@ -2,6 +2,7 @@ doFile("/scripts/RMG/advmap/Objects/NewObjects/StatueOfRevelation/script.lua")
 doFile("/scripts/RMG/advmap/Objects/NewObjects/SunRiderMonument/script.lua")
 doFile("/scripts/RMG/advmap/Objects/NewObjects/WarmenHouse/script.lua")
 doFile("/scripts/RMG/advmap/Objects/NewObjects/KnowledgeMegalith/script.lua")
+doFile("/scripts/RMG/advmap/Objects/NewObjects/DwarvenMine/script.lua")
 
 BTD_Objects =
 {
@@ -70,10 +71,11 @@ BTD_Objects =
 			Touch.DisableObject(object)
 			Touch.SetFunction(object, "_BTD_knowledge_megalith_touch",
 			function(hero, megalith)
+				print("megalith")
 				if not KnowledgeMegalith.used_by_hero[megalith][hero] then
 					GiveExp(hero, KnowledgeMegalith.exp_amount)
 					-- scholar bonus
-					if scholar_rmg.active_for_hero[hero] then
+					if scholar_rmg.active_for_hero[hero] or HasHeroSkill(hero, HERO_SKILL_WARCRY_LEARNING) then
 						GiveExp(hero, scholar_rmg.additional_exp)
 					end
 					KnowledgeMegalith.used_by_hero[megalith][hero] = 1
@@ -82,8 +84,15 @@ BTD_Objects =
 					ShowFlyingSign(KnowledgeMegalith.path.."already_used.txt", megalith, GetObjectOwner(hero), 6.0)
 				end
 			end)
-		end
+		end,
+
+		[BTD_DWARVEN_MINE] = 
+		function(object)
+			Touch.DisableObject(object)
+			Touch.SetFunction(object, "_BTD_dwarven_mine_touch", CaptureMine)
+		end,
 	},
+
 
     Init = 
     function()

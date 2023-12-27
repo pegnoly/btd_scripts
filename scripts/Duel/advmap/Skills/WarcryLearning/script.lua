@@ -12,10 +12,19 @@ warcry_learning =
 
 NewDayEvent.AddListener("warcry_learning_new_day_event",
 function(day)
-    if day == BTD_FIGHT_DAY then
+    errorHook(function ()
+        print("<color=red>Error: <color=green> WarcryLearning duel new day.")
+    end)
+    if day == BTD_duel_day_sequence.prefight_day then
         for hero, alive in AdvMapHeroesInfo.alive_heroes do
             if hero and alive and HasHeroSkill(hero, HERO_SKILL_WARCRY_LEARNING) then
-                startThread(warcry_learning.GiveWarcry, hero)
+                if not KnowHeroSpell(hero, 292) then
+                    Hero.SpellInfo.TeachSpell(hero, 292)
+                else
+                    if not KnowHeroSpell(hero, 293) then
+                        Hero.SpellInfo.TeachSpell(hero, 293)
+                    end
+                end
             end
         end
     end

@@ -1,3 +1,6 @@
+GENERATION_MODE_RANGE = 1
+GENERATION_MODE_SPLIT = 2
+
 BTD_GENERATED_BANKS_INFO = 
 {
 	[BANK_CRYPT] = 
@@ -15,12 +18,14 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[CREATURE_SKELETON] = {chance = 50, count_min = 45, count_max = 45},
-						[CREATURE_SKELETON_ARCHER] = {chance = 50, count_min = 30, count_max = 30},
+						[CREATURE_SKELETON] = {chance = 34, count_min = 45, count_max = 45},
+						[CREATURE_SKELETON_ARCHER] = {chance = 33, count_min = 30, count_max = 30},
+						[CREATURE_SKELETON_WARRIOR] = {chance = 33, count_min = 30, count_max = 30},
 					},
 					{
-						[CREATURE_WALKING_DEAD] = {chance = 60, count_min = 30, count_max = 30},
-						[CREATURE_ZOMBIE] = {chance = 40, count_min = 20, count_max = 20},
+						[CREATURE_WALKING_DEAD] = {chance = 34, count_min = 30, count_max = 30},
+						[CREATURE_ZOMBIE] = {chance = 33, count_min = 20, count_max = 20},
+						[CREATURE_DISEASE_ZOMBIE] = {chance = 33, count_min = 20, count_max = 20},
 					},
 				},
 				RewardMin = 
@@ -67,16 +72,19 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[CREATURE_SKELETON] = {chance = 80, count_min = 30, count_max = 30},
-						[CREATURE_SKELETON_ARCHER] = {chance = 20, count_min = 25, count_max = 25},
+						[CREATURE_SKELETON] = {chance = 34, count_min = 30, count_max = 30},
+						[CREATURE_SKELETON_ARCHER] = {chance = 33, count_min = 25, count_max = 25},
+						[CREATURE_SKELETON_WARRIOR] = {chance = 33, count_min = 25, count_max = 25},
 					},
 					{
-						[CREATURE_WALKING_DEAD] = {chance = 60, count_min = 30, count_max = 30},
-						[CREATURE_ZOMBIE] = {chance = 40, count_min = 20, count_max = 20},
+						[CREATURE_WALKING_DEAD] = {chance = 34, count_min = 30, count_max = 30},
+						[CREATURE_ZOMBIE] = {chance = 33, count_min = 20, count_max = 20},
+						[CREATURE_DISEASE_ZOMBIE] = {chance = 33, count_min = 20, count_max = 20},
 					},
 					{
-						[CREATURE_MANES] = {chance = 80, count_min = 5, count_max = 5},
-						[CREATURE_GHOST] = {chance = 20, count_min = 5, count_max = 5},
+						[CREATURE_MANES] = {chance = 34, count_min = 5, count_max = 5},
+						[CREATURE_GHOST] = {chance = 33, count_min = 5, count_max = 5},
+						[CREATURE_POLTERGEIST] = {chance = 33, count_min = 5, count_max = 5},
 					},
 				},
 				RewardMin = 
@@ -123,20 +131,22 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[CREATURE_SKELETON] = {chance = 80, count_min = 35, count_max = 35},
-						[CREATURE_SKELETON_ARCHER] = {chance = 20, count_min = 20, count_max = 20},
+						[CREATURE_SKELETON] = {chance = 34, count_min = 35, count_max = 35},
+						[CREATURE_SKELETON_ARCHER] = {chance = 33, count_min = 20, count_max = 20},
+						[CREATURE_SKELETON_WARRIOR] = {chance = 33, count_min = 20, count_max = 20},
 					},
 					{
-						[CREATURE_WALKING_DEAD] = {chance = 80, count_min = 25, count_max = 25},
-						[CREATURE_ZOMBIE] = {chance = 20, count_min = 20, count_max = 20},
+						[CREATURE_WALKING_DEAD] = {chance = 34, count_min = 25, count_max = 25},
+						[CREATURE_ZOMBIE] = {chance = 33, count_min = 20, count_max = 20},
+						[CREATURE_DISEASE_ZOMBIE] = {chance = 33, count_min = 20, count_max = 20},
 					},
 					{
-						[CREATURE_MANES] = {chance = 80, count_min = 10, count_max = 10},
-						[CREATURE_GHOST] = {chance = 20, count_min = 6, count_max = 7},
+						[CREATURE_MANES] = {chance = 34, count_min = 10, count_max = 10},
+						[CREATURE_GHOST] = {chance = 33, count_min = 6, count_max = 7},
+						[CREATURE_POLTERGEIST] = {chance = 33, count_min = 6, count_max = 7},
 					},
 					{
-						[CREATURE_VAMPIRE] = {chance = 80, count_min = 5, count_max = 5},
-						[CREATURE_VAMPIRE_LORD] = {chance = 20, count_min = 3, count_max = 3},
+						[CREATURE_VAMPIRE] = {chance = 100, count_min = 5, count_max = 5},
 					},
 				},
 				RewardMin = 
@@ -183,20 +193,24 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[CREATURE_SKELETON] = {chance = 80, count_min = 35, count_max = 35},
-						[CREATURE_SKELETON_ARCHER] = {chance = 20, count_min = 20, count_max = 20},
+						[CREATURE_SKELETON] = {chance = 34, count_min = 35, count_max = 35},
+						[CREATURE_SKELETON_ARCHER] = {chance = 33, count_min = 20, count_max = 20},
+						[CREATURE_SKELETON_WARRIOR] = {chance = 33, count_min = 20, count_max = 20},
 					},
 					{
-						[CREATURE_WALKING_DEAD] = {chance = 80, count_min = 25, count_max = 25},
-						[CREATURE_ZOMBIE] = {chance = 20, count_min = 20, count_max = 20},
+						[CREATURE_WALKING_DEAD] = {chance = 34, count_min = 25, count_max = 25},
+						[CREATURE_ZOMBIE] = {chance = 33, count_min = 20, count_max = 20},
+						[CREATURE_DISEASE_ZOMBIE] = {chance = 33, count_min = 20, count_max = 20},
 					},
 					{
-						[CREATURE_MANES] = {chance = 80, count_min = 10, count_max = 10},
-						[CREATURE_GHOST] = {chance = 20, count_min = 6, count_max = 6},
+						[CREATURE_MANES] = {chance = 34, count_min = 10, count_max = 10},
+						[CREATURE_GHOST] = {chance = 33, count_min = 6, count_max = 6},
+						[CREATURE_POLTERGEIST] = {chance = 33, count_min = 6, count_max = 6},
 					},
 					{
 						[CREATURE_LICH] = {chance = 50, count_min = 5, count_max = 6},
-						[CREATURE_VAMPIRE_LORD] = {chance = 50, count_min = 5, count_max = 6},
+						[CREATURE_VAMPIRE_LORD] = {chance = 25, count_min = 5, count_max = 6},
+						[CREATURE_NOSFERATU] = {chance = 25, count_min = 5, count_max = 6},
 					},
 				},
 				RewardMin = 
@@ -248,20 +262,20 @@ BTD_GENERATED_BANKS_INFO =
 		{
 			[1] = 
 			{
-				Difficulty = BANK_VARIANT_MEDIUM,
-				Chance = 99,
+				Difficulty = BANK_VARIANT_EASY,
+				Chance = 35,
 				Creatures = 
 				{
 					{
-						[CREATURE_IRON_GOLEM] = {chance = 100, count_min = 20, count_max = 20},
+						[CREATURE_IRON_GOLEM] = {chance = 100, count_min = 40, count_max = 40},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_OBSIDIAN_GOLEM] = {chance = 100, count_min = 10, count_max = 10},
+						[CREATURE_OBSIDIAN_GOLEM] = {chance = 100, count_min = 20, count_max = 20},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_STEEL_GOLEM] = {chance = 100, count_min = 10, count_max = 10},
+						[CREATURE_STEEL_GOLEM] = {chance = 100, count_min = 20, count_max = 20},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 				},
@@ -299,17 +313,29 @@ BTD_GENERATED_BANKS_INFO =
 					MajorCount = 0,
 					RelicCount = 0,
 					SpellCount = 1,
-					SpellLevel = 5,
+					SpellLevel = 4,
 				}
 			},
 			[2] = 
 			{
 				Difficulty = BANK_VARIANT_MEDIUM,
-				Chance = 1,
+				Chance = 30,
 				Creatures = 
-				{
+{
 					{
-						[CREATURE_SKELETON] = {chance = 100, count_min = 666, count_max = 666},
+						[CREATURE_IRON_GOLEM] = {chance = 100, count_min = 50, count_max = 50},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+					{
+						[CREATURE_OBSIDIAN_GOLEM] = {chance = 100, count_min = 25, count_max = 25},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+					{
+						[CREATURE_STEEL_GOLEM] = {chance = 100, count_min = 25, count_max = 25},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+					{
+						[CREATURE_GENIE] = {chance = 100, count_min = 3, count_max = 3},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 				},
@@ -330,6 +356,118 @@ BTD_GENERATED_BANKS_INFO =
 					RelicCount = 0,
 					SpellCount = 1,
 					SpellLevel = 2,
+				},
+				RewardMax = 
+				{
+					Resources = 
+					{
+						[WOOD] = 0,
+						[ORE] = 0,
+						[MERCURY] = 0,
+						[CRYSTAL] = 0,
+						[SULFUR] = 0,
+						[GEM] = 0,
+						[GOLD] = 0,
+					},
+					MinorCount = 0,
+					MajorCount = 0,
+					RelicCount = 0,
+					SpellCount = 1,
+					SpellLevel = 4,
+				}
+			},
+[3] = 
+			{
+				Difficulty = BANK_VARIANT_MEDIUM,
+				Chance = 30,
+				Creatures = 
+{
+					{
+						[CREATURE_MASTER_GENIE] = {chance = 100, count_min = 5, count_max = 5},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+					{
+						[CREATURE_OBSIDIAN_GOLEM] = {chance = 100, count_min = 30, count_max = 30},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+					{
+						[CREATURE_STEEL_GOLEM] = {chance = 100, count_min = 30, count_max = 30},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+					{
+						[CREATURE_RAKSHASA_KSHATRI] = {chance = 100, count_min = 3, count_max = 3},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+				},
+				RewardMin = 
+				{
+					Resources = 
+					{
+						[WOOD] = 0,
+						[ORE] = 0,
+						[MERCURY] = 0,
+						[CRYSTAL] = 0,
+						[SULFUR] = 0,
+						[GEM] = 0,
+						[GOLD] = 0,
+					},
+					MinorCount = 0,
+					MajorCount = 0,
+					RelicCount = 0,
+					SpellCount = 1,
+					SpellLevel = 2,
+				},
+				RewardMax = 
+				{
+					Resources = 
+					{
+						[WOOD] = 0,
+						[ORE] = 0,
+						[MERCURY] = 0,
+						[CRYSTAL] = 0,
+						[SULFUR] = 0,
+						[GEM] = 0,
+						[GOLD] = 0,
+					},
+					MinorCount = 0,
+					MajorCount = 0,
+					RelicCount = 0,
+					SpellCount = 1,
+					SpellLevel = 4,
+				}
+			},
+[4] = 
+			{
+				Difficulty = BANK_VARIANT_HARD,
+				Chance = 5,
+				Creatures = 
+{
+					{
+						[CREATURE_SKELETON_WARRIOR] = {chance = 100, count_min = 666, count_max = 666},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+					{
+						[CREATURE_MUMMY] = {chance = 100, count_min = 10, count_max = 10},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+				},
+				RewardMin = 
+				{
+					Resources = 
+					{
+						[WOOD] = 0,
+						[ORE] = 0,
+						[MERCURY] = 0,
+						[CRYSTAL] = 0,
+						[SULFUR] = 0,
+						[GEM] = 0,
+						[GOLD] = 0,
+					},
+					MinorCount = 0,
+					MajorCount = 0,
+					RelicCount = 0,
+					SpellCount = 1,
+					SpellLevel = 5,
 				},
 				RewardMax = 
 				{
@@ -367,16 +505,14 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[CREATURE_MAGI] = {chance = 80, count_min = 7, count_max = 7},
-						[CREATURE_MAGI] = {chance = 20, count_min = 9, count_max = 9},
+						[CREATURE_MAGI] = {chance = 100, count_min = 7, count_max = 9, mode = GENERATION_MODE_SPLIT}
 					},
 					{
 						[CREATURE_STONE_GARGOYLE] = {chance = 50, count_min = 25, count_max = 25},
 						[CREATURE_OBSIDIAN_GARGOYLE] = {chance = 50, count_min = 20, count_max = 20},
 					},
 					{
-						[CREATURE_ARCH_MAGI] = {chance = 80, count_min = 5, count_max = 5},
-						[CREATURE_ARCH_MAGI] = {chance = 20, count_min = 7, count_max = 7},
+						[CREATURE_ARCH_MAGI] = {chance = 100, count_min = 7, count_max = 9, mode = GENERATION_MODE_SPLIT}
 					},
 				},
 				RewardMin = 
@@ -427,8 +563,8 @@ BTD_GENERATED_BANKS_INFO =
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 15, count_max = 15},
 					},
 					{
-						[CREATURE_GENIE] = {chance = 60, count_min = 15, count_max = 15},
-						[CREATURE_MASTER_GENIE] = {chance = 40, count_min = 13, count_max = 13},
+						[CREATURE_GENIE] = {chance = 50, count_min = 15, count_max = 15},
+						[CREATURE_MASTER_GENIE] = {chance = 50, count_min = 13, count_max = 13},
 					},
 					{
 						[CREATURE_MAGI] = {chance = 20, count_min = 20, count_max = 20},
@@ -507,7 +643,7 @@ BTD_GENERATED_BANKS_INFO =
 						[GEM] = 12,
 						[GOLD] = 7000,
 					},
-					MinorCount = 0,
+					MinorCount = 1,
 					MajorCount = 0,
 					RelicCount = 0,
 					SpellCount = 2,
@@ -575,7 +711,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 12000,
+						[GOLD] = 14000,
 					},
 					MinorCount = 0,
 					MajorCount = 2,
@@ -631,10 +767,10 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 14000,
+						[GOLD] = 16000,
 					},
 					MinorCount = 1,
-					MajorCount = 2,
+					MajorCount = 3,
 					RelicCount = 1,
 					SpellCount = 2,
 					SpellLevel = 4,
@@ -649,7 +785,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 14000,
+						[GOLD] = 18000,
 					},
 					MinorCount = 3,
 					MajorCount = 2,
@@ -661,7 +797,7 @@ BTD_GENERATED_BANKS_INFO =
 			[3] = 
 			{
 				Difficulty = BANK_VARIANT_MEDIUM,
-				Chance = 22,
+				Chance = 24,
 				Creatures = 
 				{
 					{
@@ -721,23 +857,23 @@ BTD_GENERATED_BANKS_INFO =
 			[4] = 
 			{
 				Difficulty = BANK_VARIANT_HARD,
-				Chance = 8,
+				Chance = 6,
 				Creatures = 
 				{
 					{
-						[980] = {chance = 100, count_min = 3, count_max = 3},
+						[980] = {chance = 100, count_min = 2, count_max = 2},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[981] = {chance = 100, count_min = 3, count_max = 3},
+						[981] = {chance = 100, count_min = 2, count_max = 2},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[982] = {chance = 100, count_min = 3, count_max = 3},
+						[982] = {chance = 100, count_min = 2, count_max = 2},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[983] = {chance = 100, count_min = 3, count_max = 3},
+						[983] = {chance = 100, count_min = 2, count_max = 2},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 				},
@@ -940,7 +1076,7 @@ BTD_GENERATED_BANKS_INFO =
 						[MERCURY] = 8,
 						[CRYSTAL] = 8,
 						[SULFUR] = 8,
-						[GEM] = 10,
+						[GEM] = 8,
 						[GOLD] = 0,
 					},
 					MinorCount = 0,
@@ -1211,15 +1347,15 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[CREATURE_PRIEST] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_PRIEST] = {chance = 100, count_min = 20, count_max = 20},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_PRIEST] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_PRIEST] = {chance = 100, count_min = 20, count_max = 20},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_PRIEST] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_FOOTMAN] = {chance = 100, count_min = 50, count_max = 50},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 				},
@@ -1267,15 +1403,15 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[CREATURE_ZEALOT] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_ZEALOT] = {chance = 100, count_min = 20, count_max = 20},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_ZEALOT] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_ZEALOT] = {chance = 100, count_min = 20, count_max = 20},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_ZEALOT] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_VINDICATOR] = {chance = 100, count_min = 50, count_max = 50},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 				},
@@ -1323,15 +1459,15 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[CREATURE_ZEALOT] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_ZEALOT] = {chance = 100, count_min = 20, count_max = 20},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_ZEALOT] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_ZEALOT] = {chance = 100, count_min = 20, count_max = 20},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_ZEALOT] = {chance = 100, count_min = 15, count_max = 15},
+						[997] = {chance = 100, count_min = 50, count_max = 50},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
@@ -1609,7 +1745,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 2500,
+						[GOLD] = 4500,
 					},
 					MinorCount = 0,
 					MajorCount = 0,
@@ -1627,7 +1763,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 2500,
+						[GOLD] = 4500,
 					},
 					MinorCount = 0,
 					MajorCount = 0,
@@ -1658,10 +1794,6 @@ BTD_GENERATED_BANKS_INFO =
 						[CREATURE_MATRON] = {chance = 100, count_min = 5, count_max = 5},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
-					{
-						[CREATURE_MATRIARCH] = {chance = 100, count_min = 5, count_max = 5},
-						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
-					},
 				},
 				RewardMin = 
 				{
@@ -1673,7 +1805,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 4000,
+						[GOLD] = 5000,
 					},
 					MinorCount = 1,
 					MajorCount = 0,
@@ -1691,7 +1823,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 4000,
+						[GOLD] = 5000,
 					},
 					MinorCount = 1,
 					MajorCount = 0,
@@ -1711,19 +1843,15 @@ BTD_GENERATED_BANKS_INFO =
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_BLOOD_WITCH] = {chance = 100, count_min = 60, count_max = 60},
-						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
-					},
-					{
-						[CREATURE_MATRON] = {chance = 100, count_min = 10, count_max = 10},
-						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
-					},
-					{
-						[CREATURE_MATRON] = {chance = 100, count_min = 10, count_max = 10},
+						[CREATURE_BLOOD_WITCH_2] = {chance = 100, count_min = 60, count_max = 60},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
 						[CREATURE_MATRIARCH] = {chance = 100, count_min = 10, count_max = 10},
+						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
+					},
+					{
+						[CREATURE_SHADOW_MISTRESS] = {chance = 100, count_min = 10, count_max = 10},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 				},
@@ -1737,7 +1865,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 5500,
+						[GOLD] = 8000,
 					},
 					MinorCount = 0,
 					MajorCount = 1,
@@ -1755,7 +1883,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 5500,
+						[GOLD] = 8000,
 					},
 					MinorCount = 0,
 					MajorCount = 1,
@@ -1807,7 +1935,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 5000,
+						[GOLD] = 7500,
 					},
 					MinorCount = 0,
 					MajorCount = 0,
@@ -1825,7 +1953,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 5000,
+						[GOLD] = 7500,
 					},
 					MinorCount = 0,
 					MajorCount = 0,
@@ -1867,7 +1995,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 7500,
+						[GOLD] = 10000,
 					},
 					MinorCount = 0,
 					MajorCount = 0,
@@ -1885,7 +2013,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 7500,
+						[GOLD] = 10000,
 					},
 					MinorCount = 0,
 					MajorCount = 0,
@@ -1931,7 +2059,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 10000,
+						[GOLD] = 15000,
 					},
 					MinorCount = 0,
 					MajorCount = 0,
@@ -1949,7 +2077,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 10000,
+						[GOLD] = 15000,
 					},
 					MinorCount = 0,
 					MajorCount = 0,
@@ -2297,7 +2425,7 @@ BTD_GENERATED_BANKS_INFO =
 						[GEM] = 0,
 						[GOLD] = 2750,
 					},
-					MinorCount = 1,
+					MinorCount = 0,
 					MajorCount = 0,
 					RelicCount = 0,
 					SpellCount = 0,
@@ -2315,7 +2443,7 @@ BTD_GENERATED_BANKS_INFO =
 						[GEM] = 0,
 						[GOLD] = 2750,
 					},
-					MinorCount = 1,
+					MinorCount = 0,
 					MajorCount = 0,
 					RelicCount = 0,
 					SpellCount = 0,
@@ -2347,11 +2475,11 @@ BTD_GENERATED_BANKS_INFO =
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 15, count_max = 15},
 					},
 					{
-						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 15, count_max = 15},
+						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 10, count_max = 10},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 15, count_max = 15},
 					},
 					{
-						[CREATURE_CENTAUR_NOMAD] = {chance = 0, count_min = 15, count_max = 15},
+						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 10, count_max = 10},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 15, count_max = 15},
 					},
 				},
@@ -2403,15 +2531,15 @@ BTD_GENERATED_BANKS_INFO =
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 25, count_max = 25},
 					},
 					{
-						[CREATURE_HORNED_LEAPER] = {chance = 100, count_min = 20, count_max = 20},
+						[CREATURE_HORNED_LEAPER] = {chance = 100, count_min = 25, count_max = 25},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 20, count_max = 20},
 					},
 					{
-						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 25, count_max = 25},
+						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 15, count_max = 15},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 20, count_max = 20},
 					},
 					{
-						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 25, count_max = 25},
+						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 15, count_max = 15},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 20, count_max = 20},
 					},
 				},
@@ -2463,7 +2591,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 30, count_max = 30},
 					},
 					{
-						[CREATURE_HORNED_LEAPER] = {chance = 100, count_min = 25, count_max = 25},
+						[CREATURE_HORNED_LEAPER] = {chance = 100, count_min = 30, count_max = 30},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 25, count_max = 25},
 					},
 					{
@@ -2471,7 +2599,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 30, count_max = 30},
 					},
 					{
-						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 25, count_max = 25},
+						[CREATURE_CENTAUR_NOMAD] = {chance = 100, count_min = 30, count_max = 30},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 25, count_max = 25},
 					},
 					{
@@ -2533,20 +2661,20 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[988] = {chance = 100, count_min = 65, count_max = 75},
-						[988] = {chance = 100, count_min = 65, count_max = 75}
+						[988] = {chance = 100, count_min = 75, count_max = 85},
+						[988] = {chance = 100, count_min = 75, count_max = 85}
 					},
 					{
-						[988] = {chance = 100, count_min = 65, count_max = 75},
-						[988] = {chance = 100, count_min = 65, count_max = 75}
+						[988] = {chance = 100, count_min = 75, count_max = 85},
+						[988] = {chance = 100, count_min = 75, count_max = 85}
 					},
 					{
-						[988] = {chance = 100, count_min = 65, count_max = 75},
-						[988] = {chance = 100, count_min = 65, count_max = 75}
+						[988] = {chance = 100, count_min = 75, count_max = 85},
+						[988] = {chance = 100, count_min = 75, count_max = 85}
 					},
 					{
-						[988] = {chance = 100, count_min = 65, count_max = 75},
-						[988] = {chance = 100, count_min = 65, count_max = 75}
+						[988] = {chance = 100, count_min = 75, count_max = 85},
+						[988] = {chance = 100, count_min = 75, count_max = 85}
 					},
 				},
 				RewardMin = 
@@ -2593,28 +2721,28 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[988] = {chance = 100, count_min = 80, count_max = 90},
-						[988] = {chance = 100, count_min = 80, count_max = 90}
+						[988] = {chance = 100, count_min = 90, count_max = 100},
+						[988] = {chance = 100, count_min = 90, count_max = 100}
 					},
 					{
-						[988] = {chance = 100, count_min = 80, count_max = 90},
-						[988] = {chance = 100, count_min = 80, count_max = 90}
+						[988] = {chance = 100, count_min = 100, count_max = 110},
+						[988] = {chance = 100, count_min = 100, count_max = 110}
 					},
 					{
-						[988] = {chance = 100, count_min = 80, count_max = 90},
-						[988] = {chance = 100, count_min = 80, count_max = 90}
+						[988] = {chance = 100, count_min = 90, count_max = 100},
+						[988] = {chance = 100, count_min = 90, count_max = 100}
 					},
 					{
-						[988] = {chance = 100, count_min = 80, count_max = 90},
-						[988] = {chance = 100, count_min = 80, count_max = 90}
+						[988] = {chance = 100, count_min = 100, count_max = 110},
+						[988] = {chance = 100, count_min = 100, count_max = 110}
 					},
 					{
-						[988] = {chance = 100, count_min = 80, count_max = 90},
-						[988] = {chance = 100, count_min = 80, count_max = 90}
+						[988] = {chance = 100, count_min = 90, count_max = 100},
+						[988] = {chance = 100, count_min = 90, count_max = 100}
 					},
 					{
-						[988] = {chance = 100, count_min = 80, count_max = 90},
-						[988] = {chance = 100, count_min = 80, count_max = 90}
+						[988] = {chance = 100, count_min = 90, count_max = 100},
+						[988] = {chance = 100, count_min = 90, count_max = 100}
 					}
 				},
 				RewardMin = 
@@ -2661,32 +2789,32 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 110},
-						[988] = {chance = 100, count_min = 100, count_max = 110}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 110},
-						[988] = {chance = 100, count_min = 100, count_max = 110}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 110},
-						[988] = {chance = 100, count_min = 100, count_max = 110}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 110},
-						[988] = {chance = 100, count_min = 100, count_max = 110}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 110},
-						[988] = {chance = 100, count_min = 100, count_max = 110}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 110},
-						[988] = {chance = 100, count_min = 100, count_max = 110}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 110},
-						[988] = {chance = 100, count_min = 100, count_max = 110}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					}
 				},
 				RewardMin = 
@@ -2733,28 +2861,28 @@ BTD_GENERATED_BANKS_INFO =
 				Creatures = 
 				{
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 120},
-						[988] = {chance = 100, count_min = 100, count_max = 120}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 120},
-						[988] = {chance = 100, count_min = 100, count_max = 120}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 120},
-						[988] = {chance = 100, count_min = 100, count_max = 120}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 120},
-						[988] = {chance = 100, count_min = 100, count_max = 120}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 120},
-						[988] = {chance = 100, count_min = 100, count_max = 120}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
-						[988] = {chance = 100, count_min = 100, count_max = 120},
-						[988] = {chance = 100, count_min = 100, count_max = 120}
+						[988] = {chance = 100, count_min = 110, count_max = 120},
+						[988] = {chance = 100, count_min = 110, count_max = 120}
 					},
 					{
 						[900] = {chance = 100, count_min = 5, count_max = 5},
@@ -3004,7 +3132,7 @@ BTD_GENERATED_BANKS_INFO =
 						[901] = {chance = 100, count_min = 10, count_max = 10},
 					},
 					{
-						[902] = {chance = 100, count_min = 3, count_max = 3},
+						[902] = {chance = 100, count_min = 2, count_max = 2},
 					}
 				},
 				RewardMin = 
@@ -3035,7 +3163,7 @@ BTD_GENERATED_BANKS_INFO =
 						[CRYSTAL] = 0,
 						[SULFUR] = 0,
 						[GEM] = 0,
-						[GOLD] = 7500,
+						[GOLD] = 6000,
 					},
 					MinorCount = 1,
 					MajorCount = 1,
@@ -3073,13 +3201,13 @@ BTD_GENERATED_BANKS_INFO =
 				{
 					Resources = 
 					{
-						[WOOD] = 3,
-						[ORE] = 3,
+						[WOOD] = 0,
+						[ORE] = 0,
 						[MERCURY] = 3,
 						[CRYSTAL] = 3,
 						[SULFUR] = 3,
 						[GEM] = 3,
-						[GOLD] = 10000,
+						[GOLD] = 7000,
 					},
 					MinorCount = 1,
 					MajorCount = 1,
@@ -3091,13 +3219,13 @@ BTD_GENERATED_BANKS_INFO =
 				{
 					Resources = 
 					{
-						[WOOD] = 3,
-						[ORE] = 3,
+						[WOOD] = 0,
+						[ORE] = 0,
 						[MERCURY] = 3,
 						[CRYSTAL] = 3,
 						[SULFUR] = 3,
 						[GEM] = 3,
-						[GOLD] = 10000,
+						[GOLD] = 7000,
 					},
 					MinorCount = 1,
 					MajorCount = 1,
@@ -3235,7 +3363,7 @@ BTD_GENERATED_BANKS_INFO =
 			[3] =
 			{
 				Difficulty = BANK_VARIANT_MEDIUM,
-				Chance = 22,
+				Chance = 24,
 				Creatures =
 				{
 					{
@@ -3295,7 +3423,7 @@ BTD_GENERATED_BANKS_INFO =
 			[4] =
 			{
 				Difficulty = BANK_VARIANT_HARD,
-				Chance = 8,
+				Chance = 6,
 				Creatures =
 				{
 					{
@@ -3307,11 +3435,11 @@ BTD_GENERATED_BANKS_INFO =
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_MUMMY] = {chance = 100, count_min = 45, count_max = 45},
+						[CREATURE_MUMMY] = {chance = 100, count_min = 60, count_max = 60},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 					{
-						[CREATURE_WATER_ELEMENTAL] = {chance = 100, count_min = 90, count_max = 90},
+						[CREATURE_WATER_ELEMENTAL] = {chance = 100, count_min = 120, count_max = 120},
 						[CREATURE_UNKNOWN] = {chance = 0, count_min = 0, count_max = 0},
 					},
 				},

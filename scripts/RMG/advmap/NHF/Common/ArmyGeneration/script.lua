@@ -4,6 +4,7 @@ Generation =
     {
         [HERO_SPEC_RADIANT] = 
         function(object)
+            RemoveObjectCreatures(object, CREATURE_IRON_GOLEM, 9999)
             AddObjectCreatures(object, CREATURE_GENIE, 1)
         end,
 
@@ -15,6 +16,7 @@ Generation =
 
         [HERO_SPEC_RIDERS] = 
         function(object)
+            RemoveObjectCreatures(object, CREATURE_MINOTAUR, 9999)
             AddObjectCreatures(object, CREATURE_RIDER, 1)
         end,
         
@@ -94,11 +96,18 @@ Generation =
         function(object)
             AddObjectCreatures(object, CREATURE_PIXIE, 10 + random(3))
         end,
+
+        -- Urunir
+        [HERO_SPEC_WITCHES] = 
+        function(object)
+            AddObjectCreatures(object, CREATURE_SCOUT, 4)
+        end,
 		
-	[HERO_SPEC_MINOTAURS] = 
-	function(object)
-	    AddObjectCreatures(object, CREATURE_SCOUT, 4)
-	end
+        -- Menel
+        [HERO_SPEC_MINOTAURS] = 
+        function(object)
+            AddObjectCreatures(object, CREATURE_SCOUT, 4)
+        end
     },
     
     ByHero =
@@ -111,6 +120,7 @@ Generation =
         
         ["Kujin"] =
         function(object)
+            RemoveObjectCreatures(object, CREATURE_ORC_WARRIOR, 9999)
             AddObjectCreatures(object, CREATURE_SHAMAN, 2)
         end,
     },

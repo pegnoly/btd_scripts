@@ -571,6 +571,7 @@ Hero =
             return answer
         end,
     },
+
     SpellInfo =
     {
         Exception =
@@ -652,7 +653,7 @@ Hero =
                 Hero.SpellInfo.Exception(%hero, "getting learnable spells by "..%school)
             end)
             local school_mastery = -1
-            local wisdom_flag = HasHeroSkill(hero, SKILL_WISDOM) and 1 or 0
+            local wisdom_flag = HasHeroSkill(hero, PERK_WISDOM) and 1 or 0
             local tome_flag = HasArtefact(hero, ARTIFACT_BOOK_OF_POWER, 1) and 1 or 0
             school_mastery = GetHeroSkillMastery(hero, skillsBySchools[school])
             local answer, n = {}, 0
@@ -678,8 +679,8 @@ Hero =
             local runelore_mastery = GetHeroSkillMastery(hero, HERO_SKILL_RUNELORE)
             local answer, n = {}, 0
             for _, rune in spellsBySchools[MAGIC_SCHOOL_RUNIC] do
-                if not KnowHeroSpell(rune) and (contains(Hero.SpellInfo.Learnable.RuneLevels[runelore_mastery], Spell.Params.Level(rune))) then
-                n = n + 1
+                if not KnowHeroSpell(hero, rune) and (contains(Hero.SpellInfo.Learnable.RuneLevels[runelore_mastery], Spell.Params.Level(rune))) then
+                    n = n + 1
                 end
             end
             return answer
@@ -727,6 +728,7 @@ Hero =
                     end
                 end
             end
+            print("spells: ", spells)
             if n ~= 0 then
                 return spells
             else

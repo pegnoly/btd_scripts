@@ -33,7 +33,7 @@
 			<PerPower>30</PerPower>
 		</Item>
 		<Item>
-			<Base>200</Base>
+			<Base>0</Base>
 			<PerPower>200</PerPower>
 		</Item>
 	</damage>
