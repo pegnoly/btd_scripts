@@ -1,6 +1,10 @@
 RES_BONUS_RESOURCE = 1
 RES_BONUS_GOLD = 2
 
+while not MCCS_TEMPLATE_TYPE and TEMPLATE_TYPE_Blitz do
+    sleep()
+end
+
 btd_start_resources = {
     gold = 13000,
     resources = {
@@ -12,7 +16,10 @@ btd_start_resources = {
         [TOWN_DUNGEON] = {[WOOD] = 16, [ORE] = 16, [MERCURY] = 8, [CRYSTAL] = 6, [SULFUR] = 8, [GEM] = 6},
         [TOWN_STRONGHOLD] = {[WOOD] = 16, [ORE] = 16, [MERCURY] = 8, [CRYSTAL] = 6, [SULFUR] = 8, [GEM] = 6},
         [TOWN_NECROMANCY] = {[WOOD] = 16, [ORE] = 16, [MERCURY] = 8, [CRYSTAL] = 6, [SULFUR] = 8, [GEM] = 6}
-    }
+    },
+    blitz_gold_multiplier = 2,
+    blitz_rare_multiplier = 2,
+    blitz_wood_multiplier = 1.5
 }
 
 function StartResources_GetBonusType(player)
@@ -38,22 +45,29 @@ function()
 end)
 
 function StartResources_GiveStartBonus(player)
+    local actual_resources = {}
+    for res = WOOD, GOLD do 
+        actual_resources[res] = GetPlayerResource(player, res)
+    end
     local bonus_type = StartResources_GetBonusType(player)
     if bonus_type then
         if bonus_type == RES_BONUS_GOLD then
-            SetPlayerResource(player, GOLD, btd_start_resources.gold)
+            actual_resources[GOLD] = btd_start_resources.gold
         else
             local race = GetPlayerRace(player)
-            SetPlayerStartResources(
-                player,
-                btd_start_resources.resources[race][WOOD],
-                btd_start_resources.resources[race][ORE],
-                btd_start_resources.resources[race][MERCURY],
-                btd_start_resources.resources[race][CRYSTAL],
-                btd_start_resources.resources[race][SULFUR],
-                btd_start_resources.resources[race][GEM],
-                10000
-            )
+            for res = WOOD, GEM do
+                actual_resources[res] = btd_start_resources.resources[race][res]
+            end
         end
     end
+    SetPlayerStartResources(
+        player,
+        actual_resources[WOOD] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_wood_multiplier or 1),
+        actual_resources[ORE] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_wood_multiplier or 1),
+        actual_resources[MERCURY] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_rare_multiplier or 1),
+        actual_resources[CRYSTAL] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_rare_multiplier or 1),
+        actual_resources[SULFUR] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_rare_multiplier or 1),
+        actual_resources[GEM] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_rare_multiplier or 1),
+        actual_resources[GOLD] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_gold_multiplier or 1)
+    )
 end
