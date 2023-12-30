@@ -1,3 +1,11 @@
+while not MCCS_TEMPLATE_TYPE and TEMPLATE_TYPE_Outcast do
+    sleep()
+end
+
+if MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Outcast then
+    return 
+end
+
 CUSTOM_ABILITY_ARTIFACT_TRANSFER = CUSTOM_ABILITY_2
 
 artifact_transfer = 
