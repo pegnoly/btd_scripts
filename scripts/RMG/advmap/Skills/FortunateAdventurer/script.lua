@@ -12,7 +12,7 @@ function()
     while not TREASURES do
         sleep()
     end
-    for i, treasure in TREASURES do
+    for treasure, _ in TREASURES do
         Touch.SetTrigger(treasure)
         Touch.SetFunction(treasure, "_collect",
         function(hero, object)
