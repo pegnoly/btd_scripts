@@ -37,7 +37,7 @@ function(hero)
     --
     if dark_revelation_duel.selected_stat_by_hero[hero] then
         for stat = STAT_ATTACK, STAT_KNOWLEDGE do
-            if stat ~= dark_revelation_duel.selected_stat_by_hero[hero] then
+            if stat ~= dark_revelation_duel.selected_stat_by_hero[hero] and GetHeroStat(hero, stat) >= dark_revelation_duel.stat_decrease then
                 if MCCS_QuestionBoxForPlayers(player, {
                     dark_revelation_duel.path.."wanna_sacrifice_stat.txt"; name = dark_revelation_duel.path..dark_revelation_duel.scrf_names[stat]
                 }) then
@@ -69,9 +69,9 @@ function(hero)
                 else
                     if not HasHeroSkill(%hero, WARLOCK_FEAT_DARK_REVELATION) then
                         if dark_revelation_duel.selected_stat_by_hero[%hero] then
-                            dark_revelation_duel.selected_stat_by_hero[%hero] = 1
                             startThread(Hero.Stats.Change, %hero, dark_revelation_duel.selected_stat_by_hero[%hero], -dark_revelation_duel.stat_increase)
                             startThread(Hero.Stats.Change, %hero, dark_revelation_duel.sacrificed_stat_by_hero[%hero], dark_revelation_duel.stat_decrease) 
+                            dark_revelation_duel.selected_stat_by_hero[%hero] = nil
                             ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_DARK_REVELATION_DUEL_ACTIVATE, CUSTOM_ABILITY_NOT_PRESENT)
                         end
                     end
