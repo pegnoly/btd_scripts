@@ -121,7 +121,13 @@ function GameReloaded()
 end
 
 consoleCmd(
-  "@if GetObjectiveState('HIDDEN', MCCS_FIRST_ACTIVE_PLAYER) == OBJECTIVE_UNKNOWN then SetObjectiveState('HIDDEN', OBJECTIVE_ACTIVE, MCCS_FIRST_ACTIVE_PLAYER) else sleep(2) ReloadGame() end"
+  "@if GetObjectiveState('HIDDEN', MCCS_FIRST_ACTIVE_PLAYER) == OBJECTIVE_UNKNOWN then "..
+      "for player = PLAYER_1, PLAYER_8 do "..
+        "if GetPlayerState(player) == PLAYER_ACTIVE then "..
+          "SetObjectiveState('HIDDEN', OBJECTIVE_ACTIVE, player) "..
+        "end "..
+      "end "..
+    "else sleep(2) ReloadGame() end"
 )
 
 --SetObjectiveState('HIDDEN', OBJECTIVE_ACTIVE, MCCS_FIRST_ACTIVE_PLAYER)
