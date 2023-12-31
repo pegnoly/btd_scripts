@@ -5,7 +5,7 @@ ROLF_HELPER_MASTERY_EXPERT = 207
 ROLF_HELPER_MASTERY_EXTRA_EXPERT = 208
 
 rolf_spec = {
-    heroes = {"Rolf"},
+    heroes = {"Rolf", "Rolf1", "Rolf2"},
     casts_by_levels = {5, 11, 17, 23, 28, 32, 37, 40},
     [ATTACKER] = {},
     [DEFENDER] = {}
