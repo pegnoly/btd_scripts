@@ -16,8 +16,8 @@ function(day)
         print("<color=red>Error: <color=green> WarcryLearning duel new day.")
     end)
     if day == BTD_duel_day_sequence.prefight_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and HasHeroSkill(hero, HERO_SKILL_WARCRY_LEARNING) then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and HasHeroSkill(hero, HERO_SKILL_WARCRY_LEARNING) then
                 if not KnowHeroSpell(hero, 292) then
                     Hero.SpellInfo.TeachSpell(hero, 292)
                 else

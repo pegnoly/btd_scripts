@@ -2,14 +2,14 @@
 -- Скрипты загрузки дуэли --
 
 btd_duel_loading = {
-    start_gold = 4000,
+    start_gold = 5000,
 }
 
 -- выдача стартовых ресурсов
 MapLoadingEvent.AddListener("BTD_duel_start_res_listener",
 function()
     for player = PLAYER_1, PLAYER_8 do
-        SetPlayerStartResources(player, 0, 0, 0, 0, 0, 0, btd_duel_loading.start_gold)
+        SetPlayerStartResources(player, 0, 0, 0, 0, 0, 0, 0)
     end
 end)
 
@@ -105,12 +105,14 @@ function()
         for i, shrine in {'Shrine1_1','Shrine1_2','Shrine1_3','Shrine1_4','Shrine1_5','Shrine1_6'} do
             MakeHeroInteractWithObject("GhostFSLord1", shrine)
         end
+        MakeHeroInteractWithObject("GhostFSLord1", "merchant1")
     end)
     startThread(
     function ()
         for i, shrine in {'Shrine2_1','Shrine2_2','Shrine2_3','Shrine2_4','Shrine2_5','Shrine2_6'} do
             MakeHeroInteractWithObject("GhostFSLord2", shrine)
         end
+        MakeHeroInteractWithObject("GhostFSLord2", "merchant2")
     end)
     sleep(20)
     consoleCmd("setvar ui_announcement_duration = 3500")

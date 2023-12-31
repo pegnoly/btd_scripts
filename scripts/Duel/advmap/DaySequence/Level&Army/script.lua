@@ -96,8 +96,9 @@ function()
         Touch.SetFunction(object, "_touch_lvlupstone",
         function(hero, object)
             local curr_level = GetHeroLevel(hero)
-            if curr_level < 9 btd_duel_level_up.base_level then
+            if curr_level < btd_duel_level_up.base_level then
                 startThread(MCCS_MessageBoxForPlayers, GetObjectOwner(hero), "/scripts/Duel/advmap/DaySequence/Level&Army/not_enough_exp.txt")
+                return
             end
             Touch.RemoveFunctions(object)
             startThread(GiveExp, hero, Levels[btd_duel_level_up.max_level] - Levels[curr_level])

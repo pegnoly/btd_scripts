@@ -18,6 +18,7 @@ doFile("/scripts/Common/advmap/Skills/TripleCatapult/reload.lua")
 doFile("/scripts/Common/advmap/Skills/BloodySacrifice/reload.lua")
 doFile("/scripts/Common/advmap/Skills/BloodyMana/reload.lua")
 doFile("/scripts/Common/advmap/Skills/LordOfUndead/reload.lua")
+doFile("/scripts/Common/advmap/Skills/HauntMines/reload.lua")
 
 -- артефакты
 doFile("/scripts/Common/advmap/Artifacts/TwistingNeither/reload.lua")

@@ -313,7 +313,7 @@ function()
     end
     --
     for i, portal in {"skill_shop_out_p1", "skill_shop_out_p2"} do
-        Touch.DisableObject(portal)
+        Touch.DisableObject(portal, DISABLED_INTERACT)
         Touch.SetFunction(portal, "_touch_skill_shop_out",
         function(hero, object)
             local saved_position = skill_shop.player_return_position[GetObjectOwner(hero)]

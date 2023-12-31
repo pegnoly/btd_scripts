@@ -29,6 +29,7 @@ doFile("/scripts/Common/advmap/Skills/TripleCatapult/reload.lua")
 doFile("/scripts/Common/advmap/Skills/BloodySacrifice/reload.lua")
 doFile("/scripts/Common/advmap/Skills/BloodyMana/reload.lua")
 doFile("/scripts/Common/advmap/Skills/LordOfUndead/reload.lua")
+doFile("/scripts/Common/advmap/Skills/HauntMines/reload.lua")
 
 -- артефакты
 doFile("/scripts/Common/advmap/Artifacts/TwistingNeither/reload.lua")
@@ -72,3 +73,4 @@ doFile("/scripts/Common/advmap/Skills/BloodyMana/test.lua")
 doFile("/scripts/Common/advmap/Skills/LordOfUndead/test.lua")
 doFile("/scripts/RMG/advmap/Skills/HauntMines/test.lua")
 doFile("/scripts/RMG/advmap/Spells/TownPortal/test.lua")
+doFile("/scripts/Common/advmap/Skills/TripleCatapult/test.lua")

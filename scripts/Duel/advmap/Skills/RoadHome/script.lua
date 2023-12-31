@@ -10,9 +10,9 @@ function(day)
     errorHook(function ()
         print("<color=red>Error: <color=green> RoadHome duel new day.")
     end)
-    if day == BTD_duel_day_sequence.prefight_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and HasHeroSkill(hero, KNIGHT_FEAT_ROAD_HOME) then
+    if day == BTD_duel_day_sequence.fight_day then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and HasHeroSkill(hero, KNIGHT_FEAT_ROAD_HOME) then
                 GiveHeroBattleBonus(hero, HERO_BATTLE_BONUS_SPEED, road_home_duel.speed_bonus)
             end
         end

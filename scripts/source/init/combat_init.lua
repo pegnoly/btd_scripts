@@ -12,7 +12,10 @@ sleep()
 while not HERO_SPEC_NONE and TOWN_NO_TYPE do
 	sleep()
 end
-doFile('/scripts/generated_info.lua')
+doFile('/scripts/generated/creatures.lua')
+doFile('/scripts/generated/heroes.lua')
+doFile('/scripts/generated/artifacts.lua')
+doFile('/scripts/generated/spells.lua')
 sleep()
 doFile("/scripts/source/entity/load.lua")
 sleep()

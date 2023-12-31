@@ -91,6 +91,7 @@ pick_ban_stage = {
                         'Egil', -- Эрлинг
                         'Wulfstan', -- Вульфстен
                         'Rolf', -- Рольф
+                        'KingTolghar'
                         },
         [TOWN_STRONGHOLD] = {
                         'Hero2', -- Аргат
@@ -258,6 +259,7 @@ function StartHeroSelection()
 end
 
 function SpawnNonBannedHeroes(player)
+    SetPlayerStartResources(player, 0, 0, 0, 0, 0, 0, btd_duel_loading.start_gold)
     local spawned_count = 1
     for hero, non_banned in pick_ban_stage.heroes_for_player[3 - player] do
         if hero and non_banned then
