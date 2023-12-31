@@ -55,8 +55,8 @@ death_herald_creatures =
 NewDayEvent.AddListener("death_herald_new_day",
 function(day)
     if day == BTD_duel_day_sequence.prefight_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and HasHeroSkill(hero, NECROMANCER_FEAT_HERALD_OF_DEATH) then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and HasHeroSkill(hero, NECROMANCER_FEAT_HERALD_OF_DEATH) then
                 startThread(Hero.CreatureInfo.Add, hero, CREATURE_DEATH_KNIGHT, death_herald_creatures.death_knight_count)
             end
         end

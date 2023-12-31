@@ -21,8 +21,8 @@ function(day)
         print("<color=red>Error: <color=green> Diplomacy duel new day.")
     end)
     if day == BTD_duel_day_sequence.prefight_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and HasHeroSkill(hero, PERK_DIPLOMACY) then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and HasHeroSkill(hero, PERK_DIPLOMACY) then
                 local race = Hero.Params.Town(hero)
                 local tiers_used = {}
                 local stacks = table.pack(GetHeroCreaturesTypes(hero))

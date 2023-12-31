@@ -18,8 +18,8 @@ end)
 NewDayEvent.AddListener("btd_duel_wulfstan_new_day_listener",
 function(day)
     if day == BTD_duel_day_sequence.level_army_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and contains(wulfstan_spec_duel.heroes, hero) then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and contains(wulfstan_spec_duel.heroes, hero) then
                 local avenger = "avenger_"..(3 - GetObjectOwner(hero))
                 local count = GetObjectCreatures(avenger, CREATURE_BROWLER)
                 RemoveObjectCreatures(avenger, CREATURE_BROWLER, count)
@@ -32,8 +32,8 @@ function(day)
     end
     --
     if day == BTD_duel_day_sequence.prefight_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and contains(wulfstan_spec_duel.heroes, hero) then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and contains(wulfstan_spec_duel.heroes, hero) then
                 local attack_to_add = floor(GetHeroStat(hero, STAT_DEFENCE) / wulfstan_spec_duel.offence_divisor)
                 if attack_to_add ~= 0 then
                     Hero.Stats.Change(hero, STAT_ATTACK, attack_to_add)

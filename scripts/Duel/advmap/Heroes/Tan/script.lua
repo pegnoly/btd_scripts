@@ -17,8 +17,8 @@ end)
 NewDayEvent.AddListener("btd_duel_tan_new_day_listener",
 function(day)
     if day == BTD_duel_day_sequence.level_army_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and contains(tan_spec_duel.heroes, hero) then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and contains(tan_spec_duel.heroes, hero) then
                 local avenger = "avenger_"..(3 - GetObjectOwner(hero))
                 local count = GetObjectCreatures(avenger, CREATURE_GENIE)
                 RemoveObjectCreatures(avenger, CREATURE_GENIE, count)

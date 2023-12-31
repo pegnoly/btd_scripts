@@ -38,8 +38,8 @@ end)
 NewDayEvent.AddListener("btd_duel_lord_of_undead_new_day_listener",
 function(day)
     if day == BTD_duel_day_sequence.prefight_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and HasHeroSkill(hero, NECROMANCER_FEAT_LORD_OF_UNDEAD) then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and HasHeroSkill(hero, NECROMANCER_FEAT_LORD_OF_UNDEAD) then
                 for tier = 1, 7 do
                     local creature = TIER_TABLES[TOWN_NECROMANCY][tier][1]
                     startThread(Hero.CreatureInfo.DefaultGrow, hero, TOWN_NECROMANCY, tier, Creature.Params.Grow(creature))

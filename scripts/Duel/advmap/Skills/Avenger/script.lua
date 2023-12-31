@@ -20,7 +20,7 @@ end)
 
 function AvengerDuel_Init(hero)
     local player = GetObjectOwner(hero)
-    if MCCS_QuestionBoxForPlayers(player, avenger_duel.path.."helper.txt") then
+    if MCCS_QuestionBoxForPlayers(player, avenger_duel.path.."wanna_set_enemies.txt") then
         local town = Player.GetTowns(player)[1]
         UpgradeTownBuilding(town, TOWN_BUILDING_PRESERVE_AVENGERS_BROTHERHOOD)
         btd_duel_free_roam.free_roam_active_for_hero[hero] = nil

@@ -11,8 +11,8 @@ cyrus_spec_duel = {
 NewDayEvent.AddListener("btd_duel_cyrus_spec_new_day_listener",
 function(day)
     if day == BTD_duel_day_sequence.prefight_day then
-        for hero, alive in AdvMapHeroesInfo.alive_heroes do
-            if hero and alive and contains(cyrus_spec_duel.heroes, hero) then
+        for hero, alive_status in AdvMapHeroesInfo.alive_heroes do
+            if hero and alive_status == HERO_CONDITION_ALIVE and contains(cyrus_spec_duel.heroes, hero) then
                 local owner = GetObjectOwner(hero)
                 local enemy_hero = GetPlayerHeroes(3 - owner)[0]
                 for skill, school in cyrus_spec_duel.school_mapping do
