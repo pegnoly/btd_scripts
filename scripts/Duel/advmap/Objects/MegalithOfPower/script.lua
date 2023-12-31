@@ -36,7 +36,7 @@ function MegalithOfPower_Confirm(hero, player, callback)
             megalith_of_power.used_by_player[player] = 1
             local economed_gold = megalith_of_power.cost - actual_cost
             economy.EconomGold(hero, economed_gold)
-            SetPlayerResource(player, GetPlayerResource(player, GOLD) - actual_cost)
+            SetPlayerResource(player, GOLD, GetPlayerResource(player, GOLD) - actual_cost)
             startThread(callback)
         else
             startThread(MCCS_MessageBoxForPlayers, player, megalith_of_power.path.."not_enough_gold.txt")
