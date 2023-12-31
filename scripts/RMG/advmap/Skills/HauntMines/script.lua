@@ -111,4 +111,4 @@ function HauntMinesRMG_CalcGhostsMaxCount(hero)
     return count
 end
 
-CombatConnection.combat_scripts_paths['haunt_mines_rmg'] = '/scripts/RMG/combat/Skills/HauntMines/script.lua'
+CombatConnection.combat_scripts_paths['haunt_mines_common'] = '/scripts/Common/combat/Skills/HauntMines/script.lua'
