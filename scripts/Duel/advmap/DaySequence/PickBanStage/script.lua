@@ -279,14 +279,15 @@ function SelectHero(hero, player)
     end
     Touch.RemoveFunctions("start_game_portal_p"..player)
     SetObjectEnabled("start_game_portal_p"..player, 1)
-    ChangeHeroStat(hero, STAT_MOVE_POINTS, -10000)
+    --ChangeHeroStat(hero, STAT_MOVE_POINTS, -10000)
     sleep()
     MakeHeroInteractWithObject(hero, "start_game_portal_p"..player)
     pick_ban_stage.player_picked_hero[player] = 1
     btd_duel_free_roam.free_roam_active_for_hero[hero] = 1
+    startThread(Hero.Threads.UnlimMove, hero, function() return btd_duel_free_roam.free_roam_active_for_hero[%hero] end)
     sleep(10)
     Calibrate(hero)
-    startThread(MCCS_MessageBoxForPlayers, player, "/scripts/Duel/advmap/DaySequence/skip_day.txt")
+    startThread(MCCS_MessageBoxForPlayers, player, "/scripts/Duel/advmap/DaySequence/skip_day_when_ready.txt")
 end
 
 MapLoadingEvent.AddListener("BTD_duel_pick_ban_stage_waiting",

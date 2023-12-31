@@ -96,6 +96,9 @@ function()
         Touch.SetFunction(object, "_touch_lvlupstone",
         function(hero, object)
             local curr_level = GetHeroLevel(hero)
+            if curr_level < 9 btd_duel_level_up.base_level then
+                startThread(MCCS_MessageBoxForPlayers, GetObjectOwner(hero), "/scripts/Duel/advmap/DaySequence/Level&Army/not_enough_exp.txt")
+            end
             Touch.RemoveFunctions(object)
             startThread(GiveExp, hero, Levels[btd_duel_level_up.max_level] - Levels[curr_level])
             Touch.DisableObject(object, DISABLED_BLOCKED)
@@ -128,11 +131,11 @@ function ()
     end
 end)
 
-NewDayEvent.AddListener("BTD_duel_unlim_move_setup_listener",
-function(day)
-    if day == BTD_duel_day_sequence.level_army_day then
-        for i, hero in GetObjectNamesByType("HERO") do
-            startThread(Hero.Threads.UnlimMove, hero, function() return btd_duel_free_roam.free_roam_active_for_hero[%hero] end)
-        end
-    end
-end)
+-- NewDayEvent.AddListener("BTD_duel_unlim_move_setup_listener",
+-- function(day)
+--     if day == BTD_duel_day_sequence.level_army_day then
+--         for i, hero in GetObjectNamesByType("HERO") do
+--             startThread(Hero.Threads.UnlimMove, hero, function() return btd_duel_free_roam.free_roam_active_for_hero[%hero] end)
+--         end
+--     end
+-- end)
