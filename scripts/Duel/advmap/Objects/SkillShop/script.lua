@@ -206,12 +206,12 @@ skill_shop =
 
   skill_costs_by_rarity =
   {
-    [15] = 3000,
-    [10] = 4000,
-    [8] = 4000,
-    [6] = 5000,
-    [5] = 5000,
-    [4] = 6000,
+    [15] = 3500,
+    [10] = 4500,
+    [8] = 5000,
+    [6] = 6000,
+    [5] = 6000,
+    [4] = 7000,
   },
 
   used_by_player = {[PLAYER_1] = nil, [PLAYER_2] = nil},
@@ -245,6 +245,11 @@ function SkillShop_Init(hero)
         function(hero, object)
             startThread(SkillShop_TryToLearnSkill, hero, object, %actual_skill)
         end)
+    end
+    --
+    for i = count + 1, 10 do
+        local placeholder = "skill_shop_placeholder_"..GetObjectOwner(hero)..""..i
+        RemoveObject(placeholder)
     end
 end
 
@@ -282,6 +287,7 @@ function()
         Touch.SetFunction(shop, "_skill_shop_touch",
         function(hero, object)
             local player = GetObjectOwner(hero)
+            --
             if not skill_shop.used_by_player[player] then
                 --
                 local skill_count = 0
