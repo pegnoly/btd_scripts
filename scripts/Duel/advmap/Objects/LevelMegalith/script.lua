@@ -2,7 +2,7 @@
 lvl_megalith =
 {
     path = "/scripts/Duel/advmap/Objects/LevelMegalith/",
-    cost = {[0] = 2500, [1] = 5000, [2] = 7500, [3] = 10000},
+    cost = {[0] = 4000, [1] = 4500, [2] = 5000, [3] = 6000, [4] = 7000, [5] = 8000},
     used_by_player = {[PLAYER_1] = 0, [PLAYER_2] = 0},
 }
 
@@ -14,7 +14,7 @@ function()
         function(hero, object)
             local player = GetObjectOwner(hero)
             local times_used = lvl_megalith.used_by_player[player]
-            if times_used == 4 then
+            if times_used == 6 then
               startThread(MCCS_MessageBoxForPlayers, player, lvl_megalith.path.."already_used.txt")
             else
                 local cost = economy.GetCostWithEconomy(hero, lvl_megalith.cost[times_used])

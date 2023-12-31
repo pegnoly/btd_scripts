@@ -1,6 +1,6 @@
 spell_shop = {
     path = "/scripts/Duel/advmap/Objects/SpellShop/",
-    cost_by_level = {[3] = 2000, [4] = 4250, [5] = 7000},
+    cost_by_level = {[3] = 4250, [4] = 6000, [5] = 9000},
     used_by_player = {},
     return_position_for_player = {}
 }
