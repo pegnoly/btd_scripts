@@ -263,6 +263,7 @@ function SpawnNonBannedHeroes(player)
     local spawned_count = 1
     for hero, non_banned in pick_ban_stage.heroes_for_player[3 - player] do
         if hero and non_banned then
+            scouting_duel.non_banned_heroes_for_player[player][len(scouting_duel.non_banned_heroes_for_player[player]) + 1] = hero..""..player
             local x, y, f = RegionToPoint("selected_hero_spawn_point_"..player..""..spawned_count)
             DeployReserveHero(hero..""..player, x, y, f)
             spawned_count = spawned_count + 1
