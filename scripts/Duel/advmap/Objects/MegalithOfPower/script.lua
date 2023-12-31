@@ -1,6 +1,7 @@
 megalith_of_power = {
     path = "/scripts/Duel/advmap/Objects/MegalithOfPower/",
-    cost = 3500,
+    creature_cost = 3000,
+    stat_cost = 4000,
     stat_amount = 2,
     lvl6_amount = 2,
     lvl7_amount = 1,
@@ -28,13 +29,13 @@ function MegalithOfPower_Touch(hero, object)
     end
 end
 
-function MegalithOfPower_Confirm(hero, player, callback)
-    local actual_cost = economy.GetCostWithEconomy(hero, megalith_of_power.cost) 
+function MegalithOfPower_Confirm(hero, player, cost, callback)
+    local actual_cost = economy.GetCostWithEconomy(hero, cost) 
     if MCCS_QuestionBoxForPlayers(player, {megalith_of_power.path.."confirm.txt"; cost = actual_cost}) then
         local gold = GetPlayerResource(player, GOLD)
         if gold >= actual_cost then
             megalith_of_power.used_by_player[player] = 1
-            local economed_gold = megalith_of_power.cost - actual_cost
+            local economed_gold = cost - actual_cost
             economy.EconomGold(hero, economed_gold)
             SetPlayerResource(player, GOLD, GetPlayerResource(player, GOLD) - actual_cost)
             startThread(callback)
@@ -65,12 +66,12 @@ function MegalithOfPower_SelectMightStat(hero, player)
         local callback = function()
             Hero.Stats.Change(%hero, STAT_ATTACK, megalith_of_power.stat_amount)
         end
-        startThread(MegalithOfPower_Confirm, hero, player, callback)
+        startThread(MegalithOfPower_Confirm, hero, player, megalith_of_power.stat_cost, callback)
     else 
         local callback = function()
             Hero.Stats.Change(%hero, STAT_DEFENCE, megalith_of_power.stat_amount)
         end
-        startThread(MegalithOfPower_Confirm, hero, player, callback)
+        startThread(MegalithOfPower_Confirm, hero, player, megalith_of_power.stat_cost, callback)
     end
 end
 
@@ -83,14 +84,14 @@ function MegalithOfPower_SelectMagicStat(hero, player)
       stat_name2 = megalith_of_power.path.."knowledge.txt"
   }) then
         local callback = function()
-            Hero.Stats.Change(%hero, STAT_SPELL_POWER, megalith_of_power.stat_amount)
+            Hero.Stats.Change(%hero, STAT_SPELL_POWER, megalith_of_power.stat_cost, megalith_of_power.stat_amount)
         end
-        startThread(MegalithOfPower_Confirm, hero, player, callback)
+        startThread(MegalithOfPower_Confirm, hero, player, megalith_of_power.stat_cost, callback)
     else        
         local callback = function()
             Hero.Stats.Change(%hero, STAT_KNOWLEDGE, megalith_of_power.stat_amount)
         end
-        startThread(MegalithOfPower_Confirm, hero, player, callback)
+        startThread(MegalithOfPower_Confirm, hero, player, megalith_of_power.stat_cost, callback)
     end
 end
 
@@ -103,12 +104,12 @@ function MegalithOfPower_SelectCreatures(hero, player)
             local town = Hero.Params.Town(%hero)
             Hero.CreatureInfo.DefaultGrow(%hero, town, 6, megalith_of_power.lvl6_amount)
         end
-        startThread(MegalithOfPower_Confirm, hero, player, callback)
+        startThread(MegalithOfPower_Confirm, hero, player, megalith_of_power.creature_cost, callback)
     else
         local callback = function ()
             local town = Hero.Params.Town(%hero)
             Hero.CreatureInfo.DefaultGrow(%hero, town, 7, megalith_of_power.lvl7_amount)
         end
-        startThread(MegalithOfPower_Confirm, hero, player, callback)
+        startThread(MegalithOfPower_Confirm, hero, player, megalith_of_power.creature_cost, callback)
     end
 end
