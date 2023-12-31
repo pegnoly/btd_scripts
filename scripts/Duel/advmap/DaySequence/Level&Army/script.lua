@@ -37,7 +37,23 @@ function(day)
             function()
                 local hero = GetPlayerHeroes(%player)[0]
                 local race = Hero.Params.Town(hero)
-                for tier = 1, 7 do 
+                --
+                if not BTD_Duel_ArmyDistribution.custom_add_func[hero][1] then
+                    startThread(BTD_Duel_ArmyDistribution.default_func, hero, race, 1)
+                else
+                    startThread(BTD_Duel_ArmyDistribution.custom_add_func[hero][1], hero)
+                end
+                --
+                while Hero.CreatureInfo.StackCount(hero) == 1 do
+                    sleep()
+                end
+                --
+                RemoveHeroCreatures(hero, CREATURE_AIR_ELEMENTAL, 9999)
+                while GetHeroCreatures(hero, CREATURE_AIR_ELEMENTAL) > 0 do
+                    sleep()
+                end
+                --
+                for tier = 2, 7 do 
                     if not BTD_Duel_ArmyDistribution.custom_add_func[hero][tier] then
                         startThread(BTD_Duel_ArmyDistribution.default_func, hero, race, tier)
                     else

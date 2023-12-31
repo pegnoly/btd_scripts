@@ -2,7 +2,7 @@
 -- Скрипты загрузки дуэли --
 
 btd_duel_loading = {
-    start_gold = 4000
+    start_gold = 4000,
 }
 
 -- выдача стартовых ресурсов
@@ -24,8 +24,12 @@ AddHeroEvent.AddListener("BTD_duel_start_army_remove_listener",
 function(hero)
     startThread(
     function()
-        for creature = 1, 179 do
-            RemoveHeroCreatures(%hero, creature, 9999)
+        AddHeroCreatures(%hero, CREATURE_AIR_ELEMENTAL, 1)
+        sleep()
+        for creature = 1, 999 do
+            if creature ~= CREATURE_AIR_ELEMENTAL then
+                RemoveHeroCreatures(%hero, creature, 9999)
+            end
         end
     end)
 end)
