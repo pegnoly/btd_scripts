@@ -23,6 +23,7 @@ CustomAbility.callbacks["blueprint_dwell13_custom"] = {
         local race = GetTownRace(town)
         --for dwell, info in BLUEPRINTS_DWELL_13[town] do
         local path = BLUEPRINTS_DWELL_13[race].path
+        local any_building_flag
         for building = TOWN_BUILDING_DWELLING_1, TOWN_BUILDING_DWELLING_3 do
             local building_info = BLUEPRINTS_DWELL_13[race][building]
             -- проверка на наличие зависимых зданий
@@ -51,6 +52,7 @@ CustomAbility.callbacks["blueprint_dwell13_custom"] = {
                         end
                     end
                     if can_be_build then
+                        any_building_flag = 1
                         if MCCS_QuestionBoxForPlayers(player, {
                             "/scripts/RMG/advmap/Features/Blueprints/Dwell13/wanna_build.txt"; 
                             race_color = RACE_COLORS[race],
@@ -66,7 +68,9 @@ CustomAbility.callbacks["blueprint_dwell13_custom"] = {
                 end
             end
         end
-        --end
+        if not any_building_flag then
+            startThread(MCCS_MessageBoxForPlayers, "/scripts/RMG/advmap/Features/Blueprints/Dwell13/nothing_to_build.txt")
+        end
     end
 }
 

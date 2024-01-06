@@ -401,7 +401,7 @@ BLUEPRINTS_DWELL_13 = {
         },
         -- Призраки
         [TOWN_BUILDING_DWELLING_3] = {
-            town_level = 7,
+            town_level = 6,
             depends_on = {[TOWN_BUILDING_NECROMANCY_AMPLIFIER] = 1},
             upgrades = {
                 [1] = {
