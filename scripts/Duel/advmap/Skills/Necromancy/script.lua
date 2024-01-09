@@ -1,19 +1,19 @@
 necromancy = {
     path = "/scripts/Duel/advmap/Skills/Necromancy/",
     stack_info = {
-        ["necromancy_t1_p1"] = {tier = 1, count = 84},
+        ["necromancy_t1_p1"] = {tier = 1, count = 82},
         ["necromancy_t2_p1"] = {tier = 2, count = 36},
         ["necromancy_t3_p1"] = {tier = 3, count = 19},
         ["necromancy_t4_p1"] = {tier = 4, count = 9},
-        ["necromancy_t5_p1"] = {tier = 5, count = 6},
-        ["necromancy_t6_p1"] = {tier = 6, count = 4},
+        ["necromancy_t5_p1"] = {tier = 5, count = 7},
+        ["necromancy_t6_p1"] = {tier = 6, count = 5},
         ["necromancy_t7_p1"] = {tier = 7, count = 3},
-        ["necromancy_t1_p2"] = {tier = 1, count = 84},
+        ["necromancy_t1_p2"] = {tier = 1, count = 82},
         ["necromancy_t2_p2"] = {tier = 2, count = 36},
         ["necromancy_t3_p2"] = {tier = 3, count = 19},
         ["necromancy_t4_p2"] = {tier = 4, count = 9},
-        ["necromancy_t5_p2"] = {tier = 5, count = 6},
-        ["necromancy_t6_p2"] = {tier = 6, count = 4},
+        ["necromancy_t5_p2"] = {tier = 5, count = 7},
+        ["necromancy_t6_p2"] = {tier = 6, count = 5},
         ["necromancy_t7_p2"] = {tier = 7, count = 3},
     },
 
@@ -38,6 +38,8 @@ function Necromancy_TouchCreature(hero, object)
         local tier = necromancy.stack_info[object].tier
         local count = necromancy.stack_info[object].count
         necromancy.charges_for_hero[hero] = necromancy.charges_for_hero[hero] - 1
+        print("charges: ", necromancy.charges_for_hero[hero])
+        --sleep()
         startThread(Hero.CreatureInfo.DefaultGrow, hero, TOWN_NECROMANCY, tier, count)
     end
 end
