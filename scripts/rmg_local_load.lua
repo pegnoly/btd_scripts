@@ -77,7 +77,8 @@ doFile("/scripts/RMG/advmap/Features/WinConditions/Economic/script.lua")
 doFile("/scripts/RMG/advmap/Features/WinConditions/CaptureObject/script.lua")
 doFile("/scripts/RMG/advmap/Features/Portals/script.lua")
 doFile("/scripts/RMG/advmap/Features/StartResources/script.lua")
-doFile("/scripts/RMG/advmap/Features/Treasures/script.lua")
+--doFile("/scripts/RMG/advmap/Features/Treasures/script.lua")
+dofile("/scripts/RMG/advmap/Features/Blueprints/Dwell13/script.lua")
 
 -- постройки в городах
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/script.lua")

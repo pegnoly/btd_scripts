@@ -20,5 +20,11 @@ doFile("/scripts/Common/advmap/Skills/BloodyMana/reload.lua")
 doFile("/scripts/Common/advmap/Skills/LordOfUndead/reload.lua")
 doFile("/scripts/Common/advmap/Skills/HauntMines/reload.lua")
 
+-- фиксы
+doFile("/scripts/RMG/advmap/Fixes/combat_connection_fix.lua")
+doFile("/scripts/RMG/advmap/Fixes/map_reload_level_fix.lua")
+doFile("/scripts/RMG/advmap/Fixes/map_reload_stat_thread.lua")
+doFile("/scripts/RMG/advmap/Fixes/owner_reload_fix.lua")
+
 -- артефакты
 doFile("/scripts/Common/advmap/Artifacts/TwistingNeither/reload.lua")

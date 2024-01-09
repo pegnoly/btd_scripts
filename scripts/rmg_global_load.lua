@@ -16,6 +16,8 @@ doFile("/scripts/Common/advmap/Heroes/Biara/reload.lua")
 doFile("/scripts/Common/advmap/Heroes/Krag/reload.lua")
 doFile("/scripts/Common/advmap/Heroes/Rolf/reload.lua")
 
+doFile("/scripts/Common/advmap/CustomAbility/Artifact/script.lua")
+
 -- скиллы --
 
 -- общие
@@ -62,6 +64,8 @@ doFile("/scripts/RMG/advmap/Modes/consts.lua")
 
 --
 doFile("/scripts/RMG/advmap/Features/WinConditions/Economic/consts.lua")
+dofile("/scripts/RMG/advmap/Features/Blueprints/script.lua")
+dofile("/scripts/RMG/advmap/Features/Blueprints/Dwell13/generated.lua")
 
 -- тесты
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/test.lua")
