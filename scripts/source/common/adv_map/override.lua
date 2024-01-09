@@ -47,6 +47,17 @@ do
   end
 end
 
+qbox_answer_for_player = {
+  [PLAYER_1] = -1,
+  [PLAYER_2] = -1,
+  [PLAYER_3] = -1,
+  [PLAYER_4] = -1,
+  [PLAYER_5] = -1,
+  [PLAYER_6] = -1,
+  [PLAYER_7] = -1,
+  [PLAYER_8] = -1,
+}
+
 do
   local oldQuestionBox = QuestionBox
   --- Адаптированный QuestionBox
@@ -67,12 +78,13 @@ do
   ---@param msg string путь к сообщению
   ---@return boolean is_ok было нажато ок/отмена
   function MCCS_QuestionBoxForPlayers(player, msg)
-    qbox_answer = -1
-    %oldQuestionBoxForPlayers(GetPlayerFilter(player), msg, 'Yes', 'No')
-    while qbox_answer == -1 do
+    qbox_answer_for_player[player] = -1
+    %oldQuestionBoxForPlayers(GetPlayerFilter(player), msg, 'Yes('..player..')', 'No('..player..')')
+    while qbox_answer_for_player[player] == -1 do
       sleep()
     end
-    return qbox_answer == 1
+    print("Here: ", qbox_answer_for_player[player])
+    return qbox_answer_for_player[player] == 1
   end
   --- NHF-адаптированный QuestionBox
   ---@param id_player PlayerID номер игрока
@@ -97,12 +109,14 @@ do
   	end;
   end
 
-  function Yes()
-    qbox_answer = 1
+  function Yes(player)
+    print("Calling yes for ", player)
+    print("curr: ", qbox_answer_for_player[player])
+    qbox_answer_for_player[player] = 1
   end
 
-  function No()
-    qbox_answer = 0
+  function No(player)
+    qbox_answer_for_player[player] = 0
   end
 end
 
