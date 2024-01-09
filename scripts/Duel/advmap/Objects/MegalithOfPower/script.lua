@@ -84,7 +84,7 @@ function MegalithOfPower_SelectMagicStat(hero, player)
       stat_name2 = megalith_of_power.path.."knowledge.txt"
   }) then
         local callback = function()
-            Hero.Stats.Change(%hero, STAT_SPELL_POWER, megalith_of_power.stat_cost, megalith_of_power.stat_amount)
+            Hero.Stats.Change(%hero, STAT_SPELL_POWER, megalith_of_power.stat_amount)
         end
         startThread(MegalithOfPower_Confirm, hero, player, megalith_of_power.stat_cost, callback)
     else        
