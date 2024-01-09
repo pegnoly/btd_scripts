@@ -10,7 +10,8 @@ mysticism_duel =
     },
     path = "/scripts/Duel/combat/Mysticism/",
     mana_bottom_percent = 0.1,
-    mana_restore_percent = 0.5
+    mana_restore_base = 10,
+    mana_restore_percent = 0.15
 }
 
 if GetGameVar(GetHeroName(GetAttackerHero()).."_MYSTICISM") == 'active' then
@@ -33,7 +34,7 @@ function MysticismDuel_ManaCheckThread(hero, side)
     while 1 do
         local current_mana = GetUnitManaPoints(hero)
         if current_mana / mysticism_duel[side].max_mana <= mysticism_duel.mana_bottom_percent then
-            local mana_to_restore = ceil(mysticism_duel[side].max_mana * mysticism_duel.mana_restore_percent)
+            local mana_to_restore = ceil(mysticism_duel[side].max_mana * mysticism_duel.mana_restore_percent + mysticism_duel.mana_restore_base)
             startThread(CombatFlyingSign, {
                 mysticism_duel.path.."mana_restored.txt"; amount = mana_to_restore
             }, hero, 7.0)

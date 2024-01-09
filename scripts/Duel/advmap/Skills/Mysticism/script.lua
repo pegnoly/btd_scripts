@@ -17,13 +17,13 @@ function(hero)
                 if not mysticism_duel.active_for_hero[%hero] then
                     if HasHeroSkill(%hero, PERK_MYSTICISM) or HasHeroSkill(%hero, HERO_SKILL_BARBARIAN_MYSTICISM) then
                         mysticism_duel.active_for_hero[%hero] = 1
-                        ChangeHeroStat(%hero, STAT_KNOWLEDGE, mysticism_duel.know_bonus)
+                        --ChangeHeroStat(%hero, STAT_KNOWLEDGE, mysticism_duel.know_bonus)
                         consoleCmd("@SetGameVar('"..%hero.."_MYSTICISM', 'active')")
                     end
                 else
                     if not (HasHeroSkill(%hero, PERK_MYSTICISM) or HasHeroSkill(%hero, HERO_SKILL_BARBARIAN_MYSTICISM)) then
                         mysticism_duel.active_for_hero[%hero] = nil
-                        ChangeHeroStat(%hero, STAT_KNOWLEDGE, -mysticism_duel.know_bonus)
+                        --ChangeHeroStat(%hero, STAT_KNOWLEDGE, -mysticism_duel.know_bonus)
                         consoleCmd("@SetGameVar('"..%hero.."_MYSTICISM', 'active')")
                     end
                 end
