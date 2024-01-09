@@ -8,7 +8,7 @@ function(hero)
         while not BTD_Duel_ArmyDistribution.custom_add_func[hero] do
             sleep()
         end
-        BTD_Duel_ArmyDistribution.custom_add_func[hero][4] = function()
+        BTD_Duel_ArmyDistribution.custom_add_func[hero][5] = function()
             startThread(Hero.CreatureInfo.Add, %hero, 949, random(10) + 27)
         end
     end
