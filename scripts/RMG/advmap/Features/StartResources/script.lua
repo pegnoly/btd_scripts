@@ -1,7 +1,7 @@
 RES_BONUS_RESOURCE = 1
 RES_BONUS_GOLD = 2
 
-while not MCCS_TEMPLATE_TYPE and TEMPLATE_TYPE_Blitz do
+while not MCCS_GAME_MODES and GAME_MODE_BLITZ do
     sleep()
 end
 
@@ -60,14 +60,15 @@ function StartResources_GiveStartBonus(player)
             end
         end
     end
+    local is_blitz = MCCS_GAME_MODES[GAME_MODE_BLITZ]
     SetPlayerStartResources(
         player,
-        actual_resources[WOOD] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_wood_multiplier or 1),
-        actual_resources[ORE] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_wood_multiplier or 1),
-        actual_resources[MERCURY] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_rare_multiplier or 1),
-        actual_resources[CRYSTAL] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_rare_multiplier or 1),
-        actual_resources[SULFUR] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_rare_multiplier or 1),
-        actual_resources[GEM] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_rare_multiplier or 1),
-        actual_resources[GOLD] * (MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz and btd_start_resources.blitz_gold_multiplier or 1)
+        actual_resources[WOOD] * (is_blitz and btd_start_resources.blitz_wood_multiplier or 1),
+        actual_resources[ORE] * (is_blitz and btd_start_resources.blitz_wood_multiplier or 1),
+        actual_resources[MERCURY] * (is_blitz and btd_start_resources.blitz_rare_multiplier or 1),
+        actual_resources[CRYSTAL] * (is_blitz and btd_start_resources.blitz_rare_multiplier or 1),
+        actual_resources[SULFUR] * (is_blitz and btd_start_resources.blitz_rare_multiplier or 1),
+        actual_resources[GEM] * (is_blitz and btd_start_resources.blitz_rare_multiplier or 1),
+        actual_resources[GOLD] * (is_blitz and btd_start_resources.blitz_gold_multiplier or 1)
     )
 end
