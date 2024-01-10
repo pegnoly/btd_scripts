@@ -8,7 +8,7 @@ GAME_MODE_FINAL_BATTLE = 5
 GAME_MODE_CAPTURE_OBJECT = 6
 GAME_MODE_ECONOMIC = 7
 
-doFile(GetMapDataPath().."template_info.lua")
+doFile(GetMapDataPath().."modes_info.lua")
 while not MCCS_GAME_MODES do
     sleep()
 end

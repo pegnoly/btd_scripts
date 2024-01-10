@@ -1,4 +1,4 @@
-while not MCCS_TEMPLATE_TYPE and TEMPLATE_TYPE_Blitz do
+while not MCCS_GAME_MODES and GAME_MODE_BLITZ do
     sleep()
 end
 
@@ -9,7 +9,7 @@ blitz_creature_grow = {
 MapLoadingEvent.AddListener("BTD_RMG_blitz_mode_init_creature_grow",
 function()
     --print("Here, ", MCCS_TEMPLATE_TYPE)
-    if MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Blitz then
+    if MCCS_GAME_MODES[GAME_MODE_BLITZ] then
         --print("Blitz template detected")
         for i, town in GetObjectNamesByType("TOWN") do
             blitz_creature_grow.town_build_info[town] = {
