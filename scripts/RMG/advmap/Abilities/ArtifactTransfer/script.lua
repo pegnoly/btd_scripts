@@ -1,8 +1,9 @@
-while not MCCS_TEMPLATE_TYPE and TEMPLATE_TYPE_Outcast do
+while not MCCS_GAME_MODES and GAME_MODE_OUTCAST do
     sleep()
 end
 
-if MCCS_TEMPLATE_TYPE == TEMPLATE_TYPE_Outcast then
+-- adaptation to multi-mode system
+if MCCS_GAME_MODES[GAME_MODE_OUTCAST] then
     return 
 end
 
