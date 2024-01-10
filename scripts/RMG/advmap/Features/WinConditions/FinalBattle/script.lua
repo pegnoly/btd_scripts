@@ -1,4 +1,4 @@
-while not MCCS_MapWinConditions do
+while not MCCS_GAME_MODES do
     sleep()
 end
 
@@ -20,13 +20,13 @@ wc_final_battle = {
 
 MapLoadingEvent.AddListener("BTD_RMG_win_condition_final_battle_init",
 function()
-    if MCCS_MapWinConditions["final_battle"] then
+    if MCCS_GAME_MODES[GAME_MODE_FINAL_BATTLE] then
         for player = PLAYER_1, PLAYER_8 do
             if Player.IsActive(player) then
                 Quest.Start("WIN_CONDITION_FINAL_BATTLE", nil, player)
             end
         end
-        wc_final_battle.date = MCCS_MapWinConditions["final_battle"]
+        wc_final_battle.date = MCCS_GAME_MODES[GAME_MODE_FINAL_BATTLE]
         NewDayEvent.AddListener("BTD_RMG_win_condition_final_battle_new_day", WC_FinalBattle_StartDay)
     end
 end)

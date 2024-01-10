@@ -1,4 +1,4 @@
-while not MCCS_MapWinConditions and RareResource do
+while not MCCS_GAME_MODES and RareResource do
     sleep()
 end
 
@@ -10,10 +10,10 @@ wc_economic = {
 
 MapLoadingEvent.AddListener("BTD_RMG_win_condition_economic_init",
 function()
-    if MCCS_MapWinConditions["economic"] then
-        print("Economic wc: ", MCCS_MapWinConditions["economic"])
-        wc_economic.current_res_type = MCCS_MapWinConditions["economic"].res_type
-        wc_economic.current_res_count = MCCS_MapWinConditions["economic"].count
+    if MCCS_GAME_MODES[GAME_MODE_ECONOMIC] then
+        print("Economic wc: ", MCCS_GAME_MODES[GAME_MODE_ECONOMIC])
+        wc_economic.current_res_type = MCCS_GAME_MODES[GAME_MODE_ECONOMIC].res_type
+        wc_economic.current_res_count = MCCS_GAME_MODES[GAME_MODE_ECONOMIC].count
         for player = PLAYER_1, PLAYER_8 do
             if Player.IsActive(player) then
                 Quest.Start("WIN_CONDITION_ECONOMIC", nil, player)

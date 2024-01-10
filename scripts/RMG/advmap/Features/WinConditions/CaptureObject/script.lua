@@ -1,4 +1,4 @@
-while not MCCS_MapWinConditions do
+while not MCCS_GAME_MODES do
     sleep()
 end
 
@@ -13,13 +13,13 @@ wc_capture_object = {
 
 MapLoadingEvent.AddListener("BTD_RMG_win_condition_capture_init",
 function()
-    if MCCS_MapWinConditions["capture"] then
+    if MCCS_GAME_MODES[GAME_MODE_CAPTURE_OBJECT] then
         for player = PLAYER_1, PLAYER_8 do
             if Player.IsActive(player) then
                 Quest.Start("WIN_CONDITION_CAPTURE_OBJECT", nil, player)
             end
         end
-        wc_capture_object.delay = MCCS_MapWinConditions["capture"].delay
+        wc_capture_object.delay = MCCS_GAME_MODES[GAME_MODE_CAPTURE_OBJECT].delay
         Trigger(OBJECT_CAPTURE_TRIGGER, wc_capture_object.town_name, "WC_CaptureTownCaptured")
         NewDayEvent.AddListener("BTD_RMG_wc_capture_new_day", WC_CaptureNewDay)
     end

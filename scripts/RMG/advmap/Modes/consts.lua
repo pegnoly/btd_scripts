@@ -1,11 +1,14 @@
-MCCS_TEMPLATE_TYPE = nil
+MCCS_GAME_MODES = nil
 
-TEMPLATE_TYPE_Common = 1
-TEMPLATE_TYPE_Outcast = 2
-TEMPLATE_TYPE_Blitz = 3
-TEMPLATE_TYPE_Krypt = 4
+GAME_MODE_COMMON = 1
+GAME_MODE_OUTCAST = 2
+GAME_MODE_BLITZ = 3
+GAME_MODE_KRYPT = 4
+GAME_MODE_FINAL_BATTLE = 5
+GAME_MODE_CAPTURE_OBJECT = 6
+GAME_MODE_ECONOMIC = 7
 
-doFile(GetMapDataPath().."template_info.lua")
-while not MCCS_TEMPLATE_TYPE do
+doFile(GetMapDataPath().."modes_info.lua")
+while not MCCS_GAME_MODES do
     sleep()
 end

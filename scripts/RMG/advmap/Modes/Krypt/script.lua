@@ -1,17 +1,19 @@
-while not MCCS_TEMPLATE_TYPE and TEMPLATE_TYPE_Krypt do
+while not MCCS_GAME_MODES and GAME_MODE_KRYPT do
     sleep()
 end
 
 MapLoadingEvent.AddListener("BTD_rmg_krypt_mode_init", 
 function()
-    for i, town in GetObjectNamesByType("TOWN") do
-        if GetObjectOwner(town) == PLAYER_NONE then
-            for slot = 0, 6 do
-                local creature, count = GetObjectArmySlotCreature(town, slot)
-                if not (creature == 0 or count == 0) then
-                    if Creature.Params.Tier(creature) >= 6 then
-                        print("KRYPT town detected: ", town)
-                        startThread(BuildTownToLimit, town)
+    if MCCS_GAME_MODES[GAME_MODE_KRYPT] then
+        for i, town in GetObjectNamesByType("TOWN") do
+            if GetObjectOwner(town) == PLAYER_NONE then
+                for slot = 0, 6 do
+                    local creature, count = GetObjectArmySlotCreature(town, slot)
+                    if not (creature == 0 or count == 0) then
+                        if Creature.Params.Tier(creature) >= 6 then
+                            print("KRYPT town detected: ", town)
+                            startThread(BuildTownToLimit, town)
+                        end
                     end
                 end
             end
