@@ -26,10 +26,6 @@ while not BANK_BTDSUNKENTEMPLE do
 end
 
 doFile("/scripts/RMG/advmap/Objects/Banks/generated.lua")
--- сгенерированные патчером файлы
-doFile(GetMapDataPath().."buildings.lua")
-doFile(GetMapDataPath().."treasures.lua")
-
 
 while not BTD_GENERATED_BANKS_INFO and BTD_BanksInfo do
     sleep()

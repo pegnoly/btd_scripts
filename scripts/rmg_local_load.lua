@@ -100,7 +100,9 @@ doFile("/scripts/RMG/advmap/Towns/Buildings/Preserve_SparklingFountain/script.lu
 
 -- режимы
 doFile("/scripts/RMG/advmap/Modes/Blitz/CreatureGrow/script.lua")
+doFile("/scripts/RMG/advmap/Modes/Blitz/Init/script.lua")
 doFile("/scripts/RMG/advmap/Modes/Krypt/script.lua")
+doFile("/scripts/RMG/advmap/Modes/Outcast/script.lua")
 
 -- спеллы
 doFile("/scripts/RMG/advmap/Spells/init.lua")

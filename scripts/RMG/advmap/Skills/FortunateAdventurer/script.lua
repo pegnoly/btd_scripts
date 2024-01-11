@@ -9,10 +9,10 @@ fortunate_adventurer_rmg =
 
 MapLoadingEvent.AddListener("BTD_RMG_fortunate_adventurer_init", 
 function()
-    while not TREASURES do
+    while not BTD_Treasures do
         sleep()
     end
-    for i, treasure in TREASURES do
+    for treasure, _ in BTD_Treasures do
         Touch.SetTrigger(treasure)
         Touch.SetFunction(treasure, "_collect",
         function(hero, object)

@@ -1,4 +1,4 @@
-while not TREASURES do
+while not BTD_Treasures do
     sleep()
 end
 
@@ -18,7 +18,7 @@ treasures_rmg = {
 
 MapLoadingEvent.AddListener("btd_rmg_treasures_descs_init",
 function()
-    for treasure, info in TREASURES do
+    for treasure, info in BTD_Treasures do
         if info.type ~= TREASURE_CAMPFIRE and info.amount ~= 0 then
             if info.type == TREASURE_GOLD then
                 OverrideObjectTooltipNameAndDescription(

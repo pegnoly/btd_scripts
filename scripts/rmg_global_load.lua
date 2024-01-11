@@ -4,9 +4,11 @@ while not RareResource do
     sleep()
 end
 
-doFile(GetMapDataPath().."win_conditions.lua")
+doFile("/scripts/RMG/advmap/Modes/consts.lua")
+doFile(GetMapDataPath().."buildings_info.lua")
 doFile(GetMapDataPath().."stacks.lua")
 doFile(GetMapDataPath().."towns_info.lua")
+doFile(GetMapDataPath().."treasures_info.lua")
 
 doFile("/scripts/RMG/test.lua")
 -- герои --
@@ -58,9 +60,6 @@ doFile("/scripts/RMG/advmap/Creatures/Abilities/reload.lua")
 
 -- города
 doFile("/scripts/RMG/advmap/Towns/Common/MagicGuild/consts.lua")
-
--- режимы
-doFile("/scripts/RMG/advmap/Modes/consts.lua")
 
 --
 doFile("/scripts/RMG/advmap/Features/WinConditions/Economic/consts.lua")
