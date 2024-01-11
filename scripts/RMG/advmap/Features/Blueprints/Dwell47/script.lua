@@ -1,15 +1,14 @@
-while not BLUEPRINTS_DWELL_13 and not ARTIFACT_BLUEPRINT_DWELL_13 do
+while not BLUEPRINTS_DWELL_47 and not ARTIFACT_BLUEPRINT_DWELL_47 do
     sleep()
 end
 
 
-
-blueprints_dwell13_rmg = {
+blueprints_dwell47_rmg = {
 
 }
 
-CustomAbility.callbacks["blueprint_dwell13_custom"] = {
-    question = "/scripts/RMG/advmap/Features/Blueprints/Dwell13/question.txt",
+CustomAbility.callbacks["blueprint_dwell47_custom"] = {
+    question = "/scripts/RMG/advmap/Features/Blueprints/Dwell47/question.txt",
     func = function(hero)
         local player = GetObjectOwner(hero)
         local town
@@ -22,10 +21,10 @@ CustomAbility.callbacks["blueprint_dwell13_custom"] = {
         local town_level = 10 --Blueprints_GetTownLevel(town)
         local race = GetTownRace(town)
         --for dwell, info in BLUEPRINTS_DWELL_13[town] do
-        local path = BLUEPRINTS_DWELL_13[race].path
+        local path = BLUEPRINTS_DWELL_47[race].path
         local any_building_flag
-        for building = TOWN_BUILDING_DWELLING_1, TOWN_BUILDING_DWELLING_3 do
-            local building_info = BLUEPRINTS_DWELL_13[race][building]
+        for building = TOWN_BUILDING_DWELLING_4, TOWN_BUILDING_DWELLING_7 do
+            local building_info = BLUEPRINTS_DWELL_47[race][building]
             -- проверка на наличие зависимых зданий
             local reachable_flag = 1
             if building_info.depends_on then
@@ -54,7 +53,7 @@ CustomAbility.callbacks["blueprint_dwell13_custom"] = {
                     if can_be_build then
                         any_building_flag = 1
                         if MCCS_QuestionBoxForPlayers(player, {
-                            "/scripts/RMG/advmap/Features/Blueprints/Dwell13/wanna_build.txt"; 
+                            "/scripts/RMG/advmap/Features/Blueprints/Dwell47/wanna_build.txt"; 
                             race_color = RACE_COLORS[race],
                             name = path..building_info.upgrades[next_level].name
                         }) then
@@ -69,7 +68,7 @@ CustomAbility.callbacks["blueprint_dwell13_custom"] = {
             end
         end
         if not any_building_flag then
-            startThread(MCCS_MessageBoxForPlayers, "/scripts/RMG/advmap/Features/Blueprints/Dwell13/nothing_to_build.txt")
+            startThread(MCCS_MessageBoxForPlayers, "/scripts/RMG/advmap/Features/Blueprints/Dwell47/nothing_to_build.txt")
         end
     end
 }
