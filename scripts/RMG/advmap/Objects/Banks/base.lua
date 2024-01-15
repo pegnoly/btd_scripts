@@ -1,3 +1,18 @@
+difficulty_decorators = {
+	["blueprints_decorator"] = 
+	function(hero, difficulty)
+		if MCCS_GAME_MODES[GAME_MODE_EXPERIMENTALARTS] then
+			if difficulty == BANK_VARIANT_EASY then
+				Art.Distribution.Give(hero, ARTIFACT_BLUEPRINT_DWELL_13)
+			elseif difficulty == BANK_VARIANT_HARD then
+				Art.Distribution.Give(hero, ARTIFACT_BLUEPRINT_DWELL_47)
+			else
+				Art.Distribution.Give(hero, Random.FromSelection(ARTIFACT_BLUEPRINT_MGUILD, ARTIFACT_BLUEPRINT_SPECIAL))
+			end
+		end
+	end
+}
+
 spell_give_decorators = {
     [BANK_MAGI_VAULT] =
     function(hero, spell_count, spell_level)
@@ -158,8 +173,9 @@ BTD_Banks =
 		local info = BTD_GENERATED_BANKS_INFO[type]
     print("<color=red>BTD_Banks.TouchBank: <color=green> info ok")
 		if BTD_Banks.current_cooldowns[object] == 0 then
-      print("<color=red>BTD_Banks.TouchBank: <color=green> current variant is ", BTD_Banks.current_variants[object])
+      		print("<color=red>BTD_Banks.TouchBank: <color=green> current variant is ", BTD_Banks.current_variants[object])
 			local variant = info.Variants[BTD_Banks.current_variants[object]]
+			local difficulty = variant.Difficulty
 			print("<color=red>BTD_Banks.TouchBank: <color=green> variant is ", BTD_Banks.current_variants[object])
 			local creatures_set = BTD_Banks.GenerateCreaturesSet(variant.Creatures)
 			print("Creatures set generated: ", creatures_set)
@@ -173,7 +189,7 @@ BTD_Banks =
 				else
 					reward_info = variant.RewardMax
 				end
-				startThread(BTD_Banks.GiveRewardDelayed, hero, type, BTD_Banks.current_variants[object], reward_info)
+				startThread(BTD_Banks.GiveRewardDelayed, hero, type, BTD_Banks.current_variants[object], reward_info, difficulty)
 				startThread(BTD_Banks.SetupCooldown, object, type, {count = info.RechargeCount, days = info.DaysForRecharge})
 			end
 		else
@@ -183,8 +199,8 @@ BTD_Banks =
 	end,
     
 	GiveRewardDelayed =
-	function(hero, bank_type, variant, reward_info)
-		BTD_Banks.delayed_rewards[GetObjectOwner(hero)] = {hero=hero, type=bank_type, info=reward_info, variant=variant}
+	function(hero, bank_type, variant, reward_info, difficulty)
+		BTD_Banks.delayed_rewards[GetObjectOwner(hero)] = {hero=hero, type=bank_type, info=reward_info, variant=variant, difficulty = difficulty}
 		MessageBoxForPlayers(GetPlayerFilter(GetObjectOwner(hero)), "/scripts/RMG/advmap/Objects/Banks/Texts/reward.txt", "BTD_Banks.OnGiveRewardDelayedAccepted")
 	end,
 	
@@ -196,23 +212,28 @@ BTD_Banks =
 				local hero = data.hero
 				local type = data.type
 				local variant = data.variant
+				local difficulty = data.difficulty
 				local info = data.info
 				BTD_Banks.delayed_rewards[player] = nil
 				print("Trying to give reward to hero ", hero)
-				startThread(BTD_Banks.GiveReward, hero, type, variant, info)
+				startThread(BTD_Banks.GiveReward, hero, type, variant, info, difficulty)
 				break
 			end
 		end
 	end,
 	
 	GiveReward =
-	function(hero, bank_type, variant, reward_info)
+	function(hero, bank_type, variant, reward_info, difficulty)
 		local res_table = reward_info.Resources
 		local minor_count = reward_info.MinorCount
 		local major_count = reward_info.MajorCount
 		local relic_count = reward_info.RelicCount
 		local spell_count = reward_info.SpellCount
 		local spell_level = reward_info.SpellLevel
+		--
+		for decorator, func in difficulty_decorators do
+			startThread(func, hero, difficulty)	
+		end
 		--
 		for res, count in res_table do
 			if count ~= 0 then
