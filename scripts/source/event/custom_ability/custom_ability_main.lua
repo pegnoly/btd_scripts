@@ -25,6 +25,10 @@ CustomAbility =
 
     Run = 
     function(hero, ability_id)
+        if ability_id == CUSTOM_ABILITY_4 then
+            startThread(CustomAbility.callbacks[CUSTOM_ABILITY_4], hero)
+            return
+        end
         for callback, active in CustomAbility.callbacks_for_hero[ability_id][hero] do
             local info = CustomAbility.callbacks[callback]
             local question
