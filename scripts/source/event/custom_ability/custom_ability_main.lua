@@ -1,15 +1,21 @@
 CUSTOM_ABILITY_ARTIFACT = 1
+CUSTOM_ABILITY_HERO = 2
+CUSTOM_ABILITY_TOWN = 3
 
 CustomAbility =
 {
     callbacks = {},
 
     callbacks_for_hero = {
-        [CUSTOM_ABILITY_ARTIFACT] = {}
+        [CUSTOM_ABILITY_ARTIFACT] = {},
+        [CUSTOM_ABILITY_HERO] = {},
+        [CUSTOM_ABILITY_TOWN] = {}
     },
 
     enabled_for_hero = {
-        [CUSTOM_ABILITY_ARTIFACT] = {}
+        [CUSTOM_ABILITY_ARTIFACT] = {},
+        [CUSTOM_ABILITY_HERO] = {},
+        [CUSTOM_ABILITY_TOWN] = {}
     },
 
     Init =

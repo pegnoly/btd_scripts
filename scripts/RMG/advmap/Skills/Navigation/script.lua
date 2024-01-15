@@ -7,7 +7,7 @@ function(hero)
             if IsHeroAlive(%hero) then
                 if not navigation_common.stat_for_hero[%hero] then
                     if HasHeroSkill(%hero, PERK_NAVIGATION) and (not GetHeroTown(%hero)) then
-                        ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_NAVIGATION, CUSTOM_ABILITY_ENABLED)
+                        CustomAbility.callbacks_for_hero[CUSTOM_ABILITY_HERO][%hero]["navigation"] = 1
                     end
                 else
                     if not HasHeroSkill(%hero, PERK_NAVIGATION) then
