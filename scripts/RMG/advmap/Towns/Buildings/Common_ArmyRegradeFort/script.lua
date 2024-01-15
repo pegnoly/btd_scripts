@@ -28,12 +28,12 @@ function(hero)
             if IsHeroAlive(%hero) then
                 if not army_regrade_fort.active_for_hero[%hero] then
                     if ArmyRegradeFort_CanBeActivated(%hero) then
-                        ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_ACTIVATE_ARMY_REGRADE_FORT, CUSTOM_ABILITY_ENABLED)
+                        CustomAbility.callbacks_for_hero[CUSTOM_ABILITY_TOWN][%hero]["regrade_fort"] = 1
                         army_regrade_fort.active_for_hero[%hero] = 1
                     end
                 else
                     if not ArmyRegradeFort_CanBeActivated(%hero) then
-                        ControlHeroCustomAbility(%hero, CUSTOM_ABILITY_ACTIVATE_ARMY_REGRADE_FORT, CUSTOM_ABILITY_DISABLED)
+                        CustomAbility.callbacks_for_hero[CUSTOM_ABILITY_TOWN][%hero]["regrade_fort"] = nil
                         army_regrade_fort.active_for_hero[%hero] = nil
                     end
                 end
@@ -56,16 +56,18 @@ function ArmyRegradeFort_CanBeActivated(hero)
     return nil
 end
 
-CustomAbility.callbacks[CUSTOM_ABILITY_ACTIVATE_ARMY_REGRADE_FORT] =
-function(hero)
-    for slot = 0, 6 do
-        local creature, count = GetObjectArmySlotCreature(hero, slot)
-        if not (creature == 0 or count == 0) then
-            if contains(army_regrade_fort.non_grades, creature) then
-                startThread(MCCS_MessageBoxForPlayers, GetObjectOwner(hero), army_regrade_fort.path.."non_grades_in_army.txt")
-                return
+CustomAbility.callbacks["regrade_fort"] = {
+    question = army_regrade_fort.path.."wanna_use.txt",
+    func = function(hero)
+        for slot = 0, 6 do
+            local creature, count = GetObjectArmySlotCreature(hero, slot)
+            if not (creature == 0 or count == 0) then
+                if contains(army_regrade_fort.non_grades, creature) then
+                    startThread(MCCS_MessageBoxForPlayers, GetObjectOwner(hero), army_regrade_fort.path.."non_grades_in_army.txt")
+                    return
+                end
             end
         end
+        MakeHeroInteractWithObject(hero, "BTD_upgrade_hill_fort")
     end
-    MakeHeroInteractWithObject(hero, "BTD_upgrade_hill_fort")
-end
+}
