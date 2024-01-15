@@ -17,7 +17,7 @@ dark_revelation_duel = {
 
 CustomAbility.callbacks["dark_revelation_duel"] = {
     question = dark_revelation_duel.path.."wanna_use.txt",
-    funct = function(hero)
+    func = function(hero)
         errorHook(function ()
             print("<color=red>Error: <color=green> DarkRevelation duel custom ability.")
         end)
