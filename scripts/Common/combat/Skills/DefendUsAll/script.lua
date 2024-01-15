@@ -1,7 +1,12 @@
+CREATURE_TRAPPERS_LOT = 225
+CREATURE_DEFILERS_LOT = 226
+
 defend_us_all =
 {
     [ATTACKER] = {},
-    [DEFENDER] = {}
+    [DEFENDER] = {},
+    trappers_max_moves = 2,
+    defilers_max_moves = 1
 }
 
 if GetGameVar(GetHeroName(GetAttackerHero()).."_DEFEND_US_ALL") == '1' then
@@ -9,6 +14,8 @@ if GetGameVar(GetHeroName(GetAttackerHero()).."_DEFEND_US_ALL") == '1' then
     {
         trapper_cast_used = nil,
         defiler_cast_used = nil,
+        trappers_lot_moves = 0,
+        defilers_lot_moves = 0,
         mana_steal_iteration = 1,
         enemy_casters_info = {}
     }
@@ -16,134 +23,98 @@ if GetGameVar(GetHeroName(GetAttackerHero()).."_DEFEND_US_ALL") == '1' then
     function()
         startThread(DefendUsAll_Start, ATTACKER)
     end)
+    AddCombatFunction(CombatFunctions.ATTACKER_CREATURE_MOVE, "BTD_defend_us_all_attacker_creature_move",
+    function(creature)
+        DefendUsAll_CreatureMove(creature, ATTACKER)
+    end)
 end
   
 if GetDefenderHero() and (GetGameVar(GetHeroName(GetDefenderHero()).."_DEFEND_US_ALL") == '1') then
     defend_us_all[DEFENDER] =
     {
         trapper_cast_used = nil,
-        defiler_cast_used = nil
+        defiler_cast_used = nil,
+        trappers_lot_moves = 0,
+        defilers_lot_moves = 0
     }
     AddCombatFunction(CombatFunctions.START, "BTD_defend_us_all_start_defender",
     function()
         startThread(DefendUsAll_Start, DEFENDER)
     end)
+    AddCombatFunction(CombatFunctions.DEFENDER_CREATURE_MOVE, "BTD_defend_us_all_defender_creature_move",
+    function(creature)
+        DefendUsAll_CreatureMove(creature, DEFENDER)
+    end)
 end
 
-function DefendUsAll_SetSnare(side, key, x, y)
-    local uniq_key = 'set_snare_'..side..'_'..key;
-    
-    if pcall(AddCreature, side, CREATURE_GOBLIN_TRAPPER, 10000, -1, -1, nil, uniq_key) then
-        while not exist(uniq_key) do
-            sleep()
+function DefendUsAll_CreatureMove(creature, side)
+    local _type = GetCreatureType(creature)
+    if _type == CREATURE_TRAPPERS_LOT then
+        defend_us_all[side].trappers_lot_moves = defend_us_all[side].trappers_lot_moves + 1
+        if defend_us_all[side].trappers_lot_moves == defend_us_all.trappers_max_moves then
+            removeUnit(creature)
+            return
         end
-
-        if x ~= nil and y ~= nil then
-            pcall(commandDoSpecial, uniq_key, SPELL_ABILITY_SET_SNARES, x, y)
-            
-        else
-            local MARGIN_X = 4;
-            local random_x, random_y
-            
-            repeat
-              random_x, random_y = random(6) + MARGIN_X, random(10);
-            until pcall(commandDoSpecial, uniq_key, SPELL_ABILITY_SET_SNARES, random_x, random_y)
-        end;
-    end;
-	sleep(10)
-	removeUnit(uniq_key)
-    repeat
-        pcall(removeUnit, uniq_key)
-        sleep()
-    until not exist(uniq_key)
-end;
+    end
+    --
+    if _type == CREATURE_DEFILERS_LOT then
+        defend_us_all[side].defilers_lot_moves = defend_us_all[side].defilers_lot_moves + 1
+        if defend_us_all[side].defilers_lot_moves == defend_us_all.defilers_max_moves then
+            removeUnit(creature)
+            return
+        end
+    end
+end
 
 function DefendUsAll_Start(side)
     for i, creature in GetCreatures(side) do
         local type = GetCreatureType(creature)
         if type == CREATURE_GOBLIN_TRAPPER and (not defend_us_all[side].trapper_cast_used) then
-            local possible_stacks_to_cast, n = {}, 0
-            
-            for _, enemy_creature in (side == ATTACKER and keys(defender_real_army) or keys(attacker_real_army)) do
-                if not Creature.Component.HasAbility(enemy_creature, ABILITY_FLYER) and
-                   not Creature.Type.IsShooter(enemy_creature) and
-                   not Creature.Type.IsCaster(enemy_creature) then
-                    n = n + 1
-                    possible_stacks_to_cast[n] = enemy_creature
+            local trappers_lot_helper = "defend_us_all_"..side.."_trappers_lot"
+            if pcall(AddCreature, side, CREATURE_TRAPPERS_LOT, 10000, -1, -1, 1, trappers_lot_helper) then
+                while not exist(trappers_lot_helper) do
+                    sleep()
                 end
+                displace(trappers_lot_helper, 8 + side, 51 + side)
+                setATB(trappers_lot_helper, 1)
             end
-
-            if n > 0 then
-                for _, target in possible_stacks_to_cast do
-                    local x, y = pos(target)
-
-                    if side == ATTACKER then
-                        x = x - (Creature.Type.IsBig(target) and 2 or 1)
-                    else
-                        x = x + 1
-                    end
-
-                    startThread(DefendUsAll_SetSnare, side, 'defend_us_all_trap_under_creature_', x, y);
-                    
-                    break;
-                end
-            end
-            
-            local RANDOM_COUNT_MIDDLE_TRAP = 2;
-            
-            for index = 1, RANDOM_COUNT_MIDDLE_TRAP do
-                startThread(DefendUsAll_SetSnare, side, 'defend_us_all_middle_trap_'..index);
-            end;
-        
             defend_us_all[side].trapper_cast_used = 1
-        end;
+        end
+        --
         if type == CREATURE_GOBLIN_DEFILER and (not defend_us_all[side].defiler_cast_used) then
-            local helper = "defend_us_all_defiler_"..side
-
-            local possible_stacks_to_cast, n = {}, 0
-            --
-            if GetHero(1 - side) then
-                n = n + 1
-                possible_stacks_to_cast[n] = GetHero(1 - side)
-            end
-            --
-            for _, enemy_creature in (side == ATTACKER and keys(defender_real_army) or keys(attacker_real_army)) do
-                if Creature.Type.IsCaster(enemy_creature) then
-                    n = n + 1
-                    possible_stacks_to_cast[n] = enemy_creature
+            local enemy_casters_flag
+            for _, cr in GetCreatures(1 - side) do
+                if Creature.Type.IsCaster(cr) then
+                    enemy_casters_flag = 1
+                    break
                 end
             end
-            if n > 0 then
-			    if pcall(AddCreature, side, CREATURE_GOBLIN_DEFILER, 10000, -1, -1, nil, helper) then
-					while not exist(helper) do
-						sleep()
-					end
-					for i, _unit in possible_stacks_to_cast do 
-						pcall(UnitCastAimedSpell, helper, SPELL_ABILITY_DEFILE_MAGIC, _unit)
-					end
-					sleep(10)
-					removeUnit(helper)
-					repeat
-						pcall(removeUnit, helper)
-						sleep()
-					until not exist(helper)
-				end
-            end
-            --
-            if side == ATTACKER and (not GetDefenderHero()) then
-                for _, enemy_creature in (side == ATTACKER and keys(defender_real_army) or keys(attacker_real_army)) do
-                    if Creature.Type.IsCaster(enemy_creature) then
-                        defend_us_all[side].enemy_casters_info[enemy_creature] = {
-                            iteration = 0,
-                            current_mana = GetUnitManaPoints(enemy_creature)
-                        }
-                    end
-                end
+            if enemy_casters_flag then
+                local defilers_lot_helper = "defend_us_all_"..side.."_defilers_lot"
                 --
-                for _, cr in GetCreatures(side) do
-                    if GetCreatureType(cr) == CREATURE_GOBLIN_DEFILER then
-                        DefendUsAll_StealMana(cr, side)
-                        --sleep(20)
+                if pcall(AddCreature, side, CREATURE_DEFILERS_LOT, 10000, -1, -1, 1, defilers_lot_helper) then
+                    while not exist(defilers_lot_helper) do
+                        sleep()
+                    end
+                    displace(defilers_lot_helper, 8 + side, 52 + side)
+                end
+                defend_us_all[side].defiler_cast_used = 1
+                --
+                if side == ATTACKER and (not GetDefenderHero()) then
+                    for _, enemy_creature in (side == ATTACKER and keys(defender_real_army) or keys(attacker_real_army)) do
+                        if Creature.Type.IsCaster(enemy_creature) then
+                            defend_us_all[side].enemy_casters_info[enemy_creature] = {
+                                iteration = 0,
+                                current_mana = GetUnitManaPoints(enemy_creature)
+                            }
+                        end
+                    end
+                    --
+                    for _, cr in GetCreatures(side) do
+                        if GetCreatureType(cr) == CREATURE_GOBLIN_DEFILER then
+                            DefendUsAll_StealMana(cr, side)
+                            --sleep(20)
+                        end
                     end
                 end
             end
