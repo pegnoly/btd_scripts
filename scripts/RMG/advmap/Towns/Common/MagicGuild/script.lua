@@ -116,12 +116,12 @@ function RMG_MGuildAbilityActivationThread()
                         if scroll and CanActivateScroll(hero, scroll) then
                             mguild_rmg.current_scroll_for_hero[hero] = scroll
                             mguild_rmg.ability_active_for_hero[hero] = 1
-                            ControlHeroCustomAbility(hero, CUSTOM_ABILITY_LEARN_SCROLL_SPELL, CUSTOM_ABILITY_ENABLED)
+                            CustomAbility.callbacks_for_hero[CUSTOM_ABILITY_ARTIFACT][hero]["mguild_scroll"] = 1
                         end
                     else
                         if (not HasAnyScroll(hero)) or (not CanActivateScroll(hero, mguild_rmg.current_scroll_for_hero[hero])) then
                             mguild_rmg.ability_active_for_hero[hero] = nil
-                            ControlHeroCustomAbility(hero, CUSTOM_ABILITY_LEARN_SCROLL_SPELL, CUSTOM_ABILITY_NOT_PRESENT)
+                            CustomAbility.callbacks_for_hero[CUSTOM_ABILITY_ARTIFACT][hero]["mguild_scroll"] = nil
                         end
                     end
                 end
@@ -131,57 +131,75 @@ function RMG_MGuildAbilityActivationThread()
     end
 end
 
-CustomAbility.callbacks[CUSTOM_ABILITY_LEARN_SCROLL_SPELL] = 
-function(hero)
-    local scroll = -1
-    for art = SCROLL_LIGHT_L4, SCROLL_DESTRUCTIVE_L5 do
-        if HasArtefact(hero, art, 1) then
-            scroll = art
-            break
-        end
-    end
-    local school = SCHOOLS_BY_SCROLLS[scroll]
-    local level = -1
-    for lvl, scr in SCROLLS_BY_SCHOOLS[school] do
-        if scroll == scr then
-            level = lvl
-            break
-        end
-    end
-    local spells_to_learn, n = {}, 0
-    for i, spell in SPELLS_BY_SCHOOL_LEVEL[school][level] do
-        if not KnowHeroSpell(hero, spell) then
-            n = n + 1
-            spells_to_learn[n] = spell
-        end
-    end
-    if n == 0 then 
-        startThread(MCCS_MessageBoxForPlayers, GetObjectOwner(hero), mguild_rmg.path.."all_spells_known.txt")
-        return
-    end
-    --
-    local index = 1
-    while index <= n do
-        if MCCS_QuestionBoxForPlayers(GetObjectOwner(hero), {
-            mguild_rmg.path.."main_text.txt";  hero_name = Hero.Params.Name(hero), spell_name = Spell.Params.Name(spells_to_learn[index])
-        }) then
-            local is_ok, status = pcall(TryToLearnSpell, hero, spells_to_learn[index], level)
-            if is_ok then
-                if status == LEARN_STATUS_SUCCESS then
-                    startThread(SpellLearnedCallback, hero)
-                    return
-                elseif status == LEARN_STATUS_NOT_ENOUGH_GOLD then
-                    return
-                else
-                    index = index + 1
-                end
-            end
-        else
-            index = index + 1
-        end
-        sleep()
-    end           
+function GetScrollName(hero, scroll)
+
 end
+
+CustomAbility.callbacks["mguild_scroll"] = {
+    question_func = 
+    function(hero)
+        local scroll = -1
+        for art = SCROLL_LIGHT_L4, SCROLL_DESTRUCTIVE_L5 do
+            if HasArtefact(hero, art, 1) then
+                scroll = art
+                break
+            end
+        end
+        local question = {"/scripts/RMG/advmap/Towns/Common/MagicGuild/SpellDialog/wanna_use_scroll.txt"; scroll_name = Art.Params.Name(scroll)}
+        return question
+    end,
+
+    func = function(hero)
+        local scroll = -1
+        for art = SCROLL_LIGHT_L4, SCROLL_DESTRUCTIVE_L5 do
+            if HasArtefact(hero, art, 1) then
+                scroll = art
+                break
+            end
+        end
+        local school = SCHOOLS_BY_SCROLLS[scroll]
+        local level = -1
+        for lvl, scr in SCROLLS_BY_SCHOOLS[school] do
+            if scroll == scr then
+                level = lvl
+                break
+            end
+        end
+        local spells_to_learn, n = {}, 0
+        for i, spell in SPELLS_BY_SCHOOL_LEVEL[school][level] do
+            if not KnowHeroSpell(hero, spell) then
+                n = n + 1
+                spells_to_learn[n] = spell
+            end
+        end
+        if n == 0 then 
+            startThread(MCCS_MessageBoxForPlayers, GetObjectOwner(hero), mguild_rmg.path.."all_spells_known.txt")
+            return
+        end
+        --
+        local index = 1
+        while index <= n do
+            if MCCS_QuestionBoxForPlayers(GetObjectOwner(hero), {
+                mguild_rmg.path.."main_text.txt";  hero_name = Hero.Params.Name(hero), spell_name = Spell.Params.Name(spells_to_learn[index])
+            }) then
+                local is_ok, status = pcall(TryToLearnSpell, hero, spells_to_learn[index], level)
+                if is_ok then
+                    if status == LEARN_STATUS_SUCCESS then
+                        startThread(SpellLearnedCallback, hero)
+                        return
+                    elseif status == LEARN_STATUS_NOT_ENOUGH_GOLD then
+                        return
+                    else
+                        index = index + 1
+                    end
+                end
+            else
+                index = index + 1
+            end
+            sleep()
+        end           
+    end
+}
 
 function TryToLearnSpell(hero, spell, level)
     if MCCS_QuestionBoxForPlayers(GetObjectOwner(hero), {

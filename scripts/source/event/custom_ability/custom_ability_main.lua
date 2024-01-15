@@ -21,7 +21,13 @@ CustomAbility =
     function(hero, ability_id)
         for callback, active in CustomAbility.callbacks_for_hero[ability_id][hero] do
             local info = CustomAbility.callbacks[callback]
-            if MCCS_QuestionBoxForPlayers(GetObjectOwner(hero), info.question) then
+            local question
+            if info.question then
+                question = info.question
+            elseif info.question_func then
+                question = info.question_func(hero)
+            end
+            if MCCS_QuestionBoxForPlayers(GetObjectOwner(hero), question) then
                 startThread(info.func, hero)
                 break
             end
